@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<!--
+  WBA JUNIOR DOMESTIC GRADING — Summer 2026/27
+  ============================================
+  One self-contained page. To publish an update:
+    1. Edit the DATA block below (the only part you need to touch).
+    2. Save, then upload this file as index.html to Cloudflare Pages
+       (Workers & Pages → your project → Create deployment → drag in the folder or file).
+
+  Everything else — win/loss, margins, bands, look-up/look-down flags, averages,
+  division counts and the six-team floor check — is worked out from the games you enter.
+-->
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBA Junior Grading — Summer 2026/27</title>
+<meta name="description" content="Warragul Basketball Association Junior Domestic grading: Stage 1 results and recommended Stage 2 divisions, Summer 2026/27.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+/* =====================================================================
+   DATA — EDIT HERE
+   ---------------------------------------------------------------------
+   updated   : shown in the header. Change it every time you publish.
+   updates   : newest first. Short notices to clubs, shown on the front page.
+   ageGroups : one entry per age group, shown as buttons in this order.
+
+   For each age group:
+     status : "recommended"  – Stage 2 divisions published (fill `proposed` on every team)
+              "in review"    – Stage 1 results shown, divisions still being set
+              "in progress"  – Stage 1 still being played: results shown as provisional, no flags or divisions
+              "pending"      – nothing published yet
+     played : how many Stage 1 rounds are complete (later rounds show "To come")
+     teams  : name   – as it appears in the games below (keep it short, e.g. "Bunyip Sonics")
+              club   – must match a logo name: Bunyip, Chalkies, Devils, Gladiators,
+                       Neerim Wolves, Rebels, Warranor, Yarragon
+              stage1 – division played in Stage 1 ("D1", "D2", ...)
+              proposed – recommended Stage 2 division (leave out until decided)
+              note   – one or two sentences explaining the placement (shown to clubs)
+     games  : one line per game. r = round, div = Stage 1 division, w = winner, l = loser, then ONE of:
+                ws / ls  – winning and losing scores, e.g. ws:64, ls:31   (preferred)
+                m        – margin as a share of points, e.g. m:0.35      (if scores aren't to hand)
+                ff:true  – forfeit (counts as a win/loss, left out of margins)
+                draw:true – a drawn game (give both scores; either team can be w or l)
+                pending:true – played but result not yet final (shown as "Result pending")
+   ===================================================================== */
+const DATA = {
+  season: "Summer 2026/27",
+  updated: "Wed 21 Oct 2026",
+  updates: [
+    { date: "21 Oct", text: "U14 Boys: Bunyip Wizards have withdrawn. Division 5 has seven teams for Stage 2. Their Stage 1 results remain on the results pages." },
+    { date: "21 Oct", text: "U14 Boys and U16 Boys: recommended Stage 2 divisions published, with all Stage 1 results (Rounds 1–3)." },
+    { date: "20 Oct", text: "U19 Boys: recommended Stage 2 divisions published. All other age groups: Rounds 1–2 results published (provisional). Divisions follow after Round 3." },
+  ],
+  ageGroups: [
+    {
+      name: "U19 Boys",
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Bunyip Rockets", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Mid-table in D1." },
+        { name: "Bunyip Sonics", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Strongest team in D1 and unbeaten. Already in the top division." },
+        { name: "Bunyip Taipan", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Mid-table in D1." },
+        { name: "Devils Eagles", club: "Devils", stage1: "D1", proposed: "D1", note: "Inside the \u221225% threshold. Two of three losses were Close. Staying avoids a third promotion into D1." },
+        { name: "Chalkies Bucks", club: "Chalkies", stage1: "D2", proposed: "D1", note: "Second in D2 and unbeaten (beat Caesars and Lightning). Needed to bring D1 to the six-team floor." },
+        { name: "Gladiators Caesars", club: "Gladiators", stage1: "D2", proposed: "D2", note: "Mid-table in D2." },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D2", proposed: "D1", note: "Best team in D2 and past the +25% threshold. Beat the other unbeaten D2 side (Wildcats)." },
+        { name: "Rebels Jets", club: "Rebels", stage1: "D2", proposed: "D3", note: "The only D2 team past the \u221225% threshold; lost every game by 23% or more." },
+        { name: "Rebels Lightning", club: "Rebels", stage1: "D2", proposed: "D2", note: "Mid-table in D2. Bye in Round 1." },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D2", proposed: "D2", note: "Inside the \u221225% threshold. Bye in Round 3." },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D2", proposed: "D2", note: "Only loss was a Close one (14%) to Neerim Blue, who move up to D1." },
+        { name: "Bunyip Sharks", club: "Bunyip", stage1: "D3", proposed: "D3", note: "Mid-table in D3." },
+        { name: "Chalkies Breakers", club: "Chalkies", stage1: "D3", proposed: "D3", note: "Mid-table in D3." },
+        { name: "Chalkies Force", club: "Chalkies", stage1: "D3", proposed: "D3", note: "All three losses were Close (18\u201320%)." },
+        { name: "Devils Hawks", club: "Devils", stage1: "D3", proposed: "D3", note: "Inside the \u221225% threshold." },
+        { name: "Devils Sonics", club: "Devils", stage1: "D3", proposed: "D2", note: "Second in D3 and unbeaten (one win by forfeit). Fills the D2 place left by the D1 moves." },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D3", proposed: "D3", note: "Bottom division, so no lower option. Most of the average comes from one Round 1 loss; Round 3 was lost by 9%." },
+        { name: "Neerim Wolves Black", club: "Neerim Wolves", stage1: "D3", proposed: "D2", note: "Most dominant team in the competition. Placed in D2, not D1: a two-division jump on three games is too far. Reviewed again after Round 4." },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3", proposed: "D3", note: "All three games were Close." },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Bunyip Sonics", l:"Bunyip Rockets", ws:72, ls:39 },
+        { r:1, div:"D1", w:"Bunyip Taipan", l:"Devils Eagles", ws:53, ls:40 },
+        { r:1, div:"D2", w:"Chalkies Bucks", l:"Gladiators Caesars", ws:40, ls:36 },
+        { r:1, div:"D2", w:"Yarragon Wildcats", l:"Rebels Meteors", ws:41, ls:39 },
+        { r:1, div:"D2", w:"Neerim Wolves Blue", l:"Rebels Jets", ws:71, ls:28 },
+        { r:1, div:"D3", w:"Neerim Wolves White", l:"Chalkies Force", ws:55, ls:38 },
+        { r:1, div:"D3", w:"Neerim Wolves Black", l:"Gladiators Raiders", ws:83, ls:13 },
+        { r:1, div:"D3", w:"Devils Sonics", l:"Bunyip Sharks", ws:35, ls:33 },
+        { r:1, div:"D3", w:"Chalkies Breakers", l:"Devils Hawks", ws:46, ls:30 },
+        { r:2, div:"D1", w:"Bunyip Sonics", l:"Bunyip Taipan", ws:56, ls:31 },
+        { r:2, div:"D1", w:"Bunyip Rockets", l:"Devils Eagles", ws:49, ls:35 },
+        { r:2, div:"D2", w:"Neerim Wolves Blue", l:"Rebels Meteors", ws:45, ls:30 },
+        { r:2, div:"D2", w:"Rebels Lightning", l:"Gladiators Caesars", ws:57, ls:38 },
+        { r:2, div:"D2", w:"Yarragon Wildcats", l:"Rebels Jets", ws:56, ls:32 },
+        { r:2, div:"D3", w:"Bunyip Sharks", l:"Chalkies Force", ws:29, ls:20 },
+        { r:2, div:"D3", w:"Devils Sonics", l:"Gladiators Raiders", ff:true },
+        { r:2, div:"D3", w:"Devils Hawks", l:"Neerim Wolves White", ws:47, ls:45 },
+        { r:2, div:"D3", w:"Neerim Wolves Black", l:"Chalkies Breakers", ws:67, ls:42 },
+        { r:3, div:"D1", w:"Bunyip Taipan", l:"Bunyip Rockets", ws:55, ls:46 },
+        { r:3, div:"D1", w:"Bunyip Sonics", l:"Devils Eagles", ws:64, ls:31 },
+        { r:3, div:"D2", w:"Chalkies Bucks", l:"Rebels Lightning", ws:57, ls:45 },
+        { r:3, div:"D2", w:"Gladiators Caesars", l:"Rebels Jets", ws:48, ls:30 },
+        { r:3, div:"D2", w:"Neerim Wolves Blue", l:"Yarragon Wildcats", ws:52, ls:39 },
+        { r:3, div:"D3", w:"Neerim Wolves Black", l:"Devils Hawks", ws:60, ls:31 },
+        { r:3, div:"D3", w:"Bunyip Sharks", l:"Chalkies Breakers", ws:41, ls:40 },
+        { r:3, div:"D3", w:"Devils Sonics", l:"Chalkies Force", ws:52, ls:35 },
+        { r:3, div:"D3", w:"Neerim Wolves White", l:"Gladiators Raiders", ws:52, ls:43 },
+      ],
+    },
+    {
+      name: "U16/19 Girls",
+      status: "in progress",
+      played: 2,
+      teams: [
+        { name: "Bunyip Dream", club: "Bunyip", stage1: "D1" },
+        { name: "Bunyip Fire", club: "Bunyip", stage1: "D1" },
+        { name: "Chalkies Lightning", club: "Chalkies", stage1: "D1" },
+        { name: "Gladiators Shadows", club: "Gladiators", stage1: "D1" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D1" },
+        { name: "Rebels Sapphires", club: "Rebels", stage1: "D1" },
+        { name: "Warranor Heat Fever", club: "Warranor", stage1: "D1" },
+        { name: "Warranor Heat Fire", club: "Warranor", stage1: "D1" },
+        { name: "Bunyip Flyers", club: "Bunyip", stage1: "D2" },
+        { name: "Devils Angels", club: "Devils", stage1: "D2" },
+        { name: "Gladiators Fury", club: "Gladiators", stage1: "D2" },
+        { name: "Gladiators Mercury", club: "Gladiators", stage1: "D2" },
+        { name: "Gladiators Suns", club: "Gladiators", stage1: "D2" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D2" },
+        { name: "Rebels Amethysts", club: "Rebels", stage1: "D2" },
+        { name: "Rebels Diamonds", club: "Rebels", stage1: "D2" },
+        { name: "Rebels Opals", club: "Rebels", stage1: "D2" },
+        { name: "Warranor Heat All-Stars", club: "Warranor", stage1: "D2" },
+        { name: "Warranor Heat Hotshots", club: "Warranor", stage1: "D2" },
+        { name: "Bunyip Vipers", club: "Bunyip", stage1: "D3" },
+        { name: "Chalkies Storm", club: "Chalkies", stage1: "D3" },
+        { name: "Devils Liberty", club: "Devils", stage1: "D3" },
+        { name: "Devils Vixens", club: "Devils", stage1: "D3" },
+        { name: "Gladiators Blaze", club: "Gladiators", stage1: "D3" },
+        { name: "Gladiators Nova", club: "Gladiators", stage1: "D3" },
+        { name: "Rebels Garnets", club: "Rebels", stage1: "D3" },
+        { name: "Rebels Pearls", club: "Rebels", stage1: "D3" },
+        { name: "Warranor Heat Spirit", club: "Warranor", stage1: "D3" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Warranor Heat Fever", l:"Chalkies Lightning", ws:85, ls:8 },
+        { r:1, div:"D1", w:"Gladiators Shadows", l:"Warranor Heat Fire", ws:41, ls:28 },
+        { r:1, div:"D1", w:"Bunyip Fire", l:"Rebels Sapphires", ws:51, ls:16 },
+        { r:1, div:"D1", w:"Bunyip Dream", l:"Neerim Wolves Blue", ff:true },
+        { r:1, div:"D2", w:"Devils Angels", l:"Warranor Heat All-Stars", ws:32, ls:32, draw:true },
+        { r:1, div:"D2", w:"Bunyip Flyers", l:"Rebels Diamonds", ws:53, ls:22 },
+        { r:1, div:"D2", w:"Neerim Wolves White", l:"Gladiators Suns", ws:27, ls:23 },
+        { r:1, div:"D2", w:"Gladiators Mercury", l:"Rebels Opals", ws:41, ls:12 },
+        { r:1, div:"D2", w:"Rebels Amethysts", l:"Warranor Heat Hotshots", ff:true },
+        { r:1, div:"D3", w:"Warranor Heat Spirit", l:"Gladiators Nova", ws:28, ls:20 },
+        { r:1, div:"D3", w:"Bunyip Vipers", l:"Gladiators Blaze", ws:40, ls:13 },
+        { r:1, div:"D3", w:"Rebels Garnets", l:"Devils Vixens", ws:24, ls:18 },
+        { r:1, div:"D3", w:"Rebels Pearls", l:"Chalkies Storm", ws:45, ls:16 },
+        { r:2, div:"D1", w:"Chalkies Lightning", l:"Rebels Sapphires", ws:71, ls:18 },
+        { r:2, div:"D1", w:"Warranor Heat Fire", l:"Neerim Wolves Blue", ws:42, ls:35 },
+        { r:2, div:"D1", w:"Bunyip Dream", l:"Warranor Heat Fever", ws:46, ls:37 },
+        { r:2, div:"D1", w:"Bunyip Fire", l:"Gladiators Shadows", ws:48, ls:30 },
+        { r:2, div:"D2", w:"Bunyip Flyers", l:"Warranor Heat Hotshots", ws:75, ls:16 },
+        { r:2, div:"D2", w:"Warranor Heat All-Stars", l:"Neerim Wolves White", ws:46, ls:19 },
+        { r:2, div:"D2", w:"Gladiators Fury", l:"Rebels Opals", ws:37, ls:29 },
+        { r:2, div:"D2", w:"Rebels Diamonds", l:"Gladiators Suns", ws:24, ls:14 },
+        { r:2, div:"D2", w:"Gladiators Mercury", l:"Rebels Amethysts", ws:14, ls:13 },
+        { r:2, div:"D3", w:"Bunyip Vipers", l:"Devils Liberty", ws:61, ls:14 },
+        { r:2, div:"D3", w:"Devils Vixens", l:"Gladiators Nova", ws:33, ls:14 },
+        { r:2, div:"D3", w:"Rebels Garnets", l:"Chalkies Storm", ws:24, ls:12 },
+        { r:2, div:"D3", w:"Gladiators Blaze", l:"Rebels Pearls", ws:26, ls:21 },
+      ],
+    },
+    {
+      name: "U16 Boys",
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Bunyip Thunder", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Devils Bucks", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Gladiators Maximus", club: "Gladiators", stage1: "D1", proposed: "D2", note: "Lost all three Division 1 games; weakest results in Division 1." },
+        { name: "Rebels Stars", club: "Rebels", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Suns", club: "Rebels", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Kings", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Hornets", club: "Bunyip", stage1: "D2", proposed: "D1", note: "Won all three Division 2 games, including against Neerim Wolves Black and Rebels Storm, the other leading teams." },
+        { name: "Bunyip Knicks", club: "Bunyip", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games." },
+        { name: "Bunyip Nets", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Devils Chiefs", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Grizzlies", club: "Devils", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games, each by about 30%." },
+        { name: "Neerim Wolves Black", club: "Neerim Wolves", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Storm", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Heat", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Pelicans", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Rockets", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Chalkies Kings", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Chalkies Tigers", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Devils Knights", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D3", proposed: "D4", note: "Weakest results in Division 3 across Stage 1." },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Hurricanes", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Typhoons", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Hawks", club: "Bunyip", stage1: "D4", proposed: "D3", note: "Won all three games and has the strongest record in U16 Boys." },
+        { name: "Chalkies Bandits", club: "Chalkies", stage1: "D4", proposed: "D4" },
+        { name: "Chalkies Jets", club: "Chalkies", stage1: "D4", proposed: "D4" },
+        { name: "Chalkies Thunder", club: "Chalkies", stage1: "D4", proposed: "D4" },
+        { name: "Devils Mavericks", club: "Devils", stage1: "D4", proposed: "D4" },
+        { name: "Devils Vikings", club: "Devils", stage1: "D4", proposed: "D4" },
+        { name: "Rebels Comets", club: "Rebels", stage1: "D4", proposed: "D4" },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D4", proposed: "D4" },
+        { name: "Rebels Rockets", club: "Rebels", stage1: "D4", proposed: "D4" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Devils Bucks", l:"Rebels Stars", ws:42, ls:31 },
+        { r:1, div:"D1", w:"Warranor Heat Kings", l:"Gladiators Maximus", ws:47, ls:33 },
+        { r:1, div:"D1", w:"Bunyip Thunder", l:"Rebels Suns", ws:66, ls:44 },
+        { r:1, div:"D2", w:"Bunyip Hornets", l:"Rebels Storm", ws:55, ls:44 },
+        { r:1, div:"D2", w:"Devils Chiefs", l:"Yarragon Wildcats", ws:50, ls:41 },
+        { r:1, div:"D2", w:"Bunyip Nets", l:"Devils Grizzlies", ws:64, ls:34 },
+        { r:1, div:"D2", w:"Neerim Wolves Black", l:"Bunyip Knicks", ws:80, ls:22 },
+        { r:1, div:"D3", w:"Chalkies Kings", l:"Bunyip Heat", ws:36, ls:29 },
+        { r:1, div:"D3", w:"Neerim Wolves White", l:"Chalkies Tigers", ff:true },
+        { r:1, div:"D3", w:"Bunyip Rockets", l:"Rebels Hurricanes", ws:48, ls:30 },
+        { r:1, div:"D3", w:"Devils Knights", l:"Neerim Wolves Blue", ws:50, ls:14 },
+        { r:1, div:"D3", w:"Rebels Typhoons", l:"Bunyip Pelicans", ws:42, ls:32 },
+        { r:1, div:"D4", w:"Bunyip Hawks", l:"Chalkies Bandits", ws:67, ls:20 },
+        { r:1, div:"D4", w:"Devils Vikings", l:"Rebels Comets", ws:18, ls:10 },
+        { r:1, div:"D4", w:"Chalkies Jets", l:"Rebels Rockets", ws:51, ls:19 },
+        { r:1, div:"D4", w:"Rebels Meteors", l:"Chalkies Thunder", ws:65, ls:16 },
+        { r:2, div:"D1", w:"Rebels Stars", l:"Gladiators Maximus", ws:102, ls:26 },
+        { r:2, div:"D1", w:"Rebels Suns", l:"Devils Bucks", ws:60, ls:43 },
+        { r:2, div:"D1", w:"Bunyip Thunder", l:"Warranor Heat Kings", ws:67, ls:30 },
+        { r:2, div:"D2", w:"Devils Chiefs", l:"Bunyip Knicks", ws:35, ls:25 },
+        { r:2, div:"D2", w:"Bunyip Hornets", l:"Neerim Wolves Black", ws:45, ls:40 },
+        { r:2, div:"D2", w:"Rebels Storm", l:"Devils Grizzlies", ws:62, ls:31 },
+        { r:2, div:"D2", w:"Bunyip Nets", l:"Yarragon Wildcats", ws:61, ls:36 },
+        { r:2, div:"D3", w:"Neerim Wolves White", l:"Devils Knights", ws:37, ls:30 },
+        { r:2, div:"D3", w:"Neerim Wolves Blue", l:"Rebels Typhoons", ff:true },
+        { r:2, div:"D3", w:"Rebels Hurricanes", l:"Bunyip Heat", ws:41, ls:19 },
+        { r:2, div:"D3", w:"Chalkies Tigers", l:"Bunyip Rockets", ws:41, ls:36 },
+        { r:2, div:"D3", w:"Bunyip Pelicans", l:"Chalkies Kings", ws:30, ls:27 },
+        { r:2, div:"D4", w:"Devils Mavericks", l:"Chalkies Thunder", ws:39, ls:18 },
+        { r:2, div:"D4", w:"Bunyip Hawks", l:"Rebels Rockets", ws:54, ls:13 },
+        { r:2, div:"D4", w:"Chalkies Jets", l:"Rebels Comets", ws:37, ls:29 },
+        { r:2, div:"D4", w:"Rebels Meteors", l:"Chalkies Bandits", ws:42, ls:26 },
+        { r:3, div:"D1", w:"Bunyip Thunder", l:"Devils Bucks", ws:42, ls:26 },
+        { r:3, div:"D1", w:"Rebels Suns", l:"Gladiators Maximus", ws:79, ls:40 },
+        { r:3, div:"D1", w:"Rebels Stars", l:"Warranor Heat Kings", ws:72, ls:56 },
+        { r:3, div:"D2", w:"Neerim Wolves Black", l:"Bunyip Nets", ws:58, ls:35 },
+        { r:3, div:"D2", w:"Rebels Storm", l:"Bunyip Knicks", ws:65, ls:36 },
+        { r:3, div:"D2", w:"Bunyip Hornets", l:"Devils Chiefs", ws:63, ls:43 },
+        { r:3, div:"D2", w:"Yarragon Wildcats", l:"Devils Grizzlies", ws:61, ls:31 },
+        { r:3, div:"D3", w:"Rebels Hurricanes", l:"Neerim Wolves Blue", ws:40, ls:15 },
+        { r:3, div:"D3", w:"Bunyip Rockets", l:"Chalkies Kings", ws:51, ls:30 },
+        { r:3, div:"D3", w:"Devils Knights", l:"Bunyip Heat", ws:37, ls:23 },
+        { r:3, div:"D3", w:"Chalkies Tigers", l:"Bunyip Pelicans", ws:66, ls:18 },
+        { r:3, div:"D3", w:"Neerim Wolves White", l:"Rebels Typhoons", ws:37, ls:34 },
+        { r:3, div:"D4", w:"Rebels Rockets", l:"Chalkies Thunder", ws:25, ls:15 },
+        { r:3, div:"D4", w:"Chalkies Jets", l:"Devils Vikings", ws:30, ls:23 },
+        { r:3, div:"D4", w:"Bunyip Hawks", l:"Rebels Comets", ws:75, ls:37 },
+        { r:3, div:"D4", w:"Devils Mavericks", l:"Chalkies Bandits", ws:60, ls:28 },
+      ],
+    },
+    {
+      name: "U14 Boys",
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Chalkies Hoopers", club: "Chalkies", stage1: "D1", proposed: "D1" },
+        { name: "Devils Clippers", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves Blue 1", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves White 1", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Suns", club: "Rebels", stage1: "D1", proposed: "D1", floor: "D1", note: "Weakest results in Division 1 across Stage 1." },
+        { name: "Warranor Heat Hornets", club: "Warranor", stage1: "D1", proposed: "D1", floor: "D1", note: "Lost all three Division 1 games." },
+        { name: "Bunyip Bucks", club: "Bunyip", stage1: "D2", proposed: "D1", note: "Strongest results in Division 2 across Stage 1. Division 1 has seven teams for Stage 2, as no team can be regraded out of it under Section 6.5." },
+        { name: "Bunyip Cavaliers", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Sonics", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Chalkies United", club: "Chalkies", stage1: "D2", proposed: "D2" },
+        { name: "Devils Hornets", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Jets", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Knicks", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Typhoons", club: "Rebels", stage1: "D2", proposed: "D3", note: "Weakest results in Division 2 across Stage 1." },
+        { name: "Bunyip Bulldogs", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Chalkies Redbacks", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Devils Lions", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Devils Magic", club: "Devils", stage1: "D3", proposed: "D4", note: "Weakest results in Division 3 across Stage 1." },
+        { name: "Devils Nets", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Lightning", club: "Rebels", stage1: "D3", proposed: "D2", note: "Top of Division 3 on average margin." },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Thunder", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Warranor Heat Breakers", club: "Warranor", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Grizzlies", club: "Bunyip", stage1: "D4", proposed: "D4" },
+        { name: "Bunyip Lakers", club: "Bunyip", stage1: "D4", proposed: "D5", note: "One of the two weakest results in Division 4. Two teams move each way between Divisions 4 and 5." },
+        { name: "Bunyip Suns", club: "Bunyip", stage1: "D4", proposed: "D5", note: "One of the two weakest results in Division 4. Two teams move each way between Divisions 4 and 5." },
+        { name: "Chalkies Hornets", club: "Chalkies", stage1: "D4", proposed: "D4" },
+        { name: "Chalkies Taipans", club: "Chalkies", stage1: "D4", proposed: "D4" },
+        { name: "Devils Pacers", club: "Devils", stage1: "D4", proposed: "D3", note: "Won all three Division 4 games, including against Bunyip Grizzlies." },
+        { name: "Devils Raiders", club: "Devils", stage1: "D4", proposed: "D4" },
+        { name: "Devils Spurs", club: "Devils", stage1: "D4", proposed: "D4" },
+        { name: "Rebels Jets", club: "Rebels", stage1: "D4", proposed: "D4" },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D4", proposed: "D4" },
+        { name: "Bunyip Spurs", club: "Bunyip", stage1: "D5", proposed: "D5" },
+        { name: "Bunyip Wizards", club: "Bunyip", stage1: "D5", withdrawn: true },
+        { name: "Chalkies Mavericks", club: "Chalkies", stage1: "D5", proposed: "D4", note: "One of the two strongest results in Division 5. Two teams move each way between Divisions 4 and 5." },
+        { name: "Chalkies Vipers", club: "Chalkies", stage1: "D5", proposed: "D5" },
+        { name: "Devils Thunder", club: "Devils", stage1: "D5", proposed: "D5" },
+        { name: "Devils Wizards", club: "Devils", stage1: "D5", proposed: "D4", note: "One of the two strongest results in Division 5. Two teams move each way between Divisions 4 and 5." },
+        { name: "Gladiators Trojans", club: "Gladiators", stage1: "D5", proposed: "D5" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D5", proposed: "D5" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Devils Clippers", l:"Neerim Wolves Blue 1", ws:46, ls:45 },
+        { r:1, div:"D1", w:"Chalkies Hoopers", l:"Neerim Wolves White 1", ws:59, ls:22 },
+        { r:1, div:"D1", w:"Rebels Suns", l:"Warranor Heat Hornets", ws:40, ls:37 },
+        { r:1, div:"D2", w:"Bunyip Bucks", l:"Devils Hornets", ws:55, ls:42 },
+        { r:1, div:"D2", w:"Devils Knicks", l:"Gladiators Raiders", ws:39, ls:34 },
+        { r:1, div:"D2", w:"Chalkies United", l:"Bunyip Sonics", ws:55, ls:25 },
+        { r:1, div:"D2", w:"Devils Jets", l:"Rebels Typhoons", ws:85, ls:30 },
+        { r:1, div:"D3", w:"Chalkies Redbacks", l:"Bunyip Bulldogs", ws:37, ls:14 },
+        { r:1, div:"D3", w:"Neerim Wolves Blue", l:"Devils Magic", ws:45, ls:19 },
+        { r:1, div:"D3", w:"Rebels Lightning", l:"Warranor Heat Breakers", ws:36, ls:24 },
+        { r:1, div:"D3", w:"Rebels Meteors", l:"Devils Lions", ws:53, ls:28 },
+        { r:1, div:"D3", w:"Devils Nets", l:"Rebels Thunder", ws:32, ls:28 },
+        { r:1, div:"D4", w:"Devils Spurs", l:"Bunyip Lakers", ws:30, ls:5 },
+        { r:1, div:"D4", w:"Yarragon Wildcats", l:"Bunyip Suns", ws:36, ls:10 },
+        { r:1, div:"D4", w:"Devils Raiders", l:"Chalkies Hornets", ws:36, ls:24 },
+        { r:1, div:"D4", w:"Devils Pacers", l:"Chalkies Taipans", ws:29, ls:24 },
+        { r:1, div:"D4", w:"Bunyip Grizzlies", l:"Rebels Jets", ws:34, ls:15 },
+        { r:1, div:"D5", w:"Devils Thunder", l:"Bunyip Wizards", ws:18, ls:8 },
+        { r:1, div:"D5", w:"Chalkies Mavericks", l:"Neerim Wolves White", ws:42, ls:25 },
+        { r:1, div:"D5", w:"Bunyip Spurs", l:"Chalkies Vipers", ws:22, ls:20 },
+        { r:1, div:"D5", w:"Devils Wizards", l:"Gladiators Trojans", ws:66, ls:24 },
+        { r:2, div:"D1", w:"Chalkies Hoopers", l:"Rebels Suns", ws:69, ls:14 },
+        { r:2, div:"D1", w:"Devils Clippers", l:"Neerim Wolves White 1", ws:45, ls:25 },
+        { r:2, div:"D1", w:"Neerim Wolves Blue 1", l:"Warranor Heat Hornets", ws:75, ls:27 },
+        { r:2, div:"D2", w:"Chalkies United", l:"Bunyip Cavaliers", ws:47, ls:34 },
+        { r:2, div:"D2", w:"Bunyip Sonics", l:"Rebels Typhoons", ws:51, ls:39 },
+        { r:2, div:"D2", w:"Bunyip Bucks", l:"Devils Jets", ws:52, ls:26 },
+        { r:2, div:"D2", w:"Devils Hornets", l:"Gladiators Raiders", ws:45, ls:43 },
+        { r:2, div:"D3", w:"Bunyip Bulldogs", l:"Rebels Meteors", ws:31, ls:25 },
+        { r:2, div:"D3", w:"Devils Lions", l:"Rebels Thunder", ws:35, ls:28 },
+        { r:2, div:"D3", w:"Rebels Lightning", l:"Devils Magic", ws:51, ls:11 },
+        { r:2, div:"D3", w:"Chalkies Redbacks", l:"Warranor Heat Breakers", ws:32, ls:29 },
+        { r:2, div:"D3", w:"Neerim Wolves Blue", l:"Devils Nets", ws:44, ls:29 },
+        { r:2, div:"D4", w:"Bunyip Grizzlies", l:"Chalkies Taipans", ws:37, ls:14 },
+        { r:2, div:"D4", w:"Devils Pacers", l:"Rebels Jets", ws:46, ls:23 },
+        { r:2, div:"D4", w:"Devils Spurs", l:"Chalkies Hornets", ws:31, ls:28 },
+        { r:2, div:"D4", w:"Yarragon Wildcats", l:"Bunyip Lakers", ws:25, ls:14 },
+        { r:2, div:"D4", w:"Devils Raiders", l:"Bunyip Suns", ws:33, ls:16 },
+        { r:2, div:"D5", w:"Devils Wizards", l:"Bunyip Wizards", ff:true },
+        { r:2, div:"D5", w:"Chalkies Vipers", l:"Devils Thunder", ws:26, ls:26, draw:true },
+        { r:2, div:"D5", w:"Chalkies Mavericks", l:"Bunyip Spurs", ws:41, ls:11 },
+        { r:2, div:"D5", w:"Neerim Wolves White", l:"Gladiators Trojans", ws:74, ls:22 },
+        { r:3, div:"D1", w:"Chalkies Hoopers", l:"Devils Clippers", ws:27, ls:16 },
+        { r:3, div:"D1", w:"Neerim Wolves White 1", l:"Warranor Heat Hornets", ws:50, ls:30 },
+        { r:3, div:"D1", w:"Neerim Wolves Blue 1", l:"Rebels Suns", ws:77, ls:19 },
+        { r:3, div:"D2", w:"Bunyip Cavaliers", l:"Gladiators Raiders", ws:34, ls:29 },
+        { r:3, div:"D2", w:"Devils Hornets", l:"Chalkies United", ws:36, ls:21 },
+        { r:3, div:"D2", w:"Bunyip Bucks", l:"Rebels Typhoons", ws:72, ls:10 },
+        { r:3, div:"D2", w:"Devils Knicks", l:"Bunyip Sonics", ws:49, ls:22 },
+        { r:3, div:"D3", w:"Bunyip Bulldogs", l:"Devils Lions", ws:55, ls:26 },
+        { r:3, div:"D3", w:"Rebels Thunder", l:"Devils Magic", ws:25, ls:12 },
+        { r:3, div:"D3", w:"Rebels Meteors", l:"Warranor Heat Breakers", ws:30, ls:23 },
+        { r:3, div:"D3", w:"Chalkies Redbacks", l:"Devils Nets", ws:54, ls:35 },
+        { r:3, div:"D3", w:"Rebels Lightning", l:"Neerim Wolves Blue", ws:27, ls:24 },
+        { r:3, div:"D4", w:"Devils Raiders", l:"Bunyip Lakers", ws:28, ls:12 },
+        { r:3, div:"D4", w:"Chalkies Hornets", l:"Yarragon Wildcats", ws:25, ls:24 },
+        { r:3, div:"D4", w:"Devils Spurs", l:"Chalkies Taipans", ws:20, ls:19 },
+        { r:3, div:"D4", w:"Devils Pacers", l:"Bunyip Grizzlies", ws:45, ls:26 },
+        { r:3, div:"D4", w:"Rebels Jets", l:"Bunyip Suns", ws:44, ls:26 },
+        { r:3, div:"D5", w:"Chalkies Mavericks", l:"Gladiators Trojans", ws:70, ls:10 },
+        { r:3, div:"D5", w:"Devils Thunder", l:"Bunyip Spurs", ws:21, ls:17 },
+        { r:3, div:"D5", w:"Devils Wizards", l:"Chalkies Vipers", ws:55, ls:7 },
+        { r:3, div:"D5", w:"Neerim Wolves White", l:"Bunyip Wizards", ff:true },
+      ],
+    },
+    {
+      name: "U14 Girls",
+      status: "in progress",
+      played: 2,
+      teams: [
+        { name: "Bunyip Aces", club: "Bunyip", stage1: "D1" },
+        { name: "Bunyip Mystics", club: "Bunyip", stage1: "D1" },
+        { name: "Devils Belles", club: "Devils", stage1: "D1" },
+        { name: "Gladiators Shadows", club: "Gladiators", stage1: "D1" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D1" },
+        { name: "Warranor Heat Phantoms", club: "Warranor", stage1: "D1" },
+        { name: "Warranor Heat Phoenix", club: "Warranor", stage1: "D1" },
+        { name: "Devils Diamonds", club: "Devils", stage1: "D2" },
+        { name: "Devils Opals", club: "Devils", stage1: "D2" },
+        { name: "Gladiators Suns", club: "Gladiators", stage1: "D2" },
+        { name: "Rebels Gems", club: "Rebels", stage1: "D2" },
+        { name: "Rebels Rubies", club: "Rebels", stage1: "D2" },
+        { name: "Warranor Heat Falcons", club: "Warranor", stage1: "D2" },
+        { name: "Bunyip Fever", club: "Bunyip", stage1: "D3" },
+        { name: "Bunyip Ravens", club: "Bunyip", stage1: "D3" },
+        { name: "Devils Swifts", club: "Devils", stage1: "D3" },
+        { name: "Gladiators Blaze", club: "Gladiators", stage1: "D3" },
+        { name: "Gladiators Mercury", club: "Gladiators", stage1: "D3" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3" },
+        { name: "Rebels Rhinestones", club: "Rebels", stage1: "D3" },
+        { name: "Warranor Heat Flames", club: "Warranor", stage1: "D3" },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D3" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Bunyip Mystics", l:"Gladiators Shadows", ws:34, ls:9 },
+        { r:1, div:"D1", w:"Warranor Heat Phantoms", l:"Bunyip Aces", ws:30, ls:25 },
+        { r:1, div:"D1", w:"Warranor Heat Phoenix", l:"Neerim Wolves Blue", ws:61, ls:18 },
+        { r:1, div:"D2", w:"Warranor Heat Falcons", l:"Rebels Rubies", ws:41, ls:17 },
+        { r:1, div:"D2", w:"Gladiators Suns", l:"Devils Opals", ws:26, ls:22 },
+        { r:1, div:"D2", w:"Devils Diamonds", l:"Rebels Gems", ws:40, ls:9 },
+        { r:1, div:"D3", w:"Warranor Heat Flames", l:"Gladiators Blaze", ws:34, ls:15 },
+        { r:1, div:"D3", w:"Gladiators Mercury", l:"Devils Swifts", ws:38, ls:18 },
+        { r:1, div:"D3", w:"Yarragon Wildcats", l:"Bunyip Fever", ff:true },
+        { r:1, div:"D3", w:"Rebels Rhinestones", l:"Neerim Wolves White", ws:56, ls:5 },
+        { r:2, div:"D1", w:"Bunyip Aces", l:"Devils Belles", ws:36, ls:15 },
+        { r:2, div:"D1", w:"Warranor Heat Phoenix", l:"Gladiators Shadows", ws:57, ls:26 },
+        { r:2, div:"D1", w:"Warranor Heat Phantoms", l:"Neerim Wolves Blue", ws:56, ls:6 },
+        { r:2, div:"D2", w:"Devils Diamonds", l:"Rebels Rubies", ws:20, ls:20, draw:true },
+        { r:2, div:"D2", w:"Warranor Heat Falcons", l:"Gladiators Suns", ws:37, ls:22 },
+        { r:2, div:"D2", w:"Rebels Gems", l:"Devils Opals", ws:36, ls:3 },
+        { r:2, div:"D3", w:"Bunyip Ravens", l:"Devils Swifts", ws:22, ls:18 },
+        { r:2, div:"D3", w:"Gladiators Blaze", l:"Bunyip Fever", ws:21, ls:9 },
+        { r:2, div:"D3", w:"Gladiators Mercury", l:"Neerim Wolves White", ws:38, ls:12 },
+        { r:2, div:"D3", w:"Yarragon Wildcats", l:"Rebels Rhinestones", ws:35, ls:4 },
+      ],
+    },
+    {
+      name: "U12 Boys",
+      status: "in progress",
+      played: 2,
+      teams: [
+        { name: "Devils Braves", club: "Devils", stage1: "D1" },
+        { name: "Neerim Wolves Blue 1", club: "Neerim Wolves", stage1: "D1" },
+        { name: "Neerim Wolves White 1", club: "Neerim Wolves", stage1: "D1" },
+        { name: "Rebels Stars", club: "Rebels", stage1: "D1" },
+        { name: "Warranor Heat Fury", club: "Warranor", stage1: "D1" },
+        { name: "Bunyip Clippers", club: "Bunyip", stage1: "D2" },
+        { name: "Bunyip Spurs", club: "Bunyip", stage1: "D2" },
+        { name: "Devils Cavs", club: "Devils", stage1: "D2" },
+        { name: "Devils Falcons", club: "Devils", stage1: "D2" },
+        { name: "Gladiators Kings", club: "Gladiators", stage1: "D2" },
+        { name: "Gladiators Trojans", club: "Gladiators", stage1: "D2" },
+        { name: "Rebels Thunder", club: "Rebels", stage1: "D2" },
+        { name: "Warranor Heat Flyers", club: "Warranor", stage1: "D2" },
+        { name: "Bunyip Kings", club: "Bunyip", stage1: "D3" },
+        { name: "Bunyip Lakers", club: "Bunyip", stage1: "D3" },
+        { name: "Chalkies Knights", club: "Chalkies", stage1: "D3" },
+        { name: "Chalkies Phoenix", club: "Chalkies", stage1: "D3" },
+        { name: "Devils Kings", club: "Devils", stage1: "D3" },
+        { name: "Devils Nuggets", club: "Devils", stage1: "D3" },
+        { name: "Gladiators Felix", club: "Gladiators", stage1: "D3" },
+        { name: "Gladiators Maximus", club: "Gladiators", stage1: "D3" },
+        { name: "Gladiators Titans", club: "Gladiators", stage1: "D3" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3" },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D3" },
+        { name: "Bunyip Mavericks", club: "Bunyip", stage1: "D4" },
+        { name: "Chalkies Vikings", club: "Chalkies", stage1: "D4" },
+        { name: "Devils Pistons", club: "Devils", stage1: "D4" },
+        { name: "Devils Rockets", club: "Devils", stage1: "D4" },
+        { name: "Devils Suns", club: "Devils", stage1: "D4" },
+        { name: "Devils Vipers", club: "Devils", stage1: "D4" },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D4" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D4" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Neerim Wolves White 1", l:"Warranor Heat Fury", ws:79, ls:21 },
+        { r:1, div:"D1", w:"Rebels Stars", l:"Neerim Wolves Blue 1", ws:39, ls:31 },
+        { r:1, div:"D2", w:"Rebels Thunder", l:"Devils Falcons", ws:20, ls:11 },
+        { r:1, div:"D2", w:"Warranor Heat Flyers", l:"Gladiators Trojans", ws:29, ls:25 },
+        { r:1, div:"D2", w:"Gladiators Kings", l:"Bunyip Clippers", ws:50, ls:10 },
+        { r:1, div:"D2", w:"Bunyip Spurs", l:"Devils Cavs", ws:26, ls:16 },
+        { r:1, div:"D3", w:"Devils Nuggets", l:"Gladiators Felix", pending:true },
+        { r:1, div:"D3", w:"Gladiators Titans", l:"Chalkies Phoenix", ws:30, ls:28 },
+        { r:1, div:"D3", w:"Gladiators Maximus", l:"Devils Kings", ws:17, ls:11 },
+        { r:1, div:"D3", w:"Rebels Meteors", l:"Bunyip Lakers", ws:34, ls:8 },
+        { r:1, div:"D3", w:"Bunyip Kings", l:"Neerim Wolves White", ws:13, ls:11 },
+        { r:1, div:"D4", w:"Bunyip Mavericks", l:"Devils Vipers", ws:48, ls:4 },
+        { r:1, div:"D4", w:"Devils Suns", l:"Gladiators Raiders", ws:24, ls:4 },
+        { r:1, div:"D4", w:"Neerim Wolves Blue", l:"Devils Rockets", ws:18, ls:9 },
+        { r:1, div:"D4", w:"Devils Pistons", l:"Chalkies Vikings", ws:19, ls:10 },
+        { r:2, div:"D1", w:"Neerim Wolves Blue 1", l:"Devils Braves", ws:46, ls:19 },
+        { r:2, div:"D1", w:"Rebels Stars", l:"Warranor Heat Fury", ws:45, ls:21 },
+        { r:2, div:"D2", w:"Gladiators Kings", l:"Devils Falcons", ws:32, ls:10 },
+        { r:2, div:"D2", w:"Devils Cavs", l:"Bunyip Clippers", ws:32, ls:22 },
+        { r:2, div:"D2", w:"Bunyip Spurs", l:"Warranor Heat Flyers", ws:26, ls:20 },
+        { r:2, div:"D2", w:"Rebels Thunder", l:"Gladiators Trojans", ws:22, ls:20 },
+        { r:2, div:"D3", w:"Chalkies Phoenix", l:"Devils Kings", ws:54, ls:2 },
+        { r:2, div:"D3", w:"Chalkies Knights", l:"Gladiators Felix", ws:42, ls:12 },
+        { r:2, div:"D3", w:"Gladiators Titans", l:"Bunyip Lakers", ws:25, ls:15 },
+        { r:2, div:"D3", w:"Gladiators Maximus", l:"Bunyip Kings", ws:25, ls:10 },
+        { r:2, div:"D3", w:"Rebels Meteors", l:"Neerim Wolves White", ws:23, ls:23, draw:true },
+        { r:2, div:"D4", w:"Devils Rockets", l:"Devils Vipers", ws:8, ls:4 },
+        { r:2, div:"D4", w:"Devils Pistons", l:"Devils Suns", ws:20, ls:9 },
+        { r:2, div:"D4", w:"Chalkies Vikings", l:"Gladiators Raiders", ws:10, ls:10, draw:true },
+        { r:2, div:"D4", w:"Bunyip Mavericks", l:"Neerim Wolves Blue", ws:26, ls:4 },
+      ],
+    },
+    {
+      name: "U12 Girls",
+      status: "in progress",
+      played: 2,
+      teams: [
+        { name: "Bunyip Opals", club: "Bunyip", stage1: "D1" },
+        { name: "Devils Blazers", club: "Devils", stage1: "D1" },
+        { name: "Gladiators Shadows", club: "Gladiators", stage1: "D1" },
+        { name: "Gladiators Suns", club: "Gladiators", stage1: "D1" },
+        { name: "Warranor Heat Ballers", club: "Warranor", stage1: "D1" },
+        { name: "Warranor Heat Sparrows", club: "Warranor", stage1: "D1" },
+        { name: "Bunyip Sparks", club: "Bunyip", stage1: "D2" },
+        { name: "Chalkies Diamonds", club: "Chalkies", stage1: "D2" },
+        { name: "Chalkies Stars", club: "Chalkies", stage1: "D2" },
+        { name: "Devils Liberty", club: "Devils", stage1: "D2" },
+        { name: "Devils Sparks", club: "Devils", stage1: "D2" },
+        { name: "Gladiators Mercury", club: "Gladiators", stage1: "D2" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D2" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D2" },
+        { name: "Rebels Crystals", club: "Rebels", stage1: "D2" },
+        { name: "Warranor Heat Jets", club: "Warranor", stage1: "D2" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Gladiators Suns", l:"Warranor Heat Sparrows", ws:34, ls:7 },
+        { r:1, div:"D1", w:"Warranor Heat Ballers", l:"Gladiators Shadows", ws:45, ls:24 },
+        { r:1, div:"D1", w:"Devils Blazers", l:"Bunyip Opals", ws:28, ls:26 },
+        { r:1, div:"D2", w:"Devils Liberty", l:"Warranor Heat Jets", ws:25, ls:7 },
+        { r:1, div:"D2", w:"Neerim Wolves Blue", l:"Bunyip Sparks", ws:20, ls:9 },
+        { r:1, div:"D2", w:"Chalkies Diamonds", l:"Gladiators Mercury", ws:15, ls:4 },
+        { r:1, div:"D2", w:"Chalkies Stars", l:"Rebels Crystals", ws:25, ls:8 },
+        { r:1, div:"D2", w:"Devils Sparks", l:"Neerim Wolves White", ws:20, ls:14 },
+        { r:2, div:"D1", w:"Gladiators Suns", l:"Bunyip Opals", ws:37, ls:7 },
+        { r:2, div:"D1", w:"Gladiators Shadows", l:"Warranor Heat Sparrows", ws:37, ls:15 },
+        { r:2, div:"D1", w:"Warranor Heat Ballers", l:"Devils Blazers", ws:30, ls:8 },
+        { r:2, div:"D2", w:"Neerim Wolves Blue", l:"Gladiators Mercury", ws:16, ls:8 },
+        { r:2, div:"D2", w:"Rebels Crystals", l:"Devils Sparks", ws:14, ls:14, draw:true },
+        { r:2, div:"D2", w:"Devils Liberty", l:"Neerim Wolves White", ws:31, ls:13 },
+        { r:2, div:"D2", w:"Warranor Heat Jets", l:"Chalkies Diamonds", ws:35, ls:22 },
+        { r:2, div:"D2", w:"Chalkies Stars", l:"Bunyip Sparks", ws:49, ls:6 },
+      ],
+    },
+    {
+      name: "U10 Boys",
+      status: "in progress",
+      played: 2,
+      teams: [
+        { name: "Bunyip Hawks", club: "Bunyip", stage1: "D1" },
+        { name: "Chalkies Bears", club: "Chalkies", stage1: "D1" },
+        { name: "Devils Celtics", club: "Devils", stage1: "D1" },
+        { name: "Devils Giants", club: "Devils", stage1: "D1" },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D1" },
+        { name: "Neerim Wolves", club: "Neerim Wolves", stage1: "D1" },
+        { name: "Rebels Hurricanes", club: "Rebels", stage1: "D1" },
+        { name: "Warranor Heat Vipers", club: "Warranor", stage1: "D1" },
+        { name: "Bunyip Hornets", club: "Bunyip", stage1: "D2" },
+        { name: "Bunyip Stars", club: "Bunyip", stage1: "D2" },
+        { name: "Devils Jets", club: "Devils", stage1: "D2" },
+        { name: "Devils Knicks", club: "Devils", stage1: "D2" },
+        { name: "Devils Magic", club: "Devils", stage1: "D2" },
+        { name: "Gladiators Caesars", club: "Gladiators", stage1: "D2" },
+        { name: "Gladiators Felix", club: "Gladiators", stage1: "D2" },
+        { name: "Bunyip Jazz", club: "Bunyip", stage1: "D3" },
+        { name: "Bunyip Magic", club: "Bunyip", stage1: "D3" },
+        { name: "Bunyip Raptors", club: "Bunyip", stage1: "D3" },
+        { name: "Chalkies Raptors", club: "Chalkies", stage1: "D3" },
+        { name: "Devils Pistons", club: "Devils", stage1: "D3" },
+        { name: "Devils Raptors", club: "Devils", stage1: "D3" },
+        { name: "Devils Thunder", club: "Devils", stage1: "D3" },
+        { name: "Gladiators Maximus", club: "Gladiators", stage1: "D3" },
+        { name: "Gladiators Trojans", club: "Gladiators", stage1: "D3" },
+        { name: "Rebels Jets", club: "Rebels", stage1: "D3" },
+        { name: "Rebels Rockets", club: "Rebels", stage1: "D3" },
+        { name: "Warranor Heat Taipans", club: "Warranor", stage1: "D3" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Rebels Hurricanes", l:"Devils Giants", ws:9, ls:9, draw:true },
+        { r:1, div:"D1", w:"Gladiators Raiders", l:"Warranor Heat Vipers", ws:35, ls:22 },
+        { r:1, div:"D1", w:"Devils Celtics", l:"Neerim Wolves", ws:24, ls:5 },
+        { r:1, div:"D1", w:"Bunyip Hawks", l:"Chalkies Bears", ws:23, ls:16 },
+        { r:1, div:"D2", w:"Gladiators Felix", l:"Devils Knicks", ws:30, ls:2 },
+        { r:1, div:"D2", w:"Gladiators Caesars", l:"Devils Jets", ws:6, ls:5 },
+        { r:1, div:"D2", w:"Devils Magic", l:"Bunyip Stars", ws:12, ls:6 },
+        { r:1, div:"D3", w:"Bunyip Raptors", l:"Gladiators Maximus", ws:24, ls:0 },
+        { r:1, div:"D3", w:"Gladiators Trojans", l:"Warranor Heat Taipans", ws:15, ls:0 },
+        { r:1, div:"D3", w:"Rebels Jets", l:"Devils Raptors", ws:37, ls:4 },
+        { r:1, div:"D3", w:"Devils Pistons", l:"Rebels Rockets", ws:13, ls:0 },
+        { r:1, div:"D3", w:"Chalkies Raptors", l:"Bunyip Jazz", ws:15, ls:4 },
+        { r:1, div:"D3", w:"Bunyip Magic", l:"Devils Thunder", ws:20, ls:2 },
+        { r:2, div:"D1", w:"Neerim Wolves", l:"Devils Giants", ws:22, ls:14 },
+        { r:2, div:"D1", w:"Bunyip Hawks", l:"Devils Celtics", ws:15, ls:4 },
+        { r:2, div:"D1", w:"Chalkies Bears", l:"Gladiators Raiders", ws:17, ls:6 },
+        { r:2, div:"D1", w:"Warranor Heat Vipers", l:"Rebels Hurricanes", ws:30, ls:5 },
+        { r:2, div:"D2", w:"Devils Magic", l:"Devils Jets", ws:20, ls:7 },
+        { r:2, div:"D2", w:"Gladiators Felix", l:"Bunyip Hornets", ws:10, ls:4 },
+        { r:2, div:"D2", w:"Bunyip Stars", l:"Gladiators Caesars", ws:14, ls:9 },
+        { r:2, div:"D3", w:"Devils Pistons", l:"Bunyip Jazz", ws:4, ls:3 },
+        { r:2, div:"D3", w:"Chalkies Raptors", l:"Bunyip Magic", ws:12, ls:12, draw:true },
+        { r:2, div:"D3", w:"Gladiators Trojans", l:"Bunyip Raptors", ws:9, ls:6 },
+        { r:2, div:"D3", w:"Rebels Rockets", l:"Devils Raptors", ws:15, ls:8 },
+        { r:2, div:"D3", w:"Rebels Jets", l:"Devils Thunder", ws:18, ls:6 },
+        { r:2, div:"D3", w:"Gladiators Maximus", l:"Warranor Heat Taipans", ws:15, ls:1 },
+      ],
+    },
+  ],
+};
+
+/* Winter 2026 Season Review benchmarks (settled season): average winning margin, close-game rate. */
+const BENCHMARKS = {
+  "U10 Boys":     { avg: 0.27, close: 0.42 },
+  "U10 Girls":    { avg: 0.51, close: 0.22 },
+  "U12 Boys":     { avg: 0.23, close: 0.52 },
+  "U12 Girls":    { avg: 0.31, close: 0.40 },
+  "U14 Boys":     { avg: 0.29, close: 0.36 },
+  "U14 Girls":    { avg: 0.45, close: 0.20 },
+  "U16 Boys":     { avg: 0.27, close: 0.37 },
+  "U16/19 Girls": { avg: 0.33, close: 0.38 },
+  "U19 Boys":     { avg: 0.22, close: 0.54 },
+  _allJuniorRout: 0.21,
+  _gradingRout: 0.33,
+};
+
+/* Method settings — change only if the Association changes the method. */
+const METHOD = { close: 0.20, clear: 0.33, major: 0.50, look: 0.25, floor: 6, level: 0.10 };
+/* ===================== END OF DATA — nothing below needs editing ===================== */
+</script>
+
+<style>
+:root{
+ --red:#C8102E;--red-deep:#9E0B23;--blue:#3D5A99;
+ --ink:#1B1B1F;--ink-2:#4A4A52;--muted:#6F6F78;--line:#E8E3DA;--track:#F1ECE4;
+ --page:#FAF5EC;--card:#FFFFFF;--soft:#FCF9F4;
+ --ok:#1E7A3C;--ok-bg:#E4F2E8;--up-bg:#E7ECF6;--down-bg:#FBE3E7;
+ --b-close:#FBEFB8;--b-clear:#E4F2E7;--b-major:#F6C6CF;--b-rout:#C8102E;
+}
+@media (prefers-color-scheme:dark){:root{
+ --ink:#F2EDE6;--ink-2:#D4CDC3;--muted:#A39C93;--line:#3A3330;--track:#2C2624;
+ --page:#171313;--card:#211B1A;--soft:#1C1716;--red:#E8475F;--blue:#8EA8E6;
+ --ok:#6FCB8E;--ok-bg:#1F3326;--up-bg:#202A40;--down-bg:#3D1C22;
+ --b-close:#4E4417;--b-clear:#1E3626;--b-major:#5E2432;--b-rout:#C8102E;}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font-family:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+
+/* header */
+.top{background:#140708;color:#fff;border-bottom:3px solid #C8102E}
+.top .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.top img{height:48px;width:auto}
+.top h1{font-size:1.05rem;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.top h1 span{display:block;font-size:.74rem;font-weight:500;color:rgba(255,255,255,.72)}
+.stamp{margin-left:auto;font-size:.72rem;color:rgba(255,255,255,.72);text-align:right}
+.stamp b{color:#fff;display:block;font-size:.78rem}
+.ages-bar{background:#1F0E10}
+.ages{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.ages button{border:1px solid rgba(255,255,255,.18);background:none;color:rgba(255,255,255,.8);font-weight:700;font-size:.78rem;padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.ages button[aria-pressed=true]{background:#fff;color:#140708;border-color:#fff}
+.ages i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);flex:none}
+.ages i.recommended{background:#4CC27A}.ages i.review{background:#F5A623}
+nav.tabs{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{border:0;background:none;font-size:.82rem;font-weight:700;color:var(--muted);padding:14px 12px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--red)}
+
+main{padding:22px 0 48px}
+.lead{font-size:clamp(1.12rem,2.4vw,1.42rem);font-weight:600;letter-spacing:-.015em;line-height:1.35;max-width:58rem;margin-bottom:6px}
+.lead b{color:var(--red);font-weight:800}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;border-radius:999px;padding:4px 10px;margin-bottom:12px}
+.status.recommended{background:var(--ok-bg);color:var(--ok)}
+.status.review{background:#FCEFD9;color:#8A5300}
+.status.pending{background:var(--track);color:var(--muted)}
+@media (prefers-color-scheme:dark){.status.review{background:#3A2C17;color:#E9A64A}}
+
+.notices{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:12px 16px;margin:14px 0 18px;font-size:.82rem}
+.notices li{list-style:none;padding:3px 0}
+.notices b{margin-right:8px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0 22px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi .n{font-size:1.8rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.kpi .l{font-size:.76rem;font-weight:700;color:var(--ink-2);margin-top:2px}
+.kpi .c{font-size:.7rem;color:var(--muted);margin-top:4px}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.panel h2{font-size:1rem;font-weight:800;letter-spacing:-.005em}
+.sub{font-size:.76rem;color:var(--muted);margin:3px 0 14px;max-width:60rem}
+.gap{margin-top:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+
+/* divisions */
+.div-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:2px}
+.div-h h3{font-size:1.05rem;font-weight:800}
+.floor{font-size:.7rem;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ok-bg);color:var(--ok)}
+.floor.neutral{background:var(--track);color:var(--muted)}
+.floor.bad{background:var(--down-bg);color:var(--red-deep)}
+details.team{border-top:1px solid var(--line)}
+details.team:first-of-type{border-top:0}
+details.team summary{list-style:none;display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:10px 6px;margin:0 -6px;border-radius:6px;cursor:pointer}
+details.team summary::-webkit-details-marker{display:none}
+details.team.up summary{background:linear-gradient(90deg,var(--up-bg),transparent 75%)}
+details.team.down summary{background:linear-gradient(90deg,var(--down-bg),transparent 75%)}
+.logo{width:30px;height:30px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid var(--line);display:block}
+.ini{width:30px;height:30px;border-radius:6px;display:grid;place-items:center;background:var(--ink);color:var(--card);font-size:.6rem;font-weight:800}
+.tn{font-weight:700;font-size:.88rem;line-height:1.2}
+.tm{font-size:.72rem;color:var(--muted);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.mv{font-weight:800;font-size:.68rem;border-radius:4px;padding:1px 6px;background:var(--up-bg);color:var(--blue)}
+.mv.down{background:var(--down-bg);color:var(--red)}
+.avg{font-weight:800;font-size:.9rem;text-align:right;min-width:3.2rem}
+.pos{color:var(--ok)}.neg{color:var(--red)}
+.conf{font-weight:800;font-size:.66rem;border-radius:4px;padding:1px 6px}
+.conf.ok{color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.conf.close{color:#8A5300;box-shadow:inset 0 0 0 1px #E9A64A;background:#FCEFD9}
+.note.auto{color:var(--ink);font-weight:500}
+.note.warn{color:var(--red);font-weight:700}
+.note{font-size:.76rem;color:var(--ink-2);padding:0 0 12px 40px;line-height:1.45}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.72rem;color:var(--muted);margin-top:14px;align-items:center}
+.legend i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:14px 16px;font-size:.84rem;line-height:1.55;margin-top:18px;color:var(--ink-2)}
+.callout b{color:var(--ink)}
+
+/* tables */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.82rem}
+th{text-align:left;font-size:.68rem;font-weight:700;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+td.t{font-weight:700;white-space:nowrap}
+.num{text-align:right}
+.tcell{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.tw table{min-width:600px}
+.tcell .logo,.tcell .ini{width:22px;height:22px;flex:none}
+.chip{display:inline-block;border-radius:5px;padding:3px 8px;font-size:.72rem;font-weight:600;white-space:nowrap;color:var(--ink)}
+.b-Close{background:var(--b-close)}.b-Clear{background:var(--b-clear)}.b-Major{background:var(--b-major)}.b-Rout{background:var(--b-rout);color:#fff}
+.b-Forfeit,.b-Bye{background:var(--track);color:var(--muted)}
+.b-Loss{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+h3.dh{font-size:.88rem;font-weight:800;margin:18px 0 4px}
+h3.dh:first-child{margin-top:0}
+.filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filter button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;font-size:.74rem;font-weight:700;cursor:pointer}
+.filter button[aria-pressed=true]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+
+/* chart */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto}
+#tip{position:fixed;pointer-events:none;background:#140708;color:#fff;font-size:.74rem;line-height:1.45;padding:8px 10px;border-radius:6px;max-width:260px;opacity:0;transition:opacity .1s;z-index:20}
+#tip b{display:block}
+
+/* method */
+.prose p{font-size:.86rem;color:var(--ink-2);line-height:1.6;max-width:60rem;margin-bottom:.8rem}
+.prose b{color:var(--ink)}
+blockquote{border-left:3px solid var(--red);padding:8px 12px;margin:0 0 12px;background:var(--soft);border-radius:0 6px 6px 0;font-size:.84rem;line-height:1.55;color:var(--ink-2)}
+blockquote cite{display:block;font-style:normal;font-weight:800;font-size:.7rem;color:var(--muted);margin-bottom:4px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0 4px}
+.step{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--soft)}
+.step.now{border-color:var(--red);box-shadow:inset 0 3px 0 var(--red)}
+.step .k{font-size:.66rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.step .t{font-weight:800;margin:2px 0 4px}
+.step .d{font-size:.74rem;color:var(--muted);line-height:1.45}
+.empty{padding:28px 20px;text-align:center;color:var(--muted);font-size:.88rem}
+.empty b{display:block;color:var(--ink);font-size:1rem;margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:24px;padding:16px 0 32px;font-size:.72rem;color:var(--muted)}
+.narrow{display:none}
+.mitem{padding:10px 0;border-top:1px solid var(--line)}.mitem:first-child{border-top:0}
+.mhead{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.86rem;margin-bottom:6px}
+.mchips{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding-left:30px}
+.gitem{padding:10px 0;border-top:1px solid var(--line)}.gitem:first-child{border-top:0}
+.gtop{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:var(--muted);font-weight:700;margin-bottom:6px}
+.gline{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.84rem;padding:2px 0}
+.gline.lose{font-weight:500;color:var(--ink-2)}
+@media(max-width:700px){.wide{display:none}.narrow{display:block}}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #F5A623;outline-offset:2px}
+@media print{nav.tabs,.ages-bar{display:none}[data-panel]{display:block!important}.top{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+ <img id="wbaLogo" alt="Warragul Basketball Association">
+ <h1>Junior Domestic grading<span>Warragul Basketball Association · <span id="season" style="display:inline;font-size:inherit"></span></span></h1>
+ <div class="stamp">Last updated<b id="updated"></b></div>
+</div></header>
+<div class="ages-bar"><div class="wrap"><div class="ages" id="ages" role="group" aria-label="Age group"></div></div></div>
+<nav class="tabs"><div class="wrap" role="tablist">
+ <button role="tab" data-tab="divisions" aria-selected="true">Divisions</button>
+ <button role="tab" data-tab="results" aria-selected="false">Stage 1 results</button>
+ <button role="tab" data-tab="strength" aria-selected="false">Team strength</button>
+ <button role="tab" data-tab="method" aria-selected="false">How we decide</button>
+</div></nav>
+
+<main><div class="wrap">
+ <ul class="notices" id="notices"></ul>
+ <div id="statusPill"></div>
+ <p class="lead" id="lead"></p>
+ <div class="kpis" id="kpis"></div>
+
+ <section data-panel="divisions">
+  <div class="grid3" id="divcols"></div>
+  <div class="legend" id="divLegend"><span><i style="background:var(--up-bg);border:1px solid var(--blue)"></i>Recommended to move up</span><span><i style="background:var(--down-bg);border:1px solid var(--red)"></i>Recommended to move down</span><span>Figure on the right: average Stage 1 margin, as a share of points</span><span>Tap a team for the reason</span></div>
+ </section>
+
+ <section data-panel="results" hidden>
+  <div class="panel">
+   <h2>Round by round</h2>
+   <p class="sub">Each team's margin in each Stage 1 game, as a share of the points scored in that game. Wins are coloured by band; losses are shown in grey. Teams are listed in their Stage 1 division, strongest first.</p>
+   <div id="matrix"></div>
+   <div class="legend"><span class="chip b-Close">Close</span> under 20% <span class="chip b-Clear">Clear win</span> 20–33% <span class="chip b-Major">Major blowout</span> 33–50% <span class="chip b-Rout">Rout</span> 50%+ <span class="chip b-Loss">−14% v …</span> loss (the band shows on the winner) <span class="chip b-Forfeit">Forfeit</span> not counted in margins</div>
+  </div>
+  <div class="panel gap">
+   <h2>Every game</h2>
+   <p class="sub">All Stage 1 games, with the winning margin and its band.</p>
+   <div class="filter" id="gameFilter"></div>
+   <div class="glist narrow" id="gamesList"></div>
+   <div class="tw wide"><table><thead><tr><th>Round</th><th>Div</th><th>Winner</th><th>Loser</th><th class="num" id="scoreTh">Score</th><th class="num">Margin</th><th>Band</th></tr></thead><tbody id="gamesBody"></tbody></table></div>
+  </div>
+ </section>
+
+ <section data-panel="strength" hidden>
+  <div class="panel">
+   <h2>Average Stage 1 margin, every team</h2>
+   <p class="sub">Average share-of-points margin across each team's scored games. Past +25% points to a higher division, past −25% to a lower one. Grouped by Stage 1 division.</p>
+   <div class="chart" id="chart"></div>
+  </div>
+  <div class="panel gap">
+   <h2>Team table</h2>
+   <p class="sub">The same figures as a table, with a cross-check. <b>Adjusted for opponents</b> adds each opponent's own rating to the margin against them: a team's rating is how far above or below the division average it performed (0% = average for that Stage 1 division), so a stronger opponent is one rated above 0% and a weaker opponent one rated below. A 20% win over a team rated −15% counts as +5%; a 10% loss to a team rated +25% counts as +15%. Placements use the plain average; the adjusted figure is a second look, and with three games it can swing on one result. See How we decide for the full method.</p>
+   <div class="tw"><table><thead><tr><th>Team</th><th>Stage 1</th><th class="num">W–L</th><th class="num">Scored games</th><th class="num">Avg margin</th><th class="num">Adjusted for opponents</th><th>Signal</th><th>Stage 2</th></tr></thead><tbody id="teamBody"></tbody></table></div>
+  </div>
+ </section>
+
+ <section data-panel="method" hidden>
+  <div class="panel prose">
+   <h2>The formula</h2>
+   <p class="sub">The measure used in the Winter 2026 Season Review, so seasons compare directly.</p>
+   <p><b>Margin = winning margin ÷ total points scored in the game.</b> A 64–31 game is 33 ÷ 95 = 35%. Measuring the margin as a share of points lets low- and high-scoring games be judged on the same footing: 100–45 is 38%, while 55–0 is 100%, though both are 55-point wins.</p>
+   <div class="tw"><table><thead><tr><th>Band</th><th>Margin</th><th>In plain terms</th></tr></thead><tbody>
+    <tr><td><span class="chip b-Close">Close</span></td><td>under 20%</td><td>Winner scored less than 1.5 times the loser</td></tr>
+    <tr><td><span class="chip b-Clear">Clear win</span></td><td>20% to under 33%</td><td>Up to 2 to 1</td></tr>
+    <tr><td><span class="chip b-Major">Major blowout</span></td><td>33% to under 50%</td><td>2 to 1 up to 3 to 1</td></tr>
+    <tr><td><span class="chip b-Rout">Rout</span></td><td>50% and over</td><td>Winner scored three times the loser or more</td></tr></tbody></table></div>
+   <p style="margin-top:14px"><b>Team strength</b> is the average of a team's signed margins (positive for wins, negative for losses) across its scored Stage 1 games. A team averaging <b>+25% or better</b> is flagged to look up a division; <b>−25% or worse</b>, to look down. Forfeits count as a win or loss but are left out of margins, because there is no real score.</p>
+   <p><b>Adjusted for opponents (cross-check).</b> The plain average treats a win over the bottom team the same as a win over the top team. The adjusted figure corrects for that, and is shown on the Team strength tab beside the plain average.</p>
+   <p><b>What makes an opponent stronger or weaker.</b> Every team in a Stage 1 division gets a rating: how far above or below the division average it performed, measured with the same share-of-points margins. The division average is set at 0%. An opponent rated above 0% is stronger than average; one rated below 0% is weaker. Ratings come only from results, not from team lists, club or last season.</p>
+   <p><b>How a game is credited.</b> Each game counts as the team's margin <i>plus</i> the opponent's rating, and a team's adjusted figure is the average of its games:</p>
+   <div class="tw"><table><thead><tr><th>Example</th><th class="num">Margin</th><th class="num">Opponent's rating</th><th class="num">Counts as</th></tr></thead><tbody>
+    <tr><td>Win over a weaker team</td><td class="num">+20%</td><td class="num">−15%</td><td class="num">+5%</td></tr>
+    <tr><td>Win over a stronger team</td><td class="num">+20%</td><td class="num">+15%</td><td class="num">+35%</td></tr>
+    <tr><td>Loss to a much stronger team</td><td class="num">−10%</td><td class="num">+25%</td><td class="num">+15%</td></tr>
+    <tr><td>Loss to a weaker team</td><td class="num">−10%</td><td class="num">−15%</td><td class="num">−25%</td></tr></tbody></table></div>
+   <p style="margin-top:12px">Because each team's rating depends on its opponents' ratings, all ratings in the division are worked out together, recalculating until they stop changing, then re-centred so the division average stays at 0%. Forfeits are left out. The figure only compares teams within the same Stage 1 division, and with three games per team one result can move it a long way, so it is a cross-check, not the basis for placement.</p>
+   <p><b>From flags to divisions.</b> Flags are a starting point, not an automatic move. Divisions are set by ranking teams on strength, moving the fewest teams needed, keeping every division at six teams or more, and avoiding a jump of two divisions on three games.</p>
+  </div>
+  <div class="panel gap prose" id="constraints">
+   <h2>Rules applied before any results</h2>
+   <p>Two Playing Conditions rules are applied first and override the results-based method: every division keeps at least six teams (Section 4.6), and a team that includes a Tier 1 or Tier 2 representative player must play in Division 1, or a Tier 3 player in Division 2 or higher (Section 6.5). A team covered by Section 6.5 is not regraded below that division, at the end of Stage 1 or at any Stage 2 review.</p>
+  </div>
+  <div class="panel gap prose" id="rules">
+   <h2>How sure we are, and how close teams are separated</h2>
+   <p class="sub">These rules were set before any placement was made and are applied the same way in every age group.</p>
+   <p><b>Three checks on every move.</b> Each team recommended to move is compared with <b>every</b> other team in its Stage 1 division that is not moving the same way, not just the next team on average margin. A move is a <b>Clear call</b> only if no team is level with it and, against the closest team, all of these hold:</p>
+   <div class="tw"><table><thead><tr><th>Check</th><th>Passes when</th></tr></thead><tbody>
+    <tr><td>1. Separation</td><td>The two teams' average margins are at least 10 points apart. With three games, smaller gaps are within normal game-to-game variation, so the teams are treated as level.</td></tr>
+    <tr><td>2. One game can't flip it</td><td>Removing any single game from the moving team's results still leaves it on the same side of the other team.</td></tr>
+    <tr><td>3. Other measures agree</td><td>The moving team is also ahead (or behind, for a move down) on points per game and on the adjusted-for-opponents figure.</td></tr></tbody></table></div>
+   <p style="margin-top:12px">A team is <b>level</b> with the moving team if they are within 10 points, if removing one game changes their order, or if the head-to-head result went the other way. Any level team is a rival. The move is a <b>Close call</b>, and the moving team must win the tie-break below against <b>each</b> rival. The other team is marked <b>Next in line</b> (or <b>Close to the line</b>) and is the first considered at each Stage 2 review.</p>
+   <p><b>Tie-break, in order.</b> The first step that separates the teams decides:</p>
+   <div class="tw"><table><thead><tr><th>Step</th><th>Separates the teams when</th></tr></thead><tbody>
+    <tr><td>1. Head-to-head</td><td>They played each other: the winner ranks higher.</td></tr>
+    <tr><td>2. Common opponents</td><td>They played the same other teams: the better average margin against those teams ranks higher.</td></tr>
+    <tr><td>3. Adjusted for opponents</td><td>The higher adjusted figure ranks higher.</td></tr>
+    <tr><td>4. More evidence</td><td>The team with more scored games ranks higher.</td></tr></tbody></table></div>
+   <p style="margin-top:12px">These checks are worked out automatically from the results shown on this page, so anyone can verify them.</p>
+  </div>
+  <div class="panel gap">
+   <h2>Where this sits in the season</h2>
+   <div class="steps">
+    <div class="step"><div class="k">Stage 1 · Rounds 1–3</div><div class="t">Grade</div><div class="d">Teams play in their nominated divisions. No moves. Results do not count toward the ladder.</div></div>
+    <div class="step now"><div class="k">Now · end of Stage 1</div><div class="t">Preliminary divisions</div><div class="d">Association Operations sets divisions on observed team strength, as published here.</div></div>
+    <div class="step"><div class="k">Stage 2 · Rounds 4–6</div><div class="t">Validate</div><div class="d">Ladder starts. Reviewed after every round; a clearly misgraded team may be regraded.</div></div>
+    <div class="step"><div class="k">After Round 6</div><div class="t">Divisions lock</div><div class="d">No team may be regraded for the rest of the season.</div></div>
+   </div>
+  </div>
+  <div class="panel gap">
+   <h2>The Playing Conditions being applied</h2>
+   <p class="sub">WBA Junior Domestic Playing Conditions, Version 1.9.3, October 2026.</p>
+   <blockquote><cite>Section 4.6 · Stage 1 — Grade</cite>Teams play one regular game per round. Results are used to assess team strength only and do not count toward the ladder. No team moves division during Stage 1. At the conclusion of Stage 1, Association Operations establishes preliminary divisions based on observed team strength.</blockquote>
+   <blockquote><cite>Section 4.6 · Nomination</cite>Clubs nominate the division for each team before the season. Association Operations does not pre-assign divisions and intervenes only where numbers require it — a minimum six (6) team division floor applies — or to resolve uneven pools. Where a club enters two or more teams in one age group, players must be distributed as evenly as practical across those teams by the end of Stage 1.</blockquote>
+   <blockquote><cite>Section 4.6 · Stage 2 — Validate</cite>The official ladder begins. Association Operations reviews grading after each round and may regrade a team that is clearly misgraded, maintaining the six (6) team floor. The grading rule modifications in Section 4.6b continue to apply during Stage 2. Divisions lock at the completion of Round 6.</blockquote>
+   <blockquote><cite>Section 4.6 · Stage 3 — Season</cite>Divisions are locked and no further grading adjustments are made. Every result counts toward the ladder and finals eligibility applies.</blockquote>
+   <blockquote><cite>Section 4.6a · Ladder Reset and Regrading</cite>Stage 1 results do not count toward the ladder. The official ladder commences at Round 4 (Stage 2) and carries through to the end of the season. A team regraded by decision of Association Operations during Stage 2 moves to its new division with zero (0) games played and zero percentage. Results of games played against that team in its previous division are recorded as abandoned. No team may be regraded after the completion of Round 6.</blockquote>
+  </div>
+  <div class="panel gap">
+   <h2>Against last winter</h2>
+   <p class="sub">This age group's Stage 1 games beside the Winter 2026 Season Review figures for the same measure.</p>
+   <div class="tw"><table><thead><tr><th>Measure</th><th class="num">Stage 1, this season</th><th class="num">Winter 2026</th></tr></thead><tbody id="bmBody"></tbody></table></div>
+  </div>
+ </section>
+
+ <section class="panel gap" id="comments" hidden>
+  <h2 id="commentsTitle">Club comments</h2>
+  <p class="sub">Questions and comments from clubs about this age group's results and divisions. Comments are public and need a free GitHub account to post. Keep them to teams and grading: no player names, and be respectful. Association Operations moderates this page and may hide or remove comments. Formal appeals go through the WBA complaints process (Section 11), not here.</p>
+  <div id="giscusHost"></div>
+ </section>
+ <footer>Margins are shown to the nearest whole per cent (one decimal where a game sits on a band line, e.g. 19.5% is Close); bands use the exact figure. PlayHQ's automated grading suggestions are not used. Questions about a placement go to Association Operations.</footer>
+</div></main>
+<div id="tip" role="tooltip"></div>
+
+<script>
+/* Comments (Giscus, stored as GitHub Discussions). Leave repoId as is to switch comments off. */
+const COMMENTS = { repo: "davethomas2303/wba-grading", repoId: "__REPO_ID__", category: "Announcements", categoryId: "__CATEGORY_ID__" };
+</script>
+<script>
+const LOGOS = {"Warranor": "data:image/jpeg;base64,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", "Bunyip": "data:image/jpeg;base64,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", "Chalkies": "data:image/jpeg;base64,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", "Devils": "data:image/jpeg;base64,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", "Gladiators": "data:image/jpeg;base64,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", "Neerim Wolves": "data:image/jpeg;base64,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", "Rebels": "data:image/jpeg;base64,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", "Yarragon": "data:image/jpeg;base64,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"};
+document.getElementById('wbaLogo').src = "data:image/png;base64,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";
+</script>
+<script>
+(function(){
+const M=METHOD;
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;};
+const sgn=v=>(v>0?'+':v<0?'−':'')+Math.round(Math.abs(v)*100)+'%';
+const p0=v=>Math.round(v*100)+'%';
+const band=m=>m==null?'Forfeit':m<M.close?'Close':m<M.clear?'Clear win':m<M.major?'Major blowout':'Rout';
+/* whole per cent, or one decimal where rounding would cross a band line (e.g. 19.5% is Close) */
+const fm=m=>{const r=Math.round(m*100);return band(r/100)===band(m)?String(r):(m*100).toFixed(1);};
+const bcls=b=>'b-'+b.split(' ')[0];
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const divName=d=>'Division '+String(d).replace(/^D/,'');
+const INI={'Bunyip':'BUN','Devils':'DEV','Neerim Wolves':'NW','Chalkies':'CHK','Rebels':'REB','Gladiators':'GLA','Yarragon':'YAR','Warranor':'WAR'};
+const badge=c=>{if(LOGOS[c]){const i=el('img','logo');i.alt=c;i.src=LOGOS[c];return i;}return el('span','ini',INI[c]||String(c||'?').slice(0,3).toUpperCase());};
+const tcell=(name,club)=>{const s=el('span','tcell');s.append(badge(club),name);return s;};
+const STAGE1_ROUNDS=3;
+const wl=t=>t.won+'–'+t.lost+(t.drawn?'–'+t.drawn:'');
+const chipFor=(g,lab)=>{lab=lab||'';
+ if(g.kind==='bye')return el('span','chip b-Bye',lab+'Bye');
+ if(g.kind==='tocome')return el('span','chip b-Bye',lab+'To come');
+ if(g.pending)return el('span','chip b-Bye',lab+'Result pending v '+g.opp);
+ if(g.ff)return el('span','chip b-Forfeit',lab+(g.won?'W':'L')+' forfeit v '+g.opp);
+ if(g.draw)return el('span','chip b-Close',lab+'Draw v '+g.opp);
+ return el('span','chip '+(g.won?bcls(g.band):'b-Loss'),lab+(g.won?'+':'−')+fm(g.margin)+'% v '+g.opp);};
+const sortDiv=(a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true});
+
+/* ---- the three checks and the tie-break, applied to every recommended move ---- */
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+function tiebreak(a,b){ /* returns {winner, text}; a and b are teams */
+ const h=a.opp[b.name];
+ if(h&&h.length){const v=mean(h);if(v!==0){const w=v>0?a:b;return {winner:w.name,step:'head-to-head',text:'Head-to-head: '+w.name+' won by '+fm(Math.abs(v))+'%.'};}}
+ const com=Object.keys(a.opp).filter(c=>c!==b.name&&b.opp[c]);
+ if(com.length){const d=mean(com.map(c=>mean(a.opp[c])-mean(b.opp[c])));if(Math.abs(d)>=0.005){const w=d>0?a:b;return {winner:w.name,step:'common opponents',text:'Against common opponents ('+com.join(', ')+'), '+w.name+' were '+Math.round(Math.abs(d)*100)+(Math.round(Math.abs(d)*100)===1?' point':' points')+' better.'};}}
+ if(a.adj!=null&&b.adj!=null&&Math.round(a.adj*100)!==Math.round(b.adj*100)){const w=a.adj>b.adj?a:b,l=w===a?b:a;return {winner:w.name,step:'adjusted for opponents',text:'No head-to-head or common opponents to separate them. Adjusted for opponents: '+w.name+' '+sgn(w.adj)+' v '+l.name+' '+sgn(l.adj)+'.'};}
+ if(a.scored!==b.scored){const w=a.scored>b.scored?a:b;return {winner:w.name,step:'more games',text:w.name+' have more scored games ('+w.scored+').'};}
+ return {winner:null,step:'none',text:'Nothing separates them; Association Operations decides.'};
+}
+function assess(teams){
+ /* Each moving team is compared with EVERY team in its Stage 1 division that is not moving the same way.
+    Any team it is not clearly separated from is a rival, and the mover must win the tie-break against each rival. */
+ const divs=[...new Set(teams.map(t=>t.stage1))];
+ divs.forEach(d=>{const inD=teams.filter(t=>t.stage1===d&&t.avg!=null&&!t.withdrawn);
+  const check=(m,n,dir)=>{const gap=dir*(m.avg-n.avg),fails=[],level=[];
+   if(gap<METHOD.level){fails.push('within '+Math.round(METHOD.level*100)+' points');level.push(1);}
+   if(dir>0?m.looMin<n.avg:m.looMax>n.avg){fails.push('one game changes the order');level.push(1);}
+   const hh=m.opp[n.name];if(hh&&hh.length&&dir*mean(hh)<0){fails.push(dir>0?'lost to them head-to-head':'beat them head-to-head');level.push(1);}
+   if(m.ppg!=null&&n.ppg!=null&&dir*(m.ppg-n.ppg)<=0)fails.push('not ahead on points per game');
+   if(m.adj!=null&&n.adj!=null&&dir*(m.adj-n.adj)<=0)fails.push('not ahead adjusted for opponents');
+   return {other:n.name,gap,fails,dir,rival:level.length>0};};
+  [['Up',1],['Down',-1]].forEach(([mv,dir])=>{
+   const movers=inD.filter(t=>t.move===mv),others=inD.filter(t=>t.move!==mv);
+   movers.forEach(m=>{
+    const all=others.map(n=>check(m,n,dir));
+    const nearest=all.sort((a,b)=>a.gap-b.gap)[0];
+    const rivals=all.filter(x=>x.rival||(x===nearest&&x.fails.length)).map(x=>{const n=teams.find(t=>t.name===x.other);const tb=tiebreak(m,n);
+      /* for a move down the team that "wins" the tie-break is the one that stays */
+      const pinned=dir<0&&n.floor&&sortDiv(n.floor,n.stage1)>=0;
+      const ok=dir>0?tb.winner===m.name:(tb.winner===n.name||pinned);return {...x,tb,ok,pinned};});
+    m.conf={clear:!rivals.length,nearest,rivals,dir};
+    rivals.forEach(r=>{const n=teams.find(t=>t.name===r.other);(n.near=n.near||[]).push({other:m.name,gap:r.gap,tb:r.tb,dir,ok:r.ok});});
+   });});});
+}
+
+/* ---- compute everything from DATA ---- */
+function build(ag){
+ const games=ag.games.map((g,i)=>{const m=(g.ff||g.pending)?null:(g.ws!=null&&g.ls!=null?(g.ws-g.ls)/(g.ws+g.ls):g.m);return {...g,i,margin:m,band:g.pending?'Pending':band(m)};});
+ const rounds=STAGE1_ROUNDS;
+ const played=ag.played!=null?ag.played:(games.length?Math.max(...games.map(g=>g.r)):0);
+ const inProgress=ag.status==='in progress';
+ const TOPDIV=[...new Set(ag.teams.map(t=>t.stage1))].sort(sortDiv)[0];
+ const teams=ag.teams.map(t=>{
+  const all=games.filter(g=>g.w===t.name||g.l===t.name);const mine=all.filter(g=>!g.pending);
+  const signed=mine.filter(g=>g.margin!=null).map(g=>g.w===t.name?g.margin:-g.margin);
+  const avg=signed.length?signed.reduce((a,b)=>a+b,0)/signed.length:null;
+  const byRound={};for(let r=1;r<=rounds;r++){const g=all.find(x=>x.r===r);byRound[r]=g?{won:g.w===t.name,opp:g.w===t.name?g.l:g.w,margin:g.margin,band:g.band,draw:!!g.draw,pending:!!g.pending,ff:!!g.ff}:{kind:r<=played?'bye':'tocome'};}
+  const move=t.withdrawn?'Withdrawn':!t.proposed||t.proposed===t.stage1?'Stay':(sortDiv(t.proposed,t.stage1)<0?'Up':'Down');
+  return {...t,won:mine.filter(g=>!g.draw&&g.w===t.name).length,lost:mine.filter(g=>!g.draw&&g.l===t.name).length,drawn:mine.filter(g=>g.draw).length,scored:signed.length,avg,byRound,move,
+   signal:inProgress?'After Round 3':avg==null?'No result':avg>=M.look?(t.stage1===TOPDIV?'Top division':'Look up'):avg<=-M.look?'Look down':'Holding'};
+ });
+ const scored=games.filter(g=>g.margin!=null);
+ /* Adjusted for opponents: each team's rating = average of (its margin + its opponent's rating),
+    solved repeatedly and centred on zero within each Stage 1 division. */
+ const R={};teams.forEach(t=>R[t.name]=t.avg??0);
+ for(let it=0;it<200;it++){const N={};
+  teams.forEach(t=>{const v=scored.filter(g=>g.w===t.name||g.l===t.name).map(g=>g.w===t.name?g.margin+R[g.l]:-g.margin+R[g.w]);N[t.name]=v.length?v.reduce((a,b)=>a+b,0)/v.length:0;});
+  [...new Set(teams.map(t=>t.stage1))].forEach(d=>{const ts=teams.filter(t=>t.stage1===d&&t.scored);const mu=ts.reduce((a,t)=>a+N[t.name],0)/(ts.length||1);ts.forEach(t=>N[t.name]-=mu);});
+  Object.assign(R,N);}
+ teams.forEach(t=>t.adj=t.scored?R[t.name]:null);
+ /* evidence used by the checks and tie-break */
+ teams.forEach(t=>{const sg=scored.filter(g=>g.w===t.name||g.l===t.name);
+  const ms=sg.map(g=>g.w===t.name?g.margin:-g.margin);
+  t.loo=ms.length>1?ms.map((_,i)=>ms.filter((__,j)=>j!==i).reduce((a,b)=>a+b,0)/(ms.length-1)):ms.slice();
+  t.looMin=t.loo.length?Math.min(...t.loo):null;t.looMax=t.loo.length?Math.max(...t.loo):null;
+  const pts=sg.filter(g=>g.ws!=null).map(g=>g.w===t.name?g.ws-g.ls:g.ls-g.ws);t.ppg=pts.length===sg.length&&pts.length?pts.reduce((a,b)=>a+b,0)/pts.length:null;
+  t.opp={};sg.forEach(g=>{const o=g.w===t.name?g.l:g.w;(t.opp[o]=t.opp[o]||[]).push(g.w===t.name?g.margin:-g.margin);});});
+ const decided=ag.status==='recommended'&&teams.length&&teams.every(t=>t.proposed||t.withdrawn);
+ if(decided)assess(teams);
+ return {games,teams,rounds,played,inProgress,scored,decided,forfeits:games.filter(g=>g.ff).length,
+  close:scored.filter(g=>g.band==='Close').length,rout:scored.filter(g=>g.band==='Rout').length,
+  avgWin:scored.length?scored.reduce((a,g)=>a+g.margin,0)/scored.length:null,
+  active:teams.filter(t=>!t.withdrawn).length,withdrawn:teams.filter(t=>t.withdrawn),
+  moves:teams.filter(t=>t.move==='Up'||t.move==='Down').length,up:teams.filter(t=>t.move==='Up').length,down:teams.filter(t=>t.move==='Down').length};
+}
+
+let AGE=null,TAB='divisions',GF='All';
+function readHash(){let h='';try{h=location.hash;}catch(e){}const [a,t]=h.slice(1).split('/');const ag=DATA.ageGroups.find(x=>slug(x.name)===a);if(ag)AGE=ag.name;if(['divisions','results','strength','method'].includes(t))TAB=t;}
+function setHash(){try{history.replaceState(null,'','#'+slug(AGE)+'/'+TAB);}catch(e){}}
+
+function render(){
+ const ag=DATA.ageGroups.find(a=>a.name===AGE);const X=build(ag);
+ $('season').textContent=DATA.season;$('updated').textContent=DATA.updated;
+ // age buttons
+ const ab=$('ages');ab.innerHTML='';
+ DATA.ageGroups.forEach(a=>{const b=el('button');const d=el('i',a.status==='recommended'?'recommended':(a.status==='in review'||a.status==='in progress')?'review':'');b.append(d,a.name);b.setAttribute('aria-pressed',a.name===AGE);b.title=a.status;b.onclick=()=>{AGE=a.name;GF='All';setHash();render();};ab.appendChild(b);});
+ // notices
+ const nt=$('notices');nt.innerHTML='';(DATA.updates||[]).slice(0,4).forEach(u=>{const li=el('li');li.append(el('b',null,u.date),u.text);nt.appendChild(li);});nt.hidden=!(DATA.updates||[]).length;
+ // tabs
+ document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===TAB));
+ document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==TAB);
+ // status + lead
+ const sp=$('statusPill');sp.innerHTML='';
+ const st=ag.status==='recommended'?['recommended','Recommended Stage 2 divisions']:ag.status==='in review'?['review','Stage 1 results in · divisions being set']:ag.status==='in progress'?['review','Stage 1 in progress · provisional']:['pending','Not yet published'];
+ sp.appendChild(el('span','status '+st[0],st[1]));
+ const lead=$('lead');lead.innerHTML='';
+ const kp=$('kpis');kp.innerHTML='';
+ const pending=ag.status==='pending'||!ag.teams.length;
+ document.querySelectorAll('[data-panel]').forEach(p=>{if(pending&&p.dataset.panel!=='method')p.hidden=true;});
+ if(pending){lead.textContent=ag.name+' Stage 1 results are being reviewed. Results and recommended divisions will be published here.';
+  if(TAB!=='method'){const e=el('div','panel empty');e.append(el('b',null,'Coming soon'),'Check back after the review, or select another age group above.');kp.appendChild(e);kp.style.display='block';}
+  renderBench(ag,X);renderComments(ag);return;}
+ kp.style.display='';
+ const d1=X.teams.filter(t=>t.stage1==='D1').length;
+ if(X.decided){lead.append(ag.name+': ',el('b',null,String(X.moves)),' of '+X.active+' teams are recommended to change division for Stage 2');
+  lead.append(d1<M.floor?', bringing Division 1 from '+d1+' teams up to the six-team floor.':'.');}
+ else if(X.inProgress)lead.append(ag.name+': Stage 1 is under way, with '+(X.played===1?'Round 1':'Rounds 1–'+X.played)+' of '+STAGE1_ROUNDS+' played. These results are provisional; recommended divisions will be published after Round '+STAGE1_ROUNDS+'.');
+ else lead.append(ag.name+': Stage 1 results for all '+X.teams.length+' teams are in. Recommended divisions will be published once the review is complete.');
+ const k=(n,l,c)=>{const d=el('div','kpi');d.append(el('div','n',n),el('div','l',l),el('div','c',c||''));kp.appendChild(d);};
+ const bm=BENCHMARKS[ag.name];
+ k(String(X.active),'Teams',X.withdrawn.length?X.withdrawn.length+' withdrawn after Stage 1':[...new Set(X.teams.map(t=>t.stage1))].length+' divisions in Stage 1');
+ k(String(X.scored.length),'Scored games',X.forfeits+' forfeit'+(X.forfeits===1?'':'s')+' not counted'+(X.games.some(g=>g.pending)?' · results pending':''));
+ k(X.scored.length?p0(X.close/X.scored.length):'—','Close games',bm?'Winter 2026: '+p0(bm.close):'');
+ k(String(X.rout),'Routs (50%+)',X.scored.length?p0(X.rout/X.scored.length)+' of games · Winter grading: '+p0(BENCHMARKS._gradingRout):'');
+ if(X.decided)k(String(X.moves),'Teams moving',X.up+' up, '+X.down+' down');
+ else if(X.inProgress)k(X.played+' of '+STAGE1_ROUNDS,'Rounds played','Divisions set after Round '+STAGE1_ROUNDS);
+ else k(String(X.teams.filter(t=>t.signal==='Look up'||t.signal==='Look down').length),'Teams flagged','Past ±25% average margin');
+ renderDivisions(ag,X);renderResults(ag,X);if(TAB==='strength')renderStrength(ag,X);else renderStrengthTable(ag,X);renderBench(ag,X);renderComments(ag);
+}
+
+function teamRow(t,X){
+ const det=el('details','team'+(t.move==='Up'?' up':t.move==='Down'?' down':''));
+ const s=el('summary');s.appendChild(badge(t.club));const mid=el('div');mid.appendChild(el('div','tn',t.name));
+ const meta=el('div','tm');
+ if(X.decided&&t.move!=='Stay')meta.appendChild(el('span','mv'+(t.move==='Down'?' down':''),(t.move==='Up'?'▲ from ':'▼ from ')+t.stage1));
+ if(X.decided&&t.conf)meta.appendChild(el('span','conf '+(t.conf.clear?'ok':'close'),t.conf.clear?'Clear call':'Close call'));
+ if(X.decided&&t.near&&t.near.some(n=>n.ok))meta.appendChild(el('span','conf close',t.near.find(n=>n.ok).dir>0?'Next in line':'Close to the line'));
+ if(!X.decided&&!X.inProgress&&t.signal!=='Holding'&&t.signal!=='No result')meta.appendChild(el('span','mv'+(t.signal==='Look down'?' down':''),t.signal));
+ meta.appendChild(el('span',null,wl(t)+(t.drawn?' (W–L–D)':'')+' in Stage 1'));mid.appendChild(meta);s.appendChild(mid);
+ s.appendChild(el('div','avg '+(t.avg>0?'pos':t.avg<0?'neg':''),t.avg==null?'—':sgn(t.avg)));det.appendChild(s);
+ det.appendChild(el('p','note',(X.decided&&t.note)||(X.decided?'':X.inProgress?'Stage 1 still in progress. Placement is reviewed after Round '+STAGE1_ROUNDS+'.':'Placement to be confirmed after the review.')));
+ if(X.decided&&t.conf){const c=t.conf;
+  if(c.clear&&c.nearest)det.appendChild(el('p','note auto','Clear call: '+Math.round(c.nearest.gap*100)+' points '+(c.dir>0?'ahead of ':'behind ')+c.nearest.other+', the closest team in '+divName(t.stage1)+', and clearly separated from every team on every check.'));
+  c.rivals.forEach(r=>det.appendChild(el('p','note auto','Close call against '+r.other+' ('+r.fails.join('; ')+'). Tie-break: '+r.tb.text)));
+  c.rivals.filter(r=>!r.ok).forEach(r=>det.appendChild(el('p','note warn','Check: the tie-break favours '+r.other+' '+(c.dir>0?'moving up':'moving down')+' instead of '+t.name+'. Review this placement.')));}
+ if(X.decided&&t.floor&&t.proposed&&sortDiv(t.proposed,t.floor)>0)det.appendChild(el('p','note warn','Check: Section 6.5 requires this team to play in '+divName(t.floor)+' or higher.'));
+ if(X.decided&&t.floor&&t.move==='Stay'&&t.signal==='Look down')det.appendChild(el('p','note auto','Stays in '+divName(t.stage1)+': Section 6.5 requires this team to play in '+divName(t.floor)+' (representative player division floor), so it cannot be regraded down.'));
+ if(X.decided&&t.near)t.near.filter(n=>n.ok).forEach(n=>det.appendChild(el('p','note auto',(n.dir>0?'Next in line: close to ':'Close to the line: close to ')+n.other+' ('+Math.round(Math.abs(n.gap)*100)+' points apart). Placed by the tie-break: '+n.tb.text+' Reviewed after each Stage 2 round.')));
+ return det;}
+
+function renderDivisions(ag,X){
+ const host=$('divcols');host.innerHTML='';
+ const key=X.decided?'proposed':'stage1';
+ const act=X.teams.filter(t=>!(X.decided&&t.withdrawn));
+ [...new Set(act.map(t=>t[key]))].sort(sortDiv).forEach(d=>{const tt=act.filter(t=>t[key]===d).sort((a,b)=>(b.avg??-9)-(a.avg??-9));
+  const card=el('div','panel');const h=el('div','div-h');h.appendChild(el('h3',null,divName(d)));
+  h.appendChild(X.inProgress?el('span','floor neutral',tt.length+' teams'):el('span','floor'+(tt.length<M.floor?' bad':''),tt.length+' teams · '+(tt.length<M.floor?'below floor':'meets floor')));
+  card.appendChild(h);tt.forEach(t=>card.appendChild(teamRow(t,X)));host.appendChild(card);});
+ $('divLegend').hidden=!X.decided;
+}
+
+function renderResults(ag,X){
+ const mx=$('matrix');mx.innerHTML='';
+ [...new Set(X.teams.map(t=>t.stage1))].sort(sortDiv).forEach(d=>{
+  mx.appendChild(el('h3','dh',divName(d)+' (Stage 1)'));const tw=el('div','tw'),tb=el('table');
+  const hr=el('tr');hr.appendChild(el('th',null,'Team'));for(let r=1;r<=X.rounds;r++)hr.appendChild(el('th',null,'Round '+r));hr.appendChild(el('th','num','Average'));
+  const th=el('thead');th.appendChild(hr);tb.appendChild(th);const bd=el('tbody');
+  X.teams.filter(t=>t.stage1===d).sort((a,b)=>(b.avg??-9)-(a.avg??-9)).forEach(t=>{const tr=el('tr');const td=el('td','t');td.appendChild(tcell(t.name+(t.withdrawn?' (withdrawn)':''),t.club));tr.appendChild(td);
+   for(let r=1;r<=X.rounds;r++){const g=t.byRound[r];const c=el('td');
+    c.appendChild(chipFor(g));tr.appendChild(c);}
+   tr.appendChild(el('td','num t',t.avg==null?'—':sgn(t.avg)));bd.appendChild(tr);});
+  tb.appendChild(bd);tw.appendChild(tb);tw.classList.add('wide');mx.appendChild(tw);
+  const ml=el('div','mlist narrow');
+  X.teams.filter(t=>t.stage1===d).sort((a,b)=>(b.avg??-9)-(a.avg??-9)).forEach(t=>{const it=el('div','mitem');const h=el('div','mhead');h.append(tcell(t.name,t.club),el('b',null,t.avg==null?'—':sgn(t.avg)));it.appendChild(h);
+   const cs=el('div','mchips');for(let r=1;r<=X.rounds;r++){const g=t.byRound[r];const lab='R'+r+' ';
+    cs.appendChild(chipFor(g,lab));}
+   it.appendChild(cs);ml.appendChild(it);});
+  mx.appendChild(ml);});
+ const gf=$('gameFilter');gf.innerHTML='';
+ ['All',...[...new Set(X.games.map(g=>g.div))].sort(sortDiv)].forEach(d=>{const b=el('button',null,d==='All'?'All divisions':divName(d));b.setAttribute('aria-pressed',GF===d);b.onclick=()=>{GF=d;render();};gf.appendChild(b);});
+ const allScores=X.scored.length>0&&X.scored.every(g=>g.ws!=null);$('scoreTh').hidden=!allScores;
+ const gb=$('gamesBody');gb.innerHTML='';const gl=$('gamesList');gl.innerHTML='';
+ const club=n=>(X.teams.find(t=>t.name===n)||{}).club;
+ X.games.filter(g=>GF==='All'||g.div===GF).sort((a,b)=>a.r-b.r||sortDiv(a.div,b.div)||(b.margin??-1)-(a.margin??-1)).forEach(g=>{const tr=el('tr');
+  tr.append(el('td',null,String(g.r)),el('td',null,g.div));const w=el('td','t');w.appendChild(tcell(g.w,club(g.w)));const l=el('td');l.appendChild(tcell(g.l,club(g.l)));tr.append(w,l);
+  if(allScores)tr.appendChild(el('td','num',g.ws!=null?g.ws+'–'+g.ls:g.pending?'pending':'forfeit'));tr.append(el('td','num',g.pending?'—':g.margin==null?'—':g.draw?'Draw':fm(g.margin)+'%'));
+  const b=el('td');b.appendChild(el('span','chip '+bcls(g.band),g.band));tr.appendChild(b);gb.appendChild(tr);
+  const it=el('div','gitem');const top=el('div','gtop');top.append(el('span',null,'Round '+g.r+' · '+divName(g.div)),el('span','chip '+bcls(g.band),g.band));it.appendChild(top);
+  const ln=el('div','gline');ln.append(tcell(g.w,club(g.w)),el('b',null,g.pending?'pending':g.margin==null?'forfeit':g.draw?'draw':(allScores&&g.ws!=null?g.ws+'–'+g.ls+' · ':'')+fm(g.margin)+'%'));it.appendChild(ln);
+  const l2=el('div','gline lose');l2.append(tcell(g.l,club(g.l)));it.appendChild(l2);gl.appendChild(it);});
+}
+
+function renderStrengthTable(ag,X){
+ const tb=$('teamBody');tb.innerHTML='';
+ [...X.teams].sort((a,b)=>sortDiv(a.stage1,b.stage1)||(b.avg??-9)-(a.avg??-9)).forEach(t=>{const tr=el('tr');const c=el('td','t');c.appendChild(tcell(t.name,t.club));tr.appendChild(c);
+  tr.append(el('td',null,t.stage1),el('td','num',wl(t)),el('td','num',String(t.scored)),el('td','num t '+(t.avg>0?'pos':t.avg<0?'neg':''),t.avg==null?'—':sgn(t.avg)),el('td','num '+(t.adj>0?'pos':t.adj<0?'neg':''),t.adj==null?'—':sgn(t.adj)),el('td',null,t.signal),
+   el('td',null,t.withdrawn?'Withdrawn':X.decided?(t.move==='Stay'?t.proposed:(t.move==='Up'?'▲ ':'▼ ')+t.proposed):'To be confirmed'));tb.appendChild(tr);});
+}
+
+function renderStrength(ag,X){
+ renderStrengthTable(ag,X);
+ const host=$('chart');host.innerHTML='';const W=Math.max(320,host.clientWidth||900);
+ const tt=X.teams.filter(t=>t.avg!=null);const divs=[...new Set(tt.map(t=>t.stage1))].sort(sortDiv);
+ const rows=[];divs.forEach(d=>{rows.push({head:divName(d)+' (Stage 1)'});tt.filter(t=>t.stage1===d).sort((a,b)=>b.avg-a.avg).forEach(t=>rows.push(t));});
+ const NS='http://www.w3.org/2000/svg',mk=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;};
+ const rh=27,top=30,H=top+rows.length*rh+8;
+ const svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);host.appendChild(svg);
+ const meas=mk('text',{'font-size':13,'font-weight':600,'font-family':'Montserrat,system-ui,sans-serif'});let lw=0;tt.forEach(t=>{meas.textContent=t.name;lw=Math.max(lw,meas.getComputedTextLength());});svg.removeChild(meas);
+ const L=Math.min(lw+18,W*0.42),R=50,ext=Math.max(0.5,Math.max(...tt.map(t=>Math.abs(t.avg)))+0.05);
+ const x=v=>L+(v+ext)/(2*ext)*(W-L-R);
+ const css=getComputedStyle(document.documentElement),c=n=>css.getPropertyValue(n).trim();
+ [-0.5,-0.25,0,0.25,0.5].filter(v=>Math.abs(v)<=ext).forEach(v=>{
+  mk('line',{x1:x(v),x2:x(v),y1:top-6,y2:H-4,stroke:v===0?c('--ink-2'):c('--line'),'stroke-width':v===0?1.5:1,'stroke-dasharray':Math.abs(v)===M.look?'4 3':''});
+  const lab=mk('text',{x:x(v),y:top-12,'text-anchor':'middle','font-size':11,fill:c('--muted'),'font-family':'Montserrat,system-ui,sans-serif'});lab.textContent=v===0?'0':(v>0?'+':'−')+Math.abs(v*100)+'%';});
+ const tip=$('tip');
+ rows.forEach((r,i)=>{const y=top+i*rh,ff='Montserrat,system-ui,sans-serif';
+  if(r.head){const h=mk('text',{x:0,y:y+18,'font-size':12,'font-weight':800,fill:c('--ink'),'font-family':ff});h.textContent=r.head;return;}
+  const n=mk('text',{x:L-10,y:y+18,'text-anchor':'end','font-size':13,'font-weight':600,fill:c('--ink'),'font-family':ff});n.textContent=r.name;
+  const col=r.signal==='Look up'?c('--blue'):r.signal==='Look down'?c('--red'):c('--muted');
+  const bar=mk('rect',{x:x(Math.min(0,r.avg)),y:y+6,width:Math.max(2,Math.abs(x(r.avg)-x(0))),height:16,rx:4,fill:col,opacity:(r.signal==='Look up'||r.signal==='Look down')?1:.55});
+  const v=mk('text',{x:r.avg>=0?x(r.avg)+6:x(r.avg)-6,y:y+18,'text-anchor':r.avg>=0?'start':'end','font-size':12,'font-weight':700,fill:c('--ink'),'font-family':ff});v.textContent=sgn(r.avg);
+  bar.addEventListener('mousemove',e=>{tip.innerHTML='';tip.append(el('b',null,r.name),el('div',null,'Average margin '+sgn(r.avg)+' · '+wl(r)),el('div',null,r.signal+(X.decided?' · Stage 2: '+r.proposed:'')));
+   tip.style.opacity=1;const tw=tip.offsetWidth;tip.style.left=Math.min(e.clientX+14,innerWidth-tw-8)+'px';tip.style.top=(e.clientY+14)+'px';});
+  bar.addEventListener('mouseleave',()=>tip.style.opacity=0);});
+}
+
+let giscusTerm=null;
+function renderComments(ag){
+ const box=$('comments');const on=COMMENTS.repoId&&!COMMENTS.repoId.startsWith('__')&&ag.status!=='pending';
+ box.hidden=!on||TAB==='method';if(!on)return;
+ $('commentsTitle').textContent='Club comments: '+ag.name;
+ const term='Grading '+DATA.season+' – '+ag.name;
+ if(term===giscusTerm)return;giscusTerm=term;
+ const fr=document.querySelector('iframe.giscus-frame');
+ if(fr){fr.contentWindow.postMessage({giscus:{setConfig:{term}}},'https://giscus.app');return;}
+ const s=document.createElement('script');s.src='https://giscus.app/client.js';s.async=true;s.crossOrigin='anonymous';
+ Object.entries({repo:COMMENTS.repo,'repo-id':COMMENTS.repoId,category:COMMENTS.category,'category-id':COMMENTS.categoryId,mapping:'specific',term,strict:'1','reactions-enabled':'1','emit-metadata':'0','input-position':'top',theme:'preferred_color_scheme',lang:'en',loading:'lazy'}).forEach(([k,v])=>s.setAttribute('data-'+k,v));
+ $('giscusHost').appendChild(s);
+}
+function renderBench(ag,X){
+ const b=$('bmBody');b.innerHTML='';const bm=BENCHMARKS[ag.name]||{};const has=X.scored&&X.scored.length;
+ [['Close games (under 20%)',has?p0(X.close/X.scored.length):'—',bm.close!=null?p0(bm.close):'—'],
+  ['Average winning margin',has?p0(X.avgWin):'—',bm.avg!=null?p0(bm.avg):'—'],
+  ['Rout rate (against all juniors, settled season)',has?p0(X.rout/X.scored.length):'—',p0(BENCHMARKS._allJuniorRout)],
+  ['Rout rate (against Winter 2026 grading games)',has?p0(X.rout/X.scored.length):'—',p0(BENCHMARKS._gradingRout)]]
+ .forEach(r=>{const tr=el('tr');tr.append(el('td',null,r[0]),el('td','num',r[1]),el('td','num',r[2]));b.appendChild(tr);});
+}
+
+document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{TAB=b.dataset.tab;setHash();render();window.scrollTo({top:0});}));
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(TAB==='strength')render();},150);});
+addEventListener('hashchange',()=>{readHash();render();});
+AGE=(DATA.ageGroups.find(a=>a.status==='recommended')||DATA.ageGroups[0]).name;readHash();render();
+})();
+</script>
+</body>
+</html>
