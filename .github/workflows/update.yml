@@ -1,0 +1,50 @@
+name: Update from PlayHQ
+on:
+  schedule:
+    # Results only appear in PlayHQ once finalised (can take a few hours), so three pulls a day.
+    # Times are UTC: 11:30 = 10:30pm AEDT, 13:00 = midnight AEDT, 20:00 = 7am AEDT.
+    - cron: '30 11 * * *'
+    - cron: '0 13 * * *'
+    - cron: '0 20 * * *'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['build/**']
+permissions:
+  contents: write
+concurrency: { group: update, cancel-in-progress: false }
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Pull fixtures and results from PlayHQ
+        working-directory: build
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_ORG_ID: ${{ secrets.PLAYHQ_ORG_ID }}
+          PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
+          PLAYHQ_SEASON_ID: ${{ secrets.PLAYHQ_SEASON_ID }}
+        run: python3 playhq_pull.py fx.csv
+      - name: Build the site
+        working-directory: build
+        run: |
+          python3 s2gen.py fx.csv s2.json s2_overrides.json s2_results_extra.json
+          python3 build.py
+      - name: Commit if anything changed
+        run: |
+          git config user.name "wba-grading-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html build/s2.json
+          git diff --cached --quiet && echo "No changes" || (git commit -m "Update from PlayHQ $(TZ=Australia/Melbourne date '+%a %d %b %H:%M')" && git push)
+      - name: Deploy to Cloudflare Pages
+        if: ${{ env.CF_TOKEN != '' }}
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          mkdir -p _site && cp index.html .nojekyll _site/
+          npx --yes wrangler@3.114.0 pages deploy _site --project-name wba-grading --branch main
