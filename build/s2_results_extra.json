@@ -1,0 +1,162 @@
+[
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D1",
+"h": "Devils U10 Boys Celtics",
+"a": "U10 Boys Gladiators Raiders",
+"hs": 16,
+"as": 15,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D1",
+"h": "Neerim Wolves U10 Boys",
+"a": "Bunyip U10 Boys Hawks",
+"hs": 6,
+"as": 47,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D1",
+"h": "Warranor Heat U10 Boys Vipers",
+"a": "Chalkies U10 Boys Bears",
+"hs": 5,
+"as": 19,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D2",
+"h": "Devils U10 Boys Giants",
+"a": "Bunyip U10 Boys Hornets",
+"hs": 8,
+"as": 2,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D2",
+"h": "Devils U10 Boys Magic",
+"a": "U10 Boys Gladiators Felix",
+"hs": 21,
+"as": 10,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D2",
+"h": "Rebels U10 Boys Hurricanes",
+"a": "U10 Boys Gladiators Caesars",
+"hs": 22,
+"as": 8,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D3",
+"h": "Bunyip U10 Boys Magic",
+"a": "Bunyip U10 Boys Raptors",
+"hs": 18,
+"as": 10,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D3",
+"h": "Devils U10 Boys Jets",
+"a": "U10 Boys Gladiators Trojans",
+"hs": 30,
+"as": 0,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D3",
+"h": "Devils U10 Boys Knicks",
+"a": "Devils U10 Boys Pistons",
+"hs": 12,
+"as": 18,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D3",
+"h": "Rebels U10 Boys Jets",
+"a": "Chalkies U10 Boys Raptors",
+"hs": 24,
+"as": 16,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D4",
+"h": "Devils U10 Boys Thunder",
+"a": "Warranor Heat U10 Boys Taipans",
+"hs": 12,
+"as": 0,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D4",
+"h": "Rebels U10 Boys Rockets",
+"a": "U10 Boys Gladiators Maximus",
+"hs": 11,
+"as": 12,
+"ff": false
+},
+{
+"age": "U10 Boys",
+"r": 4,
+"div": "D4",
+"h": "Bunyip U10 Boys Jazz",
+"a": "Devils U10 Boys Raptors",
+"hs": 6,
+"as": 4,
+"ff": false
+},
+{
+"age": "U16/19 Girls",
+"r": 6,
+"div": "D3",
+"h": "Warranor Heat U16 Girls Hotshots",
+"a": "U16 Girls Gladiators Nova",
+"hs": 44,
+"as": 18,
+"ff": false
+},
+{
+"age": "U12 Boys",
+"r": 6,
+"div": "D3",
+"h": "Rebels U12 Boys Meteors",
+"a": "U12 Boys Gladiators Titans",
+"hs": 6,
+"as": 19,
+"ff": false
+},
+{
+"age": "U14 Boys",
+"r": 6,
+"div": "D4",
+"h": "Bunyip U14 Boys Grizzlies",
+"a": "Yarragon Wildcats U14 Boys Wildcats",
+"hs": 20,
+"as": 28,
+"ff": false
+}
+]

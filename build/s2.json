@@ -1,0 +1,4158 @@
+{
+"asAt": "2026-11-17 21:11",
+"ages": {
+"U19 Boys": {
+"nights": {
+"D1": "Monday",
+"D2": "Monday",
+"D3": "Monday"
+},
+"dates": {
+"4": "Mon 26 Oct",
+"5": "Mon 2 Nov",
+"6": "Mon 9 Nov"
+},
+"played": [
+4,
+5,
+6,
+7
+],
+"divisions": {
+"D1": [
+"Bunyip Rockets",
+"Bunyip Sonics",
+"Bunyip Taipan",
+"Chalkies Bucks",
+"Devils Eagles",
+"Neerim Wolves Black",
+"Neerim Wolves Blue",
+"Rebels Meteors",
+"Yarragon Wildcats"
+],
+"D2": [
+"Bunyip Sharks",
+"Chalkies Breakers",
+"Chalkies Force",
+"Devils Hawks",
+"Devils Sonics",
+"Gladiators Caesars",
+"Gladiators Raiders",
+"Neerim Wolves White",
+"Rebels Jets",
+"Rebels Lightning"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Sonics",
+"l": "Chalkies Bucks",
+"ws": 84,
+"ls": 33
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Rockets",
+"l": "Rebels Lightning",
+"ws": 96,
+"ls": 26
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Taipan",
+"l": "Neerim Wolves Blue",
+"ws": 112,
+"ls": 75
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Yarragon Wildcats",
+"l": "Devils Sonics",
+"ws": 64,
+"ls": 42
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Eagles",
+"l": "Gladiators Caesars",
+"ws": 81,
+"ls": 36
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Rebels Meteors",
+"l": "Neerim Wolves Black",
+"ws": 66,
+"ls": 51
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Chalkies Breakers",
+"l": "Neerim Wolves White",
+"ws": 71,
+"ls": 55
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Jets",
+"l": "Devils Hawks",
+"ws": 40,
+"ls": 33
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Chalkies Force",
+"l": "Gladiators Raiders",
+"ws": 41,
+"ls": 37
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Rockets",
+"l": "Neerim Wolves Blue",
+"ws": 77,
+"ls": 33
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Taipan",
+"l": "Devils Eagles",
+"ws": 86,
+"ls": 35
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Sonics",
+"l": "Yarragon Wildcats",
+"ws": 81,
+"ls": 30
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Rebels Meteors",
+"l": "Gladiators Caesars",
+"ws": 77,
+"ls": 29
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Neerim Wolves Black",
+"l": "Devils Sonics",
+"ws": 52,
+"ls": 41
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Chalkies Bucks",
+"l": "Rebels Lightning",
+"ws": 60,
+"ls": 42
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Rebels Jets",
+"l": "Bunyip Sharks",
+"ws": 36,
+"ls": 35
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Chalkies Breakers",
+"l": "Gladiators Raiders",
+"ff": true
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Hawks",
+"l": "Chalkies Force",
+"ws": 31,
+"ls": 23
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Bunyip Taipan",
+"l": "Yarragon Wildcats",
+"ws": 94,
+"ls": 36
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Bunyip Sonics",
+"l": "Bunyip Rockets",
+"ws": 44,
+"ls": 39
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Devils Eagles",
+"l": "Neerim Wolves Blue",
+"ws": 65,
+"ls": 56
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Chalkies Bucks",
+"l": "Neerim Wolves Black",
+"ws": 41,
+"ls": 36
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Gladiators Caesars",
+"l": "Rebels Lightning",
+"ws": 63,
+"ls": 40
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Rebels Meteors",
+"l": "Devils Sonics",
+"ws": 41,
+"ls": 35
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Sharks",
+"l": "Neerim Wolves White",
+"ws": 53,
+"ls": 34
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Chalkies Breakers",
+"l": "Chalkies Force",
+"ws": 56,
+"ls": 44
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Devils Hawks",
+"l": "Gladiators Raiders",
+"ws": 42,
+"ls": 30
+},
+{
+"r": 7,
+"div": "D1",
+"w": "Bunyip Sonics",
+"l": "Chalkies Bucks",
+"ws": 81,
+"ls": 25
+},
+{
+"r": 7,
+"div": "D1",
+"w": "Bunyip Taipan",
+"l": "Devils Eagles",
+"ws": 86,
+"ls": 56
+},
+{
+"r": 7,
+"div": "D1",
+"w": "Yarragon Wildcats",
+"l": "Neerim Wolves Black",
+"ws": 74,
+"ls": 56
+},
+{
+"r": 7,
+"div": "D1",
+"w": "Bunyip Rockets",
+"l": "Neerim Wolves Blue",
+"ws": 86,
+"ls": 25
+},
+{
+"r": 7,
+"div": "D2",
+"w": "Bunyip Sharks",
+"l": "Gladiators Raiders",
+"ws": 45,
+"ls": 26
+},
+{
+"r": 7,
+"div": "D2",
+"w": "Devils Sonics",
+"l": "Chalkies Force",
+"ws": 70,
+"ls": 20
+},
+{
+"r": 7,
+"div": "D2",
+"w": "Gladiators Caesars",
+"l": "Devils Hawks",
+"ws": 58,
+"ls": 23
+},
+{
+"r": 7,
+"div": "D2",
+"w": "Rebels Lightning",
+"l": "Chalkies Breakers",
+"ws": 67,
+"ls": 52
+},
+{
+"r": 7,
+"div": "D2",
+"w": "Rebels Jets",
+"l": "Neerim Wolves White",
+"ws": 47,
+"ls": 33
+}
+],
+"next": {
+"r": 8,
+"date": "Mon 23 Nov",
+"games": [
+{
+"date": "Mon 23 Nov",
+"div": "D1",
+"h": "Rebels Meteors",
+"a": "Neerim Wolves Black",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D1",
+"h": "Yarragon Wildcats",
+"a": "Devils Eagles",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D1",
+"h": "Neerim Wolves Blue",
+"a": "Chalkies Bucks",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D1",
+"h": "Bunyip Sonics",
+"a": "Bunyip Rockets",
+"time": "6:40pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D2",
+"h": "Chalkies Force",
+"a": "Gladiators Caesars",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D2",
+"h": "Gladiators Raiders",
+"a": "Rebels Lightning",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D2",
+"h": "Devils Sonics",
+"a": "Neerim Wolves White",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D2",
+"h": "Rebels Jets",
+"a": "Chalkies Breakers",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Mon 23 Nov",
+"div": "D2",
+"h": "Rebels Lightning",
+"a": "Bunyip Sharks",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D1",
+"team": "Bunyip Taipan"
+},
+{
+"div": "D2",
+"team": "Devils Hawks"
+}
+]
+}
+},
+"U16/19 Girls": {
+"nights": {
+"D1": "Thursday",
+"D2": "Thursday",
+"D3": "Thursday"
+},
+"dates": {
+"4": "Thu 29 Oct",
+"5": "Thu 5 Nov",
+"6": "Thu 12 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Bunyip Dream",
+"Bunyip Fire",
+"Bunyip Flyers",
+"Chalkies Lightning",
+"Gladiators Shadows",
+"Neerim Wolves Blue",
+"Warranor Heat Fever",
+"Warranor Heat Fire"
+],
+"D2": [
+"Bunyip Vipers",
+"Devils Angels",
+"Gladiators Fury",
+"Gladiators Mercury",
+"Gladiators Suns",
+"Rebels Amethysts",
+"Rebels Diamonds",
+"Rebels Sapphires",
+"Warranor Heat All-Stars"
+],
+"D3": [
+"Chalkies Storm",
+"Devils Liberty",
+"Devils Vixens",
+"Gladiators Blaze",
+"Gladiators Nova",
+"Neerim Wolves White",
+"Rebels Garnets",
+"Rebels Opals",
+"Rebels Pearls",
+"Warranor Heat Hotshots",
+"Warranor Heat Spirit"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Bunyip Flyers",
+"ws": 52,
+"ls": 19
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Chalkies Lightning",
+"l": "Bunyip Dream",
+"ws": 65,
+"ls": 45
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Warranor Heat Fire",
+"l": "Neerim Wolves Blue",
+"ws": 50,
+"ls": 35
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Fire",
+"l": "Warranor Heat Fever",
+"ws": 57,
+"ls": 28
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Rebels Amethysts",
+"l": "Neerim Wolves White",
+"ws": 34,
+"ls": 12
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Bunyip Vipers",
+"l": "Gladiators Fury",
+"ws": 32,
+"ls": 17
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Gladiators Suns",
+"l": "Devils Angels",
+"ws": 22,
+"ls": 21
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Gladiators Mercury",
+"l": "Warranor Heat All-Stars",
+"ws": 42,
+"ls": 28
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Devils Liberty",
+"l": "Warranor Heat Spirit",
+"ff": true
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Chalkies Storm",
+"l": "Rebels Opals",
+"ws": 20,
+"ls": 17
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Warranor Heat Hotshots",
+"l": "Rebels Pearls",
+"ws": 33,
+"ls": 29
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Garnets",
+"l": "Gladiators Nova",
+"ws": 17,
+"ls": 14
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Sapphires",
+"l": "Gladiators Blaze",
+"ws": 78,
+"ls": 20
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Dream",
+"l": "Warranor Heat Fire",
+"ws": 49,
+"ls": 31
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Neerim Wolves Blue",
+"ff": true
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Warranor Heat Fever",
+"l": "Bunyip Flyers",
+"ws": 65,
+"ls": 48
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Fire",
+"l": "Chalkies Lightning",
+"ws": 43,
+"ls": 42
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Rebels Diamonds",
+"l": "Gladiators Fury",
+"ws": 42,
+"ls": 17
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Gladiators Suns",
+"l": "Neerim Wolves White",
+"ws": 42,
+"ls": 11
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Bunyip Vipers",
+"l": "Gladiators Mercury",
+"ws": 26,
+"ls": 17
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Angels",
+"l": "Rebels Amethysts",
+"ws": 30,
+"ls": 25
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Liberty",
+"l": "Chalkies Storm",
+"ws": 42,
+"ls": 17
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Rebels Sapphires",
+"l": "Rebels Pearls",
+"ws": 60,
+"ls": 20
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Rebels Opals",
+"l": "Rebels Garnets",
+"ws": 23,
+"ls": 20
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Warranor Heat Hotshots",
+"l": "Warranor Heat Spirit",
+"ws": 46,
+"ls": 19
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Gladiators Blaze",
+"l": "Devils Vixens",
+"ws": 36,
+"ls": 24
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Bunyip Fire",
+"l": "Warranor Heat Fire",
+"ws": 45,
+"ls": 30
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Chalkies Lightning",
+"l": "Warranor Heat Fever",
+"ws": 91,
+"ls": 67
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Bunyip Dream",
+"ff": true
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Neerim Wolves Blue",
+"l": "Bunyip Flyers",
+"ws": 52,
+"ls": 24
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Rebels Amethysts",
+"l": "Gladiators Suns",
+"ws": 25,
+"ls": 17
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Gladiators Mercury",
+"l": "Rebels Diamonds",
+"ff": true
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Gladiators Fury",
+"l": "Warranor Heat All-Stars",
+"ws": 36,
+"ls": 32
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Angels",
+"l": "Bunyip Vipers",
+"ws": 20,
+"ls": 17
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Rebels Pearls",
+"l": "Devils Vixens",
+"ws": 42,
+"ls": 14
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Rebels Sapphires",
+"l": "Rebels Garnets",
+"ws": 43,
+"ls": 10
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Devils Liberty",
+"l": "Warranor Heat Spirit",
+"ws": 25,
+"ls": 20
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Gladiators Blaze",
+"l": "Rebels Opals",
+"ws": 46,
+"ls": 40
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Warranor Heat Hotshots",
+"l": "Gladiators Nova",
+"ws": 44,
+"ls": 18
+}
+],
+"next": {
+"r": 7,
+"date": "Thu 19 Nov",
+"games": [
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Warranor Heat Fever",
+"a": "Neerim Wolves Blue",
+"time": "8:20pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Bunyip Dream",
+"a": "Bunyip Flyers",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Bunyip Fire",
+"a": "Gladiators Shadows",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Chalkies Lightning",
+"a": "Warranor Heat Fire",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Gladiators Mercury",
+"a": "Gladiators Fury",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Bunyip Vipers",
+"a": "Rebels Sapphires",
+"time": "7:30pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Warranor Heat All-Stars",
+"a": "Rebels Amethysts",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Devils Angels",
+"a": "Rebels Diamonds",
+"time": "8:20pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Gladiators Blaze",
+"a": "Neerim Wolves White",
+"time": "7:30pm",
+"venue": "St Paul's Anglican Grammar School (Warragul)",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Gladiators Nova",
+"a": "Devils Liberty",
+"time": "7:30pm",
+"venue": "St Paul's Anglican Grammar School (Warragul)",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Warranor Heat Hotshots",
+"a": "Rebels Opals",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Rebels Garnets",
+"a": "Chalkies Storm",
+"time": "8:20pm",
+"venue": "St Paul's Anglican Grammar School (Warragul)",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Warranor Heat Spirit",
+"a": "Devils Vixens",
+"time": "8:20pm",
+"venue": "St Paul's Anglican Grammar School (Warragul)",
+"court": "Court 2",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D2",
+"team": "Gladiators Suns"
+},
+{
+"div": "D3",
+"team": "Rebels Pearls"
+}
+]
+}
+},
+"U16 Boys": {
+"nights": {
+"D1": "Tuesday",
+"D2": "Tuesday",
+"D3": "Tuesday",
+"D4": "Tuesday",
+"D5": "Tuesday"
+},
+"dates": {
+"4": "Tue 27 Oct",
+"5": "Tue 10 Nov",
+"6": "Tue 17 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Bunyip Thunder",
+"Devils Bucks",
+"Neerim Wolves Black",
+"Rebels Stars",
+"Rebels Suns",
+"Warranor Heat Kings"
+],
+"D2": [
+"Bunyip Hawks",
+"Bunyip Hornets",
+"Bunyip Nets",
+"Devils Chiefs",
+"Gladiators Maximus",
+"Rebels Storm"
+],
+"D3": [
+"Bunyip Knicks",
+"Bunyip Rockets",
+"Chalkies Tigers",
+"Devils Grizzlies",
+"Devils Knights",
+"Neerim Wolves White",
+"Rebels Hurricanes",
+"Yarragon Wildcats"
+],
+"D4": [
+"Bunyip Heat",
+"Bunyip Pelicans",
+"Chalkies Jets",
+"Chalkies Kings",
+"Devils Mavericks",
+"Rebels Meteors",
+"Rebels Typhoons"
+],
+"D5": [
+"Chalkies Bandits",
+"Chalkies Thunder",
+"Devils Vikings",
+"Neerim Wolves Blue",
+"Rebels Comets",
+"Rebels Rockets"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Thunder",
+"l": "Bunyip Hornets",
+"ws": 90,
+"ls": 54
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Warranor Heat Kings",
+"l": "Devils Bucks",
+"ws": 66,
+"ls": 47
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Rebels Stars",
+"l": "Rebels Suns",
+"ws": 52,
+"ls": 44
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Neerim Wolves Black",
+"l": "Devils Chiefs",
+"ws": 77,
+"ls": 40
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Rebels Storm",
+"l": "Yarragon Wildcats",
+"ws": 52,
+"ls": 30
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Bunyip Nets",
+"l": "Gladiators Maximus",
+"ws": 33,
+"ls": 23
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Bunyip Hawks",
+"l": "Bunyip Rockets",
+"ws": 60,
+"ls": 42
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Bunyip Knicks",
+"l": "Devils Knights",
+"ws": 30,
+"ls": 24
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Neerim Wolves White",
+"l": "Devils Grizzlies",
+"ws": 29,
+"ls": 15
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Chalkies Tigers",
+"l": "Rebels Hurricanes",
+"ws": 35,
+"ls": 25
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Chalkies Kings",
+"l": "Rebels Meteors",
+"ws": 42,
+"ls": 29
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Rebels Typhoons",
+"l": "Bunyip Heat",
+"ws": 36,
+"ls": 19
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Devils Mavericks",
+"l": "Bunyip Pelicans",
+"ws": 57,
+"ls": 44
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Devils Vikings",
+"l": "Rebels Rockets",
+"ws": 36,
+"ls": 25
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Chalkies Thunder",
+"l": "Chalkies Bandits",
+"ws": 28,
+"ls": 19
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Rebels Comets",
+"l": "Neerim Wolves Blue",
+"ws": 48,
+"ls": 14
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Rebels Suns",
+"l": "Warranor Heat Kings",
+"ws": 78,
+"ls": 44
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Thunder",
+"l": "Rebels Stars",
+"ws": 91,
+"ls": 40
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Devils Bucks",
+"l": "Bunyip Hornets",
+"ws": 43,
+"ls": 38
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Rebels Storm",
+"l": "Bunyip Nets",
+"ws": 47,
+"ls": 34
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Chiefs",
+"l": "Gladiators Maximus",
+"ws": 44,
+"ls": 24
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Neerim Wolves Black",
+"l": "Yarragon Wildcats",
+"ws": 75,
+"ls": 21
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Neerim Wolves White",
+"l": "Bunyip Knicks",
+"ws": 37,
+"ls": 33
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Knights",
+"l": "Rebels Hurricanes",
+"ws": 34,
+"ls": 21
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Bunyip Hawks",
+"l": "Chalkies Tigers",
+"ws": 58,
+"ls": 38
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Bunyip Rockets",
+"l": "Devils Grizzlies",
+"ws": 45,
+"ls": 36
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Rebels Typhoons",
+"l": "Chalkies Jets",
+"ws": 27,
+"ls": 25
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Bunyip Pelicans",
+"l": "Rebels Meteors",
+"ws": 33,
+"ls": 18
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Devils Mavericks",
+"l": "Bunyip Heat",
+"ws": 44,
+"ls": 29
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Devils Vikings",
+"l": "Chalkies Thunder",
+"ws": 57,
+"ls": 16
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Rebels Rockets",
+"l": "Neerim Wolves Blue",
+"ws": 25,
+"ls": 25,
+"draw": true
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Rebels Comets",
+"l": "Chalkies Bandits",
+"ws": 68,
+"ls": 21
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Rebels Stars",
+"l": "Devils Bucks",
+"ws": 45,
+"ls": 36
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Neerim Wolves Black",
+"l": "Warranor Heat Kings",
+"ws": 53,
+"ls": 43
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Bunyip Thunder",
+"l": "Rebels Suns",
+"ws": 54,
+"ls": 45
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Bunyip Hawks",
+"l": "Gladiators Maximus",
+"ws": 67,
+"ls": 25
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Bunyip Hornets",
+"l": "Rebels Storm",
+"ws": 52,
+"ls": 33
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Bunyip Nets",
+"l": "Devils Chiefs",
+"ws": 44,
+"ls": 35
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Neerim Wolves White",
+"l": "Bunyip Rockets",
+"ws": 57,
+"ls": 23
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Yarragon Wildcats",
+"l": "Rebels Hurricanes",
+"ws": 32,
+"ls": 30
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Knicks",
+"l": "Devils Grizzlies",
+"ws": 31,
+"ls": 31,
+"draw": true
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Chalkies Tigers",
+"l": "Devils Knights",
+"ws": 39,
+"ls": 24
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Devils Mavericks",
+"l": "Rebels Meteors",
+"ws": 28,
+"ls": 26
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Chalkies Jets",
+"l": "Chalkies Kings",
+"ws": 50,
+"ls": 28
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Bunyip Heat",
+"l": "Bunyip Pelicans",
+"ws": 51,
+"ls": 43
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Rebels Comets",
+"l": "Rebels Rockets",
+"ws": 29,
+"ls": 18
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Chalkies Thunder",
+"l": "Neerim Wolves Blue",
+"ws": 29,
+"ls": 26
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Devils Vikings",
+"l": "Chalkies Bandits",
+"ws": 38,
+"ls": 10
+}
+],
+"next": {
+"r": 7,
+"date": "Tue 24 Nov",
+"games": [
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Rebels Stars",
+"a": "Neerim Wolves Black",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Rebels Suns",
+"a": "Devils Bucks",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Warranor Heat Kings",
+"a": "Bunyip Thunder",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Gladiators Maximus",
+"a": "Bunyip Hornets",
+"time": "8:20pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Bunyip Nets",
+"a": "Bunyip Hawks",
+"time": "8:20pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Rebels Storm",
+"a": "Devils Chiefs",
+"time": "8:20pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Rebels Hurricanes",
+"a": "Devils Knights",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Devils Grizzlies",
+"a": "Chalkies Tigers",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Bunyip Knicks",
+"a": "Bunyip Rockets",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Yarragon Wildcats",
+"a": "Neerim Wolves White",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Devils Mavericks",
+"a": "Rebels Typhoons",
+"time": "7:30pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Bunyip Heat",
+"a": "Chalkies Kings",
+"time": "7:30pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Bunyip Pelicans",
+"a": "Chalkies Jets",
+"time": "7:30pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Devils Vikings",
+"a": "Neerim Wolves Blue",
+"time": "6:40pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Rebels Rockets",
+"a": "Chalkies Bandits",
+"time": "7:30pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Chalkies Thunder",
+"a": "Rebels Comets",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D4",
+"team": "Rebels Meteors"
+}
+]
+}
+},
+"U14 Boys": {
+"nights": {
+"D1": "Tuesday",
+"D2": "Tuesday",
+"D3": "Tuesday",
+"D4": "Tuesday",
+"D5": "Tuesday"
+},
+"dates": {
+"4": "Tue 27 Oct",
+"5": "Tue 10 Nov",
+"6": "Tue 17 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Chalkies Hoopers",
+"Devils Clippers",
+"Neerim Wolves Blue 1",
+"Neerim Wolves White 1",
+"Rebels Suns",
+"Warranor Heat Hornets"
+],
+"D2": [
+"Bunyip Bucks",
+"Bunyip Cavaliers",
+"Chalkies Redbacks",
+"Chalkies United",
+"Devils Hornets",
+"Devils Jets",
+"Devils Knicks",
+"Rebels Lightning"
+],
+"D3": [
+"Bunyip Bulldogs",
+"Bunyip Sonics",
+"Devils Lions",
+"Devils Nets",
+"Gladiators Raiders",
+"Neerim Wolves Blue",
+"Rebels Meteors",
+"Rebels Thunder",
+"Rebels Typhoons",
+"Warranor Heat Breakers"
+],
+"D4": [
+"Bunyip Grizzlies",
+"Chalkies Hornets",
+"Chalkies Mavericks",
+"Devils Magic",
+"Devils Pacers",
+"Devils Raiders",
+"Devils Spurs",
+"Devils Wizards",
+"Rebels Jets",
+"Yarragon Wildcats"
+],
+"D5": [
+"Bunyip Lakers",
+"Bunyip Spurs",
+"Bunyip Suns",
+"Chalkies Taipans",
+"Chalkies Vipers",
+"Devils Thunder",
+"Gladiators Trojans",
+"Neerim Wolves White"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Devils Clippers",
+"l": "Rebels Suns",
+"ws": 56,
+"ls": 25
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Chalkies Hoopers",
+"l": "Warranor Heat Hornets",
+"ws": 69,
+"ls": 15
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Neerim Wolves Blue 1",
+"l": "Neerim Wolves White 1",
+"ws": 50,
+"ls": 34
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Hornets",
+"l": "Devils Knicks",
+"ws": 35,
+"ls": 29
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Bunyip Cavaliers",
+"l": "Bunyip Sonics",
+"ws": 40,
+"ls": 27
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Jets",
+"l": "Chalkies United",
+"ws": 36,
+"ls": 21
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Bunyip Bucks",
+"l": "Gladiators Raiders",
+"ws": 70,
+"ls": 24
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Bunyip Bulldogs",
+"l": "Devils Nets",
+"ws": 42,
+"ls": 41
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Typhoons",
+"l": "Neerim Wolves Blue",
+"ws": 27,
+"ls": 26
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Meteors",
+"l": "Rebels Thunder",
+"ws": 39,
+"ls": 37
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Warranor Heat Breakers",
+"l": "Devils Lions",
+"ws": 36,
+"ls": 17
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Devils Pacers",
+"l": "Chalkies Hornets",
+"ws": 48,
+"ls": 38
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Devils Wizards",
+"l": "Yarragon Wildcats",
+"ws": 34,
+"ls": 22
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Devils Spurs",
+"l": "Chalkies Mavericks",
+"ws": 32,
+"ls": 26
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Bunyip Grizzlies",
+"l": "Devils Raiders",
+"ws": 32,
+"ls": 32,
+"draw": true
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Rebels Jets",
+"l": "Devils Magic",
+"ws": 34,
+"ls": 33
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Neerim Wolves White",
+"l": "Devils Thunder",
+"ws": 36,
+"ls": 12
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Bunyip Lakers",
+"l": "Gladiators Trojans",
+"ws": 51,
+"ls": 30
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Bunyip Suns",
+"l": "Chalkies Vipers",
+"ws": 38,
+"ls": 22
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Chalkies Taipans",
+"l": "Bunyip Spurs",
+"ws": 35,
+"ls": 8
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Neerim Wolves Blue 1",
+"l": "Chalkies Hoopers",
+"ws": 59,
+"ls": 30
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Devils Clippers",
+"l": "Warranor Heat Hornets",
+"ws": 75,
+"ls": 25
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Bucks",
+"l": "Rebels Suns",
+"ws": 62,
+"ls": 29
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Jets",
+"l": "Bunyip Sonics",
+"ws": 65,
+"ls": 11
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Knicks",
+"l": "Bunyip Cavaliers",
+"ws": 49,
+"ls": 41
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Rebels Lightning",
+"l": "Chalkies United",
+"ws": 36,
+"ls": 36,
+"draw": true
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Rebels Typhoons",
+"l": "Devils Lions",
+"ws": 66,
+"ls": 50
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Bunyip Bulldogs",
+"l": "Rebels Thunder",
+"ws": 64,
+"ls": 35
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Chalkies Redbacks",
+"l": "Rebels Meteors",
+"ws": 48,
+"ls": 23
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Gladiators Raiders",
+"l": "Devils Nets",
+"ws": 68,
+"ls": 29
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Neerim Wolves Blue",
+"l": "Warranor Heat Breakers",
+"ws": 43,
+"ls": 35
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Devils Wizards",
+"l": "Devils Magic",
+"ws": 38,
+"ls": 17
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Devils Pacers",
+"l": "Devils Raiders",
+"ws": 33,
+"ls": 12
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Bunyip Grizzlies",
+"l": "Devils Spurs",
+"ws": 37,
+"ls": 30
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Chalkies Mavericks",
+"l": "Yarragon Wildcats",
+"ws": 33,
+"ls": 23
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Chalkies Hornets",
+"l": "Rebels Jets",
+"ws": 50,
+"ls": 33
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Gladiators Trojans",
+"l": "Chalkies Vipers",
+"ws": 39,
+"ls": 39,
+"draw": true
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Devils Thunder",
+"l": "Bunyip Suns",
+"ws": 30,
+"ls": 11
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Neerim Wolves White",
+"l": "Bunyip Spurs",
+"ws": 46,
+"ls": 20
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Chalkies Taipans",
+"l": "Bunyip Lakers",
+"ws": 43,
+"ls": 25
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Warranor Heat Hornets",
+"l": "Neerim Wolves White 1",
+"ws": 29,
+"ls": 21
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Neerim Wolves Blue 1",
+"l": "Devils Clippers",
+"ws": 44,
+"ls": 43
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Chalkies Hoopers",
+"l": "Rebels Suns",
+"ws": 98,
+"ls": 26
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Jets",
+"l": "Rebels Lightning",
+"ws": 45,
+"ls": 30
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Hornets",
+"l": "Bunyip Cavaliers",
+"ws": 40,
+"ls": 25
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Bunyip Bucks",
+"l": "Chalkies Redbacks",
+"ws": 77,
+"ls": 31
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Knicks",
+"l": "Chalkies United",
+"ws": 52,
+"ls": 35
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Sonics",
+"l": "Rebels Thunder",
+"ws": 49,
+"ls": 25
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Gladiators Raiders",
+"l": "Devils Lions",
+"ws": 56,
+"ls": 30
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Rebels Meteors",
+"l": "Devils Nets",
+"ws": 45,
+"ls": 34
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Rebels Typhoons",
+"l": "Warranor Heat Breakers",
+"ws": 31,
+"ls": 29
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Neerim Wolves Blue",
+"l": "Bunyip Bulldogs",
+"ws": 41,
+"ls": 33
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Devils Spurs",
+"l": "Devils Pacers",
+"ws": 59,
+"ls": 10
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Devils Magic",
+"l": "Chalkies Hornets",
+"ws": 34,
+"ls": 33
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Yarragon Wildcats",
+"l": "Bunyip Grizzlies",
+"ws": 28,
+"ls": 20
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Devils Wizards",
+"l": "Rebels Jets",
+"ws": 48,
+"ls": 23
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Chalkies Mavericks",
+"l": "Devils Raiders",
+"ws": 35,
+"ls": 10
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Chalkies Taipans",
+"l": "Chalkies Vipers",
+"ws": 37,
+"ls": 12
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Bunyip Spurs",
+"l": "Bunyip Lakers",
+"ws": 38,
+"ls": 28
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Devils Thunder",
+"l": "Gladiators Trojans",
+"ws": 29,
+"ls": 28
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Neerim Wolves White",
+"l": "Bunyip Suns",
+"ws": 38,
+"ls": 23
+}
+],
+"next": {
+"r": 7,
+"date": "Tue 24 Nov",
+"games": [
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Neerim Wolves White 1",
+"a": "Neerim Wolves Blue 1",
+"time": "6:40pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Chalkies Hoopers",
+"a": "Warranor Heat Hornets",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Devils Clippers",
+"a": "Rebels Suns",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Bunyip Cavaliers",
+"a": "Chalkies United",
+"time": "5:50pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Rebels Lightning",
+"a": "Bunyip Bucks",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Chalkies Redbacks",
+"a": "Devils Knicks",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Devils Hornets",
+"a": "Devils Jets",
+"time": "6:40pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Bunyip Sonics",
+"a": "Neerim Wolves Blue",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Devils Lions",
+"a": "Rebels Meteors",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Rebels Typhoons",
+"a": "Gladiators Raiders",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Devils Nets",
+"a": "Rebels Thunder",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Warranor Heat Breakers",
+"a": "Bunyip Bulldogs",
+"time": "6:40pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Yarragon Wildcats",
+"a": "Chalkies Hornets",
+"time": "5:00pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Rebels Jets",
+"a": "Devils Raiders",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Devils Magic",
+"a": "Bunyip Grizzlies",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Devils Wizards",
+"a": "Chalkies Mavericks",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Devils Spurs",
+"a": "Devils Pacers",
+"time": "5:50pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Bunyip Spurs",
+"a": "Bunyip Suns",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Bunyip Lakers",
+"a": "Chalkies Vipers",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Gladiators Trojans",
+"a": "Neerim Wolves White",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Chalkies Taipans",
+"a": "Devils Thunder",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+}
+],
+"byes": []
+}
+},
+"U14 Girls": {
+"nights": {
+"D1": "Thursday",
+"D2": "Thursday",
+"D3": "Thursday"
+},
+"dates": {
+"4": "Thu 29 Oct",
+"5": "Thu 5 Nov",
+"6": "Thu 12 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Bunyip Aces",
+"Bunyip Mystics",
+"Devils Belles",
+"Gladiators Shadows",
+"Neerim Wolves Blue",
+"Warranor Heat Phantoms",
+"Warranor Heat Phoenix"
+],
+"D2": [
+"Devils Diamonds",
+"Gladiators Blaze",
+"Gladiators Suns",
+"Rebels Gems",
+"Rebels Rubies",
+"Warranor Heat Falcons",
+"Warranor Heat Flames",
+"Yarragon Wildcats"
+],
+"D3": [
+"Bunyip Fever",
+"Bunyip Ravens",
+"Devils Opals",
+"Devils Swifts",
+"Gladiators Mercury",
+"Neerim Wolves White",
+"Rebels Rhinestones"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Neerim Wolves Blue",
+"l": "Warranor Heat Falcons",
+"ws": 21,
+"ls": 18
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Warranor Heat Phantoms",
+"l": "Bunyip Mystics",
+"ws": 36,
+"ls": 13
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Aces",
+"l": "Warranor Heat Phoenix",
+"ws": 42,
+"ls": 39
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Devils Belles",
+"ws": 35,
+"ls": 14
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Yarragon Wildcats",
+"l": "Rebels Rubies",
+"ws": 29,
+"ls": 18
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Warranor Heat Flames",
+"l": "Rebels Gems",
+"ws": 24,
+"ls": 13
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Diamonds",
+"l": "Gladiators Blaze",
+"ws": 47,
+"ls": 10
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Devils Opals",
+"l": "Neerim Wolves White",
+"ws": 37,
+"ls": 4
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Rhinestones",
+"l": "Devils Swifts",
+"ws": 32,
+"ls": 20
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Gladiators Mercury",
+"l": "Bunyip Ravens",
+"ws": 26,
+"ls": 8
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Warranor Heat Phantoms",
+"l": "Warranor Heat Phoenix",
+"ws": 62,
+"ls": 30
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Aces",
+"l": "Bunyip Mystics",
+"ws": 44,
+"ls": 11
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Devils Belles",
+"l": "Neerim Wolves Blue",
+"ws": 32,
+"ls": 23
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Warranor Heat Falcons",
+"ws": 47,
+"ls": 8
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Rebels Gems",
+"l": "Gladiators Blaze",
+"ws": 30,
+"ls": 18
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Yarragon Wildcats",
+"l": "Gladiators Suns",
+"ws": 29,
+"ls": 21
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Diamonds",
+"l": "Warranor Heat Flames",
+"ws": 18,
+"ls": 9
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Bunyip Fever",
+"l": "Bunyip Ravens",
+"ws": 20,
+"ls": 10
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Gladiators Mercury",
+"l": "Devils Opals",
+"ws": 27,
+"ls": 10
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Swifts",
+"l": "Neerim Wolves White",
+"ws": 34,
+"ls": 12
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Warranor Heat Phantoms",
+"l": "Devils Belles",
+"ws": 32,
+"ls": 27
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Neerim Wolves Blue",
+"ws": 30,
+"ls": 9
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Warranor Heat Phoenix",
+"l": "Bunyip Mystics",
+"ws": 43,
+"ls": 11
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Bunyip Aces",
+"l": "Warranor Heat Falcons",
+"ws": 63,
+"ls": 7
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Gladiators Suns",
+"l": "Rebels Rubies",
+"ws": 23,
+"ls": 12
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Yarragon Wildcats",
+"l": "Devils Diamonds",
+"ws": 27,
+"ls": 17
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Warranor Heat Flames",
+"l": "Gladiators Blaze",
+"ws": 27,
+"ls": 11
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Fever",
+"l": "Neerim Wolves White",
+"ws": 26,
+"ls": 10
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Rebels Rhinestones",
+"l": "Bunyip Ravens",
+"ws": 28,
+"ls": 20
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Devils Opals",
+"l": "Devils Swifts",
+"ws": 19,
+"ls": 18
+}
+],
+"next": {
+"r": 7,
+"date": "Thu 19 Nov",
+"games": [
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Warranor Heat Phoenix",
+"a": "Gladiators Shadows",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Bunyip Mystics",
+"a": "Devils Belles",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Bunyip Aces",
+"a": "Neerim Wolves Blue",
+"time": "7:30pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Gladiators Suns",
+"a": "Devils Diamonds",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Warranor Heat Flames",
+"a": "Yarragon Wildcats",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Warranor Heat Falcons",
+"a": "Rebels Gems",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Gladiators Blaze",
+"a": "Rebels Rubies",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Neerim Wolves White",
+"a": "Rebels Rhinestones",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Devils Swifts",
+"a": "Gladiators Mercury",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D3",
+"h": "Devils Opals",
+"a": "Bunyip Fever",
+"time": "6:40pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D1",
+"team": "Warranor Heat Phantoms"
+},
+{
+"div": "D3",
+"team": "Bunyip Ravens"
+}
+]
+}
+},
+"U12 Boys": {
+"nights": {
+"D1": "Thursday",
+"D2": "Friday",
+"D3": "Friday",
+"D4": "Friday",
+"D5": "Friday"
+},
+"dates": {
+"4": "Thu 29 Oct",
+"5": "Thu 5 Nov",
+"6": "Thu 12 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Devils Braves",
+"Neerim Wolves Blue 1",
+"Neerim Wolves White 1",
+"Rebels Stars",
+"Warranor Heat Fury"
+],
+"D2": [
+"Bunyip Spurs",
+"Devils Cavs",
+"Gladiators Kings",
+"Gladiators Titans",
+"Gladiators Trojans",
+"Rebels Thunder",
+"Warranor Heat Flyers"
+],
+"D3": [
+"Bunyip Clippers",
+"Chalkies Knights",
+"Chalkies Phoenix",
+"Devils Falcons",
+"Gladiators Maximus",
+"Neerim Wolves White",
+"Rebels Meteors"
+],
+"D4": [
+"Bunyip Kings",
+"Bunyip Lakers",
+"Bunyip Mavericks",
+"Devils Kings",
+"Devils Nuggets",
+"Devils Pistons"
+],
+"D5": [
+"Chalkies Vikings",
+"Devils Rockets",
+"Devils Suns",
+"Devils Vipers",
+"Gladiators Felix",
+"Gladiators Raiders",
+"Neerim Wolves Blue"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Neerim Wolves Blue 1",
+"l": "Warranor Heat Fury",
+"ws": 55,
+"ls": 29
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Neerim Wolves White 1",
+"l": "Devils Braves",
+"ws": 42,
+"ls": 30
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Rebels Thunder",
+"l": "Bunyip Clippers",
+"ws": 25,
+"ls": 20
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Bunyip Spurs",
+"l": "Gladiators Trojans",
+"ws": 30,
+"ls": 12
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Warranor Heat Flyers",
+"l": "Devils Cavs",
+"ws": 25,
+"ls": 11
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Meteors",
+"l": "Bunyip Mavericks",
+"ws": 26,
+"ls": 17
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Gladiators Maximus",
+"l": "Chalkies Phoenix",
+"ff": true
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Gladiators Titans",
+"l": "Devils Falcons",
+"ws": 31,
+"ls": 14
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Bunyip Lakers",
+"l": "Gladiators Felix",
+"ws": 27,
+"ls": 4
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Bunyip Kings",
+"l": "Neerim Wolves White",
+"ws": 31,
+"ls": 27
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Chalkies Knights",
+"l": "Devils Nuggets",
+"ws": 44,
+"ls": 3
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Devils Suns",
+"l": "Gladiators Raiders",
+"ws": 20,
+"ls": 16
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Chalkies Vikings",
+"l": "Devils Rockets",
+"ws": 14,
+"ls": 4
+},
+{
+"r": 4,
+"div": "D5",
+"w": "Neerim Wolves Blue",
+"l": "Devils Vipers",
+"ws": 15,
+"ls": 7
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Rebels Stars",
+"l": "Devils Braves",
+"ws": 48,
+"ls": 19
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Neerim Wolves White 1",
+"l": "Neerim Wolves Blue 1",
+"ws": 31,
+"ls": 30
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Gladiators Kings",
+"l": "Gladiators Trojans",
+"ws": 32,
+"ls": 29
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Warranor Heat Flyers",
+"l": "Bunyip Clippers",
+"ws": 44,
+"ls": 13
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Rebels Thunder",
+"l": "Devils Cavs",
+"ws": 22,
+"ls": 17
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Gladiators Maximus",
+"l": "Devils Pistons",
+"ws": 31,
+"ls": 8
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Gladiators Titans",
+"l": "Bunyip Mavericks",
+"ws": 66,
+"ls": 4
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Falcons",
+"l": "Chalkies Phoenix",
+"ws": 22,
+"ls": 19
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Bunyip Kings",
+"l": "Devils Kings",
+"ws": 19,
+"ls": 9
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Chalkies Knights",
+"l": "Bunyip Lakers",
+"ws": 42,
+"ls": 5
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Neerim Wolves White",
+"l": "Devils Nuggets",
+"ws": 52,
+"ls": 4
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Devils Suns",
+"l": "Devils Rockets",
+"ws": 21,
+"ls": 9
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Gladiators Raiders",
+"l": "Devils Vipers",
+"ws": 21,
+"ls": 14
+},
+{
+"r": 5,
+"div": "D5",
+"w": "Chalkies Vikings",
+"l": "Neerim Wolves Blue",
+"ws": 19,
+"ls": 4
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Neerim Wolves White 1",
+"l": "Warranor Heat Fury",
+"ws": 56,
+"ls": 38
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Neerim Wolves Blue 1",
+"l": "Rebels Stars",
+"ws": 36,
+"ls": 31
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Warranor Heat Flyers",
+"l": "Rebels Thunder",
+"ws": 35,
+"ls": 17
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Cavs",
+"l": "Gladiators Kings",
+"ws": 36,
+"ls": 29
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Bunyip Spurs",
+"l": "Bunyip Clippers",
+"ws": 32,
+"ls": 21
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Gladiators Titans",
+"l": "Rebels Meteors",
+"ws": 19,
+"ls": 6
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Devils Falcons",
+"l": "Devils Pistons",
+"ws": 17,
+"ls": 2
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Chalkies Phoenix",
+"l": "Bunyip Mavericks",
+"ws": 27,
+"ls": 19
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Chalkies Knights",
+"l": "Gladiators Felix",
+"ws": 52,
+"ls": 9
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Devils Nuggets",
+"l": "Devils Kings",
+"ws": 23,
+"ls": 4
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Neerim Wolves White",
+"l": "Bunyip Lakers",
+"ws": 37,
+"ls": 14
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Gladiators Raiders",
+"l": "Neerim Wolves Blue",
+"ws": 22,
+"ls": 14
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Devils Rockets",
+"l": "Devils Vipers",
+"ws": 17,
+"ls": 6
+},
+{
+"r": 6,
+"div": "D5",
+"w": "Chalkies Vikings",
+"l": "Devils Suns",
+"ws": 17,
+"ls": 17,
+"draw": true
+}
+],
+"next": {
+"r": 7,
+"date": "Thu 19 Nov",
+"games": [
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Rebels Stars",
+"a": "Warranor Heat Fury",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Neerim Wolves Blue 1",
+"a": "Devils Braves",
+"time": "6:40pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Bunyip Spurs",
+"a": "Rebels Thunder",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Gladiators Titans",
+"a": "Gladiators Kings",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Devils Cavs",
+"a": "Gladiators Trojans",
+"time": "7:30pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Chalkies Phoenix",
+"a": "Rebels Meteors",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Devils Falcons",
+"a": "Gladiators Maximus",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Neerim Wolves White",
+"a": "Chalkies Knights",
+"time": "7:30pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D4",
+"h": "Bunyip Lakers",
+"a": "Devils Nuggets",
+"time": "6:40pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D4",
+"h": "Devils Kings",
+"a": "Bunyip Mavericks",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D4",
+"h": "Devils Pistons",
+"a": "Bunyip Kings",
+"time": "7:30pm",
+"venue": "Drouin Primary School",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D5",
+"h": "Neerim Wolves Blue",
+"a": "Devils Suns",
+"time": "6:40pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D5",
+"h": "Gladiators Raiders",
+"a": "Devils Rockets",
+"time": "6:40pm",
+"venue": "Drouin Primary School",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D5",
+"h": "Gladiators Felix",
+"a": "Chalkies Vikings",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D1",
+"team": "Neerim Wolves White 1"
+},
+{
+"div": "D2",
+"team": "Warranor Heat Flyers"
+},
+{
+"div": "D3",
+"team": "Bunyip Clippers"
+},
+{
+"div": "D5",
+"team": "Devils Vipers"
+}
+]
+}
+},
+"U12 Girls": {
+"nights": {
+"D1": "Thursday",
+"D2": "Thursday"
+},
+"dates": {
+"4": "Thu 29 Oct",
+"5": "Thu 5 Nov",
+"6": "Thu 12 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Bunyip Opals",
+"Chalkies Stars",
+"Devils Blazers",
+"Devils Liberty",
+"Gladiators Shadows",
+"Gladiators Suns",
+"Warranor Heat Ballers",
+"Warranor Heat Sparrows"
+],
+"D2": [
+"Bunyip Sparks",
+"Chalkies Diamonds",
+"Devils Sparks",
+"Gladiators Mercury",
+"Neerim Wolves Blue",
+"Neerim Wolves White",
+"Rebels Crystals",
+"Warranor Heat Jets"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Gladiators Suns",
+"l": "Devils Blazers",
+"ws": 27,
+"ls": 14
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Chalkies Stars",
+"l": "Warranor Heat Sparrows",
+"ws": 24,
+"ls": 18
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Warranor Heat Ballers",
+"l": "Gladiators Shadows",
+"ws": 23,
+"ls": 20
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Opals",
+"l": "Devils Liberty",
+"ws": 30,
+"ls": 10
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Sparks",
+"l": "Chalkies Diamonds",
+"ws": 19,
+"ls": 6
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Warranor Heat Jets",
+"l": "Rebels Crystals",
+"ws": 27,
+"ls": 17
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Neerim Wolves White",
+"l": "Neerim Wolves Blue",
+"ws": 24,
+"ls": 12
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Bunyip Sparks",
+"l": "Gladiators Mercury",
+"ws": 12,
+"ls": 8
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Devils Blazers",
+"ws": 54,
+"ls": 26
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Gladiators Suns",
+"l": "Chalkies Stars",
+"ws": 21,
+"ls": 14
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Warranor Heat Sparrows",
+"l": "Bunyip Opals",
+"ws": 24,
+"ls": 8
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Warranor Heat Ballers",
+"l": "Devils Liberty",
+"ws": 66,
+"ls": 2
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Bunyip Sparks",
+"l": "Rebels Crystals",
+"ff": true
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Chalkies Diamonds",
+"l": "Neerim Wolves White",
+"ws": 30,
+"ls": 21
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Sparks",
+"l": "Neerim Wolves Blue",
+"ws": 30,
+"ls": 9
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Warranor Heat Jets",
+"l": "Gladiators Mercury",
+"ws": 43,
+"ls": 8
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Devils Liberty",
+"ws": 65,
+"ls": 8
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Warranor Heat Ballers",
+"l": "Chalkies Stars",
+"ws": 46,
+"ls": 11
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Gladiators Suns",
+"l": "Warranor Heat Sparrows",
+"ff": true
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Bunyip Opals",
+"l": "Devils Blazers",
+"ws": 33,
+"ls": 24
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Rebels Crystals",
+"l": "Gladiators Mercury",
+"ws": 24,
+"ls": 3
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Sparks",
+"l": "Warranor Heat Jets",
+"ws": 22,
+"ls": 12
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Chalkies Diamonds",
+"l": "Neerim Wolves Blue",
+"ws": 24,
+"ls": 15
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Neerim Wolves White",
+"l": "Bunyip Sparks",
+"ws": 20,
+"ls": 14
+}
+],
+"next": {
+"r": 7,
+"date": "Thu 19 Nov",
+"games": [
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Warranor Heat Ballers",
+"a": "Bunyip Opals",
+"time": "5:00pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Devils Liberty",
+"a": "Gladiators Suns",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Chalkies Stars",
+"a": "Gladiators Shadows",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D1",
+"h": "Warranor Heat Sparrows",
+"a": "Devils Blazers",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Gladiators Mercury",
+"a": "Chalkies Diamonds",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Neerim Wolves Blue",
+"a": "Rebels Crystals",
+"time": "5:50pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Bunyip Sparks",
+"a": "Devils Sparks",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 19 Nov",
+"div": "D2",
+"h": "Warranor Heat Jets",
+"a": "Neerim Wolves White",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+}
+],
+"byes": []
+}
+},
+"U10 Boys": {
+"nights": {
+"D1": "Friday",
+"D2": "Friday",
+"D3": "Friday",
+"D4": "Friday"
+},
+"dates": {
+"4": "Fri 30 Oct",
+"5": "Fri 6 Nov",
+"6": "Fri 13 Nov"
+},
+"played": [
+4,
+5,
+6
+],
+"divisions": {
+"D1": [
+"Bunyip Hawks",
+"Chalkies Bears",
+"Devils Celtics",
+"Gladiators Raiders",
+"Neerim Wolves",
+"Warranor Heat Vipers"
+],
+"D2": [
+"Bunyip Stars",
+"Devils Giants",
+"Devils Jets",
+"Devils Magic",
+"Gladiators Caesars",
+"Gladiators Felix",
+"Rebels Hurricanes"
+],
+"D3": [
+"Bunyip Hornets",
+"Bunyip Magic",
+"Bunyip Raptors",
+"Chalkies Raptors",
+"Devils Knicks",
+"Devils Pistons",
+"Gladiators Trojans",
+"Rebels Jets"
+],
+"D4": [
+"Bunyip Jazz",
+"Devils Raptors",
+"Devils Thunder",
+"Gladiators Maximus",
+"Rebels Rockets",
+"Warranor Heat Taipans"
+]
+},
+"games": [
+{
+"r": 4,
+"div": "D1",
+"w": "Chalkies Bears",
+"l": "Warranor Heat Vipers",
+"ws": 19,
+"ls": 5
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Devils Celtics",
+"l": "Gladiators Raiders",
+"ws": 16,
+"ls": 15
+},
+{
+"r": 4,
+"div": "D1",
+"w": "Bunyip Hawks",
+"l": "Neerim Wolves",
+"ws": 47,
+"ls": 6
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Giants",
+"l": "Bunyip Hornets",
+"ws": 8,
+"ls": 2
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Rebels Hurricanes",
+"l": "Gladiators Caesars",
+"ws": 22,
+"ls": 8
+},
+{
+"r": 4,
+"div": "D2",
+"w": "Devils Magic",
+"l": "Gladiators Felix",
+"ws": 21,
+"ls": 10
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Bunyip Magic",
+"l": "Bunyip Raptors",
+"ws": 18,
+"ls": 10
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Devils Pistons",
+"l": "Devils Knicks",
+"ws": 18,
+"ls": 12
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Jets",
+"l": "Chalkies Raptors",
+"ws": 24,
+"ls": 16
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Devils Jets",
+"l": "Gladiators Trojans",
+"ws": 30,
+"ls": 0
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Devils Thunder",
+"l": "Warranor Heat Taipans",
+"ws": 12,
+"ls": 0
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Bunyip Jazz",
+"l": "Devils Raptors",
+"ws": 6,
+"ls": 4
+},
+{
+"r": 4,
+"div": "D4",
+"w": "Gladiators Maximus",
+"l": "Rebels Rockets",
+"ws": 12,
+"ls": 11
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Bunyip Hawks",
+"l": "Gladiators Raiders",
+"ws": 22,
+"ls": 13
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Chalkies Bears",
+"l": "Neerim Wolves",
+"ws": 26,
+"ls": 6
+},
+{
+"r": 5,
+"div": "D1",
+"w": "Devils Celtics",
+"l": "Warranor Heat Vipers",
+"ws": 13,
+"ls": 7
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Gladiators Caesars",
+"l": "Bunyip Hornets",
+"ws": 11,
+"ls": 7
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Bunyip Stars",
+"l": "Gladiators Felix",
+"ws": 17,
+"ls": 4
+},
+{
+"r": 5,
+"div": "D2",
+"w": "Devils Giants",
+"l": "Rebels Hurricanes",
+"ws": 24,
+"ls": 17
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Pistons",
+"l": "Rebels Jets",
+"ws": 6,
+"ls": 6,
+"draw": true
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Bunyip Magic",
+"l": "Chalkies Raptors",
+"ws": 12,
+"ls": 6
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Gladiators Trojans",
+"l": "Bunyip Raptors",
+"ws": 13,
+"ls": 12
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Jets",
+"l": "Devils Knicks",
+"ws": 28,
+"ls": 13
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Devils Thunder",
+"l": "Devils Raptors",
+"ws": 16,
+"ls": 7
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Rebels Rockets",
+"l": "Warranor Heat Taipans",
+"ws": 7,
+"ls": 4
+},
+{
+"r": 5,
+"div": "D4",
+"w": "Bunyip Jazz",
+"l": "Gladiators Maximus",
+"ws": 17,
+"ls": 6
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Devils Celtics",
+"l": "Neerim Wolves",
+"ws": 32,
+"ls": 2
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Gladiators Raiders",
+"l": "Warranor Heat Vipers",
+"ws": 23,
+"ls": 19
+},
+{
+"r": 6,
+"div": "D1",
+"w": "Chalkies Bears",
+"l": "Bunyip Hawks",
+"ws": 34,
+"ls": 27
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Gladiators Felix",
+"l": "Devils Giants",
+"ws": 8,
+"ls": 6
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Bunyip Stars",
+"l": "Bunyip Hornets",
+"ws": 15,
+"ls": 6
+},
+{
+"r": 6,
+"div": "D2",
+"w": "Devils Magic",
+"l": "Rebels Hurricanes",
+"ws": 30,
+"ls": 28
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Devils Jets",
+"l": "Rebels Jets",
+"ws": 20,
+"ls": 4
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Raptors",
+"l": "Devils Knicks",
+"ws": 16,
+"ls": 13
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Magic",
+"l": "Gladiators Trojans",
+"ws": 14,
+"ls": 4
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Chalkies Raptors",
+"l": "Devils Pistons",
+"ws": 12,
+"ls": 1
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Gladiators Maximus",
+"l": "Warranor Heat Taipans",
+"ws": 12,
+"ls": 0
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Rebels Rockets",
+"l": "Devils Raptors",
+"ws": 10,
+"ls": 5
+},
+{
+"r": 6,
+"div": "D4",
+"w": "Devils Thunder",
+"l": "Bunyip Jazz",
+"ws": 16,
+"ls": 6
+}
+],
+"next": {
+"r": 7,
+"date": "Fri 20 Nov",
+"games": [
+{
+"date": "Fri 20 Nov",
+"div": "D1",
+"h": "Neerim Wolves",
+"a": "Warranor Heat Vipers",
+"time": "5:00pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D1",
+"h": "Bunyip Hawks",
+"a": "Devils Celtics",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D1",
+"h": "Gladiators Raiders",
+"a": "Chalkies Bears",
+"time": "5:50pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Devils Giants",
+"a": "Gladiators Caesars",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Rebels Hurricanes",
+"a": "Bunyip Stars",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Devils Magic",
+"a": "Devils Jets",
+"time": "5:50pm",
+"venue": "Drouin Primary School",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Devils Pistons",
+"a": "Bunyip Raptors",
+"time": "5:00pm",
+"venue": "Drouin Primary School",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Bunyip Hornets",
+"a": "Bunyip Magic",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Devils Knicks",
+"a": "Rebels Jets",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Gladiators Trojans",
+"a": "Chalkies Raptors",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D4",
+"h": "Devils Raptors",
+"a": "Gladiators Maximus",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D4",
+"h": "Devils Thunder",
+"a": "Rebels Rockets",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D4",
+"h": "Warranor Heat Taipans",
+"a": "Bunyip Jazz",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D2",
+"team": "Gladiators Felix"
+}
+]
+}
+}
+}
+}

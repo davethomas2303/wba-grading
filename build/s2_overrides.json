@@ -1,0 +1,28 @@
+[
+ {
+  "age": "U16/19 Girls",
+  "r": 5,
+  "div": "D3",
+  "was": [
+   "Chalkies Storm",
+   "Rebels Sapphires"
+  ],
+  "now": [
+   "Rebels Pearls",
+   "Rebels Sapphires"
+  ]
+ },
+ {
+  "age": "U16/19 Girls",
+  "r": 5,
+  "div": "D3",
+  "was": [
+   "Rebels Pearls",
+   "Devils Liberty"
+  ],
+  "now": [
+   "Chalkies Storm",
+   "Devils Liberty"
+  ]
+ }
+]

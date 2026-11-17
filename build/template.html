@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<!--
+  WBA JUNIOR DOMESTIC GRADING — Summer 2026/27
+  ============================================
+  One self-contained page. To publish an update:
+    1. Edit the DATA block below (the only part you need to touch).
+    2. Save, then upload this file as index.html to Cloudflare Pages
+       (Workers & Pages → your project → Create deployment → drag in the folder or file).
+
+  Everything else — win/loss, margins, bands, look-up/look-down flags, averages,
+  division counts and the six-team floor check — is worked out from the games you enter.
+-->
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBA Junior Grading — Summer 2026/27</title>
+<meta name="description" content="Warragul Basketball Association Junior Domestic grading: Stage 1 results and recommended Stage 2 divisions, Summer 2026/27.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;1,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+/* =====================================================================
+   DATA — EDIT HERE
+   ---------------------------------------------------------------------
+   updated   : date and time of this update, Melbourne time, as "YYYY-MM-DD HH:MM" (24-hour).
+               Shown in the header as e.g. "Wed 21 Oct 2026, 5:00 pm AEDT" (AEST/AEDT worked out automatically).
+   updates   : newest first. Short notices to clubs, shown on the front page.
+   ageGroups : one entry per age group, shown as buttons in this order.
+
+   For each age group:
+     status : "recommended"  – Stage 2 divisions published (fill `proposed` on every team)
+              "in review"    – Stage 1 results shown, divisions still being set
+              "in progress"  – Stage 1 still being played: results shown as provisional, no flags or divisions
+              "pending"      – nothing published yet
+     played : how many Stage 1 rounds are complete (later rounds show "To come")
+     teams  : name   – as it appears in the games below (keep it short, e.g. "Bunyip Sonics")
+              club   – must match a logo name: Bunyip, Chalkies, Devils, Gladiators,
+                       Neerim Wolves, Rebels, Warranor, Yarragon
+              stage1 – division played in Stage 1 ("D1", "D2", ...)
+              proposed – recommended Stage 2 division (leave out until decided)
+              note   – one or two sentences explaining the placement (shown to clubs)
+     games  : one line per game. r = round, div = Stage 1 division, w = winner, l = loser, then ONE of:
+                ws / ls  – winning and losing scores, e.g. ws:64, ls:31   (preferred)
+                m        – margin as a share of points, e.g. m:0.35      (if scores aren't to hand)
+                ff:true  – forfeit (counts as a win/loss, left out of margins)
+                draw:true – a drawn game (give both scores; either team can be w or l)
+                pending:true – played but result not yet final (shown as "Result pending")
+   ===================================================================== */
+const DATA = {
+  season: "Summer 2026/27",
+  updated: "2026-11-18 10:05",
+  updates: [
+    { date: "18 Nov", text: "U14 Boys: from Round 7, Division 1 has nine teams with a modified draw, and the divisions below are reset in rating order (9 / 8 / 8 / 9 / 8). Details and the full Division 1 draw are on the Stage 2 tab." },
+    { date: "13 Nov", text: "Results updated to 12 Nov. U16/19 Girls, U14 Girls and U12 Girls have completed Round 6. Their final review follows; any change takes effect from Round 7, after which divisions lock." },
+    { date: "12 Nov", text: "Round 5 reviews (final regrading before divisions lock after Round 6). U16 Boys: Neerim Wolves Black to Division 1, Bunyip Hornets and Bunyip Hawks to Division 2, Yarragon Wildcats to Division 3. U14 Boys: Bunyip Bucks to Division 2 at Bunyip's request, Chalkies Redbacks to Division 2, Bunyip Sonics to Division 3. All from Round 6." },
+    { date: "12 Nov", text: "Ladders: the Association has decided that all Stage 2 results stand when a team changes division. No games are recorded as abandoned, and the Stage 2 standings now count every Round 4 onwards result." },
+    { date: "10 Nov", text: "U19 Boys: from Round 7 the competition is restructured into two divisions (9 / 10); ladders count results from Round 4. The divisions, ratings and Division 1 draw are on the U19 Boys Stage 2 tab." },
+    { date: "10 Nov", text: "Stage 2 results updated to Round 5 (Round 6 for U19 Boys, whose divisions are now locked). U14 Boys: Bunyip Bucks move to Division 1 and Gladiators Raiders to Division 3 from Round 5." },
+    { date: "10 Nov", text: "Stage 2 review flags updated to the Association's grading method: Look up / Look down (all games against teams now in the same division, from 2 games), Form (Stage 2 only, from 3 games) and Watch (3 Stage 2 games all won or all lost). See How we decide." },
+    { date: "1 Nov", text: "Stage 2 results updated from PlayHQ: U12 Boys Round 4 added, plus results changed or lodged in PlayHQ since 30 Oct." },
+    { date: "1 Nov", text: "U10 Boys: Round 4 results added. Stage 1 correction: Round 3 Gladiators Felix v Gladiators Caesars is a 10–10 draw (corrected in PlayHQ); no placement changes." },
+    { date: "30 Oct", text: "The site now opens on Stage 2: current divisions, Stage 2 results and standings, the next round's draw and review decisions. Stage 1 placements and results remain on their own tabs." },
+    { date: "30 Oct", text: "U16/19 Girls: divisions shown as drawn in PlayHQ for Round 4 onwards (8 / 9 / 11). Gladiators Blaze and Rebels Pearls stay in Division 3; Divisions 2 and 3 each have a bye." },
+    { date: "27 Oct", text: "U12 Boys: Stage 2 runs with five divisions. Division 1 is unchanged (different night); Divisions 2–5 are 7 / 7 / 7 / 6." },
+    { date: "27 Oct", text: "U12 Boys: Option B replaced with a five-division structure for comparison (Division 1 unchanged; then 7 / 7 / 7 / 6). Option A remains the recommendation." },
+    { date: "27 Oct", text: "U12 Boys: Chalkies Phoenix stay in Division 3 at the club's request. Divisions 2–4 are now 9 / 10 / 8." },
+    { date: "27 Oct", text: "U14 Girls: Gladiators Blaze move up to Division 2, so divisions are 8 / 7 / 7 and Divisions 2 and 3 each have a bye for scheduling." },
+    { date: "27 Oct", text: "U16/19 Girls: divisions changed to 8 / 11 / 9 so Divisions 2 and 3 each have a bye for scheduling. Rebels Sapphires move to Division 3; Gladiators Blaze and Rebels Pearls move up to Division 2." },
+    { date: "27 Oct", text: "U12 Girls: Bunyip Opals and Warranor Heat Sparrows stay in Division 1 for now. Chalkies Stars and Devils Liberty still move up, so Stage 2 runs as 8 / 8." },
+    { date: "27 Oct", text: "U19 Boys: Round 4 review. Devils Eagles and Yarragon Wildcats move up to Division 1; Chalkies Bucks and Rebels Lightning move to Division 2. Divisions stay 6 / 6 / 7." },
+    { date: "26 Oct", text: "U12 Boys: Option B added for comparison, showing Division 1 regraded as if it played on the same night. Option A remains the recommendation." },
+    { date: "26 Oct", text: "U10 Boys: recommended Stage 2 divisions published, with all Stage 1 results (Rounds 1–3). A fourth division is added (6 / 7 / 8 / 6) to reduce one-sided games." },
+    { date: "26 Oct", text: "U12 Boys: recommended Stage 2 divisions published (Divisions 2–4: 10 / 9 / 8). Division 1 plays on a different night and is not regraded." },
+    { date: "23 Oct", text: "U12 Girls: recommended Stage 2 divisions published (6 / 10)." },
+    { date: "23 Oct", text: "U14 Girls: recommended Stage 2 divisions published (8 / 6 / 8)." },
+    { date: "23 Oct", text: "U16/19 Girls: recommended Stage 2 divisions published (8 / 10 / 10)." },
+    { date: "23 Oct", text: "U14 Boys: Rebels Suns stay in Division 1 and Rebels Lightning move up to Division 2, as originally recommended." },
+    { date: "23 Oct", text: "U12 Girls, U14 Girls and U16/19 Girls: all Stage 1 results (Rounds 1–3) published." },
+    { date: "22 Oct", text: "U16 Boys: a fifth division is added (Divisions 6 / 6 / 8 / 7 / 6) to reduce one-sided games." },
+    { date: "22 Oct", text: "Placements updated after club feedback. U19 Boys: Devils Eagles to Division 2 at the club's request, Rebels Lightning to Division 1. U14 Boys: Bunyip Bucks stay in Division 2, Devils Pacers stay in Division 4, Chalkies Taipans to Division 5, each at the club's request." },
+    { date: "21 Oct", text: "U14 Boys: Bunyip Wizards have withdrawn. Division 5 has seven teams for Stage 2. Their Stage 1 results remain on the results pages." },
+    { date: "21 Oct", text: "U14 Boys and U16 Boys: recommended Stage 2 divisions published, with all Stage 1 results (Rounds 1–3)." },
+    { date: "20 Oct", text: "U19 Boys: recommended Stage 2 divisions published. All other age groups: Rounds 1–2 results published (provisional). Divisions follow after Round 3." },
+  ],
+  ageGroups: [
+    {
+      name: "U19 Boys",
+      status: "recommended",
+      played: 3,
+      stage1Head: "End of Stage 1 placements (22 Oct)",
+      reviews: [
+        { round: 4, date: "27 Oct",
+          text: "Round 4 was the first ladder round. Four teams change division and every division still has six or more teams (6 / 6 / 7). Division 3 is unchanged. The next reviews are after Rounds 5 and 6; divisions lock after Round 6.",
+          moves: {
+            "Devils Eagles": { to: "D1", call: "Clear", basis: "Won by 38.5% (81–36 v Gladiators Caesars), 26 points clear of the next Division 2 team. Devils' earlier request for Division 2 was reviewed after Round 4 as agreed." },
+            "Yarragon Wildcats": { to: "D1", call: "Close", basis: "Won by 20.8% (64–42 v Devils Sonics). Level with Rebels Meteors (12.8%); Wildcats win the tie-break on head-to-head (41–39 in Round 1)." },
+            "Chalkies Bucks": { to: "D2", call: "Clear", basis: "Lost by 43.6% (33–84 v Bunyip Sonics), 24 points below the nearest Division 1 team staying." },
+            "Rebels Lightning": { to: "D2", call: "Clear", basis: "Lost by 57.4% (26–96 v Bunyip Rockets), the only Rout of the round and 38 points below the nearest Division 1 team staying." },
+          },
+          next: { "Rebels Meteors": "Next in line", "Neerim Wolves White": "Close to the line" },
+          notes: { "Rebels Meteors": "Next in line for Division 1. Won by 12.8%; behind Yarragon Wildcats on head-to-head.", "Neerim Wolves White": "Lost to Chalkies Breakers by 12.7%. Watched for Division 2 at the Round 5 review." },
+          ladder: "All Round 4 results stand on the ladder, including those of the four teams that changed division (Association Operations decision, 12 Nov, in place of the Section 4.6a reset).",
+          games: [
+            { div:"D1", w:"Bunyip Taipan", l:"Neerim Wolves Blue", ws:112, ls:75 },
+            { div:"D1", w:"Bunyip Sonics", l:"Chalkies Bucks", ws:84, ls:33 },
+            { div:"D1", w:"Bunyip Rockets", l:"Rebels Lightning", ws:96, ls:26 },
+            { div:"D2", w:"Yarragon Wildcats", l:"Devils Sonics", ws:64, ls:42 },
+            { div:"D2", w:"Rebels Meteors", l:"Neerim Wolves Black", ws:66, ls:51 },
+            { div:"D2", w:"Devils Eagles", l:"Gladiators Caesars", ws:81, ls:36 },
+            { div:"D3", w:"Chalkies Breakers", l:"Neerim Wolves White", ws:71, ls:55 },
+            { div:"D3", w:"Chalkies Force", l:"Gladiators Raiders", ws:41, ls:37 },
+            { div:"D3", w:"Rebels Jets", l:"Devils Hawks", ws:40, ls:33 },
+          ] },
+      ],
+      stage2Options: [{"name": "From Round 7: two divisions", "text": ["After Round 6, every Division 1 club bar one asked for its team to move down. The requests are recorded with the Association. Granting them would have left three teams in Division 1, below the six-team floor (Section 4.6), and the only alternative was to keep teams in Division 1 against their clubs' wishes. From Round 7, U19 Boys plays in two divisions for the rest of the season. This is an Association Operations decision on the competition structure, not a Stage 2 regrade.", "Teams are placed on one rating across all Round 1–6 games, adjusted for the strength of each opponent. Division 1 is the top nine; the split falls at the largest gap in the table (Neerim Wolves Black +5, Rebels Lightning −9). Both ladders count every result from Round 4, the start of the official ladder."], "divisions": {"D1": ["Bunyip Sonics", "Bunyip Taipan", "Bunyip Rockets", "Devils Eagles", "Neerim Wolves Blue", "Rebels Meteors", "Yarragon Wildcats", "Chalkies Bucks", "Neerim Wolves Black"], "D2": ["Rebels Lightning", "Gladiators Caesars", "Devils Sonics", "Bunyip Sharks", "Chalkies Breakers", "Rebels Jets", "Devils Hawks", "Neerim Wolves White", "Chalkies Force", "Gladiators Raiders"]}, "ratings": {"Bunyip Sonics": 63, "Bunyip Taipan": 50, "Bunyip Rockets": 48, "Devils Eagles": 27, "Neerim Wolves Blue": 23, "Rebels Meteors": 12, "Yarragon Wildcats": 10, "Chalkies Bucks": 8, "Neerim Wolves Black": 5, "Rebels Lightning": -9, "Gladiators Caesars": -9, "Devils Sonics": -10, "Bunyip Sharks": -18, "Chalkies Breakers": -20, "Rebels Jets": -22, "Devils Hawks": -32, "Neerim Wolves White": -34, "Chalkies Force": -40, "Gladiators Raiders": -51}, "draw": {"title": "Division 1 draw, Rounds 7–15", "text": "Built to reduce one-sided games while keeping the ladder fair. The three Bunyip teams play each other twice. Devils Eagles and Neerim Wolves Blue, the strongest of the other teams, play all three Bunyip teams; Rebels Meteors and Yarragon Wildcats play two; Chalkies Bucks and Neerim Wolves Black play one. The remaining games are between teams at a similar level, and no team plays a Bunyip team in back-to-back rounds. Each team has one bye. Division 2 (10 teams) plays a single round robin, meeting every team once.", "rounds": [{"r": 7, "games": [["Bunyip Sonics", "Chalkies Bucks"], ["Bunyip Taipan", "Devils Eagles"], ["Bunyip Rockets", "Neerim Wolves Blue"], ["Yarragon Wildcats", "Neerim Wolves Black"]], "bye": "Rebels Meteors"}, {"r": 8, "games": [["Bunyip Sonics", "Bunyip Rockets"], ["Devils Eagles", "Yarragon Wildcats"], ["Neerim Wolves Blue", "Chalkies Bucks"], ["Rebels Meteors", "Neerim Wolves Black"]], "bye": "Bunyip Taipan"}, {"r": 9, "games": [["Bunyip Sonics", "Neerim Wolves Black"], ["Bunyip Taipan", "Bunyip Rockets"], ["Devils Eagles", "Rebels Meteors"], ["Yarragon Wildcats", "Chalkies Bucks"]], "bye": "Neerim Wolves Blue"}, {"r": 10, "games": [["Bunyip Sonics", "Bunyip Taipan"], ["Bunyip Rockets", "Rebels Meteors"], ["Neerim Wolves Blue", "Yarragon Wildcats"], ["Chalkies Bucks", "Neerim Wolves Black"]], "bye": "Devils Eagles"}, {"r": 11, "games": [["Bunyip Sonics", "Bunyip Rockets"], ["Bunyip Taipan", "Neerim Wolves Blue"], ["Devils Eagles", "Neerim Wolves Black"], ["Rebels Meteors", "Chalkies Bucks"]], "bye": "Yarragon Wildcats"}, {"r": 12, "games": [["Bunyip Sonics", "Devils Eagles"], ["Bunyip Taipan", "Rebels Meteors"], ["Bunyip Rockets", "Yarragon Wildcats"], ["Neerim Wolves Blue", "Neerim Wolves Black"]], "bye": "Chalkies Bucks"}, {"r": 13, "games": [["Bunyip Sonics", "Bunyip Taipan"], ["Devils Eagles", "Chalkies Bucks"], ["Neerim Wolves Blue", "Rebels Meteors"], ["Yarragon Wildcats", "Neerim Wolves Black"]], "bye": "Bunyip Rockets"}, {"r": 14, "games": [["Bunyip Taipan", "Bunyip Rockets"], ["Devils Eagles", "Neerim Wolves Blue"], ["Rebels Meteors", "Yarragon Wildcats"], ["Chalkies Bucks", "Neerim Wolves Black"]], "bye": "Bunyip Sonics"}, {"r": 15, "games": [["Bunyip Sonics", "Neerim Wolves Blue"], ["Bunyip Taipan", "Yarragon Wildcats"], ["Bunyip Rockets", "Devils Eagles"], ["Rebels Meteors", "Chalkies Bucks"]], "bye": "Neerim Wolves Black"}]}, "decided": "10 Nov", "fromRound": 7, "priorHead": "Standings in the current divisions (results from Round 4)"}],
+      teams: [
+        { name: "Bunyip Rockets", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Mid-table in D1." },
+        { name: "Bunyip Sonics", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Strongest team in D1 and unbeaten. Already in the top division." },
+        { name: "Bunyip Taipan", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Mid-table in D1." },
+        { name: "Devils Eagles", club: "Devils", stage1: "D1", proposed: "D2", byRequest: true, note: "Moves to Division 2 at the club's request." },
+        { name: "Chalkies Bucks", club: "Chalkies", stage1: "D2", proposed: "D1", note: "Second in D2 and unbeaten (beat Caesars and Lightning). Needed to bring D1 to the six-team floor." },
+        { name: "Gladiators Caesars", club: "Gladiators", stage1: "D2", proposed: "D2", note: "Mid-table in D2." },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D2", proposed: "D1", note: "Best team in D2 and past the +25% threshold. Beat the other unbeaten D2 side (Wildcats)." },
+        { name: "Rebels Jets", club: "Rebels", stage1: "D2", proposed: "D3", note: "The only D2 team past the \u221225% threshold; lost every game by 23% or more." },
+        { name: "Rebels Lightning", club: "Rebels", stage1: "D2", proposed: "D1", note: "Moves up so Division 1 stays at six teams after Devils Eagles moved to Division 2 at their club's request." },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D2", proposed: "D2", note: "Inside the \u221225% threshold. Bye in Round 3." },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D2", proposed: "D2", note: "Only loss was a Close one (14%) to Neerim Blue, who move up to D1." },
+        { name: "Bunyip Sharks", club: "Bunyip", stage1: "D3", proposed: "D3", note: "Mid-table in D3." },
+        { name: "Chalkies Breakers", club: "Chalkies", stage1: "D3", proposed: "D3", note: "Mid-table in D3." },
+        { name: "Chalkies Force", club: "Chalkies", stage1: "D3", proposed: "D3", note: "All three losses were Close (18\u201320%)." },
+        { name: "Devils Hawks", club: "Devils", stage1: "D3", proposed: "D3", note: "Inside the \u221225% threshold." },
+        { name: "Devils Sonics", club: "Devils", stage1: "D3", proposed: "D2", note: "Second in D3 and unbeaten (one win by forfeit). Fills the D2 place left by the D1 moves." },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D3", proposed: "D3", note: "Bottom division, so no lower option. Most of the average comes from one Round 1 loss; Round 3 was lost by 9%." },
+        { name: "Neerim Wolves Black", club: "Neerim Wolves", stage1: "D3", proposed: "D2", note: "Most dominant team in the competition. Placed in D2, not D1: a two-division jump on three games is too far. Reviewed again after Round 4." },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3", proposed: "D3", note: "All three games were Close." },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Bunyip Sonics", l:"Bunyip Rockets", ws:72, ls:39 },
+        { r:1, div:"D1", w:"Bunyip Taipan", l:"Devils Eagles", ws:53, ls:40 },
+        { r:1, div:"D2", w:"Chalkies Bucks", l:"Gladiators Caesars", ws:40, ls:36 },
+        { r:1, div:"D2", w:"Yarragon Wildcats", l:"Rebels Meteors", ws:41, ls:39 },
+        { r:1, div:"D2", w:"Neerim Wolves Blue", l:"Rebels Jets", ws:71, ls:28 },
+        { r:1, div:"D3", w:"Neerim Wolves White", l:"Chalkies Force", ws:55, ls:38 },
+        { r:1, div:"D3", w:"Neerim Wolves Black", l:"Gladiators Raiders", ws:83, ls:13 },
+        { r:1, div:"D3", w:"Devils Sonics", l:"Bunyip Sharks", ws:35, ls:33 },
+        { r:1, div:"D3", w:"Chalkies Breakers", l:"Devils Hawks", ws:46, ls:30 },
+        { r:2, div:"D1", w:"Bunyip Sonics", l:"Bunyip Taipan", ws:56, ls:31 },
+        { r:2, div:"D1", w:"Bunyip Rockets", l:"Devils Eagles", ws:49, ls:35 },
+        { r:2, div:"D2", w:"Neerim Wolves Blue", l:"Rebels Meteors", ws:45, ls:30 },
+        { r:2, div:"D2", w:"Rebels Lightning", l:"Gladiators Caesars", ws:57, ls:38 },
+        { r:2, div:"D2", w:"Yarragon Wildcats", l:"Rebels Jets", ws:56, ls:32 },
+        { r:2, div:"D3", w:"Bunyip Sharks", l:"Chalkies Force", ws:29, ls:20 },
+        { r:2, div:"D3", w:"Devils Sonics", l:"Gladiators Raiders", ff:true },
+        { r:2, div:"D3", w:"Devils Hawks", l:"Neerim Wolves White", ws:47, ls:45 },
+        { r:2, div:"D3", w:"Neerim Wolves Black", l:"Chalkies Breakers", ws:67, ls:42 },
+        { r:3, div:"D1", w:"Bunyip Taipan", l:"Bunyip Rockets", ws:55, ls:46 },
+        { r:3, div:"D1", w:"Bunyip Sonics", l:"Devils Eagles", ws:64, ls:31 },
+        { r:3, div:"D2", w:"Chalkies Bucks", l:"Rebels Lightning", ws:57, ls:45 },
+        { r:3, div:"D2", w:"Gladiators Caesars", l:"Rebels Jets", ws:48, ls:30 },
+        { r:3, div:"D2", w:"Neerim Wolves Blue", l:"Yarragon Wildcats", ws:52, ls:39 },
+        { r:3, div:"D3", w:"Neerim Wolves Black", l:"Devils Hawks", ws:60, ls:31 },
+        { r:3, div:"D3", w:"Bunyip Sharks", l:"Chalkies Breakers", ws:41, ls:40 },
+        { r:3, div:"D3", w:"Devils Sonics", l:"Chalkies Force", ws:52, ls:35 },
+        { r:3, div:"D3", w:"Neerim Wolves White", l:"Gladiators Raiders", ws:52, ls:43 },
+      ],
+    },
+    {
+      name: "U16/19 Girls",
+      stage2Options: [{"name": "Season recommendation, from Round 7: Rebels Sapphires up, Neerim Wolves White down", "text": ["Rebels Sapphires move up to Division 2. After losing all three Division 1 games in Stage 1, they moved two divisions to Division 3, where they won all three Stage 2 games by big margins (78–20, 60–20 and 43–10; +57% average). Adjusted for the strength of their opponents, they rate above every Division 2 team.", "Neerim Wolves White move down to Division 3. They lost both Stage 2 games (12–34 and 11–42; −53% average) and are the lowest-rated Division 2 team, level with the top of Division 3.", "Division 1 is unchanged. Bunyip Flyers are the weakest Division 1 team on Stage 2 results, but they rate well above every Division 2 team, and losing games in Division 1 does not by itself mean a team belongs in Division 2. Divisions stay at 8 / 9 / 11. All results stand (Section 4.6a)."], "divisions": {"D1": ["Bunyip Fire", "Warranor Heat Fever", "Bunyip Dream", "Gladiators Shadows", "Chalkies Lightning", "Warranor Heat Fire", "Neerim Wolves Blue", "Bunyip Flyers"], "D2": ["Rebels Sapphires", "Bunyip Vipers", "Gladiators Mercury", "Rebels Diamonds", "Rebels Amethysts", "Warranor Heat All-Stars", "Devils Angels", "Gladiators Suns", "Gladiators Fury"], "D3": ["Neerim Wolves White", "Rebels Pearls", "Warranor Heat Hotshots", "Gladiators Blaze", "Rebels Opals", "Devils Liberty", "Rebels Garnets", "Devils Vixens", "Warranor Heat Spirit", "Chalkies Storm", "Gladiators Nova"]}, "ratings": {"Bunyip Fire": 87, "Rebels Sapphires": 20, "Gladiators Shadows": 73, "Warranor Heat Fire": 66, "Warranor Heat Fever": 81, "Chalkies Lightning": 72, "Gladiators Mercury": 4, "Rebels Opals": -49, "Bunyip Flyers": 39, "Rebels Diamonds": 2, "Devils Angels": -10, "Warranor Heat All-Stars": -2, "Neerim Wolves White": -28, "Gladiators Suns": -11, "Rebels Pearls": -29, "Chalkies Storm": -70, "Rebels Garnets": -51, "Devils Vixens": -59, "Warranor Heat Spirit": -66, "Gladiators Nova": -80, "Bunyip Vipers": 9, "Gladiators Blaze": -36, "Bunyip Dream": 80, "Neerim Wolves Blue": 59, "Gladiators Fury": -20, "Rebels Amethysts": 1, "Warranor Heat Hotshots": -32, "Devils Liberty": -50}, "adopted": "16 Nov"}],
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Bunyip Dream", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Fire", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Chalkies Lightning", club: "Chalkies", stage1: "D1", proposed: "D1" },
+        { name: "Gladiators Shadows", club: "Gladiators", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Sapphires", club: "Rebels", stage1: "D1", proposed: "D3", note: "Lost all three Division 1 games by 52% or more, and moved two divisions so Divisions 2 and 3 each have a bye. Beat Gladiators Blaze 78–20 in Round 4. First considered for Division 2 at the Round 5 review, after playing Rebels Pearls." },
+        { name: "Warranor Heat Fever", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Fire", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Flyers", club: "Bunyip", stage1: "D2", proposed: "D1", note: "Won all three Division 2 games. Against the same opponents they finished well ahead of the next-best D2 teams: Diamonds (Flyers +41%, All-Stars +26%) and Amethysts (Flyers +42%, Mercury +4%)." },
+        { name: "Devils Angels", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Gladiators Fury", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Gladiators Mercury", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Gladiators Suns", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Amethysts", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Diamonds", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Opals", club: "Rebels", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games (one by forfeit)." },
+        { name: "Warranor Heat All-Stars", club: "Warranor", stage1: "D2", proposed: "D2" },
+        { name: "Warranor Heat Hotshots", club: "Warranor", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games (one by forfeit)." },
+        { name: "Bunyip Vipers", club: "Bunyip", stage1: "D3", proposed: "D2", note: "Won both scored Division 3 games, including 40\u201313 over Gladiators Blaze, who beat Rebels Pearls. Two games only (bye in Round 3), so this placement is reviewed after Round 4." },
+        { name: "Chalkies Storm", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Devils Liberty", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Devils Vixens", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Gladiators Blaze", club: "Gladiators", stage1: "D3", proposed: "D3" },
+        { name: "Gladiators Nova", club: "Gladiators", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Garnets", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Pearls", club: "Rebels", stage1: "D3", proposed: "D3", note: "Second in Division 3 (+30%). Plays Rebels Sapphires in Round 5." },
+        { name: "Warranor Heat Spirit", club: "Warranor", stage1: "D3", proposed: "D3" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Bunyip Dream", l:"Neerim Wolves Blue", ff:true },
+        { r:1, div:"D1", w:"Bunyip Fire", l:"Rebels Sapphires", ws:51, ls:16 },
+        { r:1, div:"D1", w:"Gladiators Shadows", l:"Warranor Heat Fire", ws:41, ls:28 },
+        { r:1, div:"D1", w:"Warranor Heat Fever", l:"Chalkies Lightning", ws:85, ls:8 },
+        { r:1, div:"D2", w:"Gladiators Mercury", l:"Rebels Opals", ws:41, ls:12 },
+        { r:1, div:"D2", w:"Rebels Amethysts", l:"Warranor Heat Hotshots", ff:true },
+        { r:1, div:"D2", w:"Bunyip Flyers", l:"Rebels Diamonds", ws:53, ls:22 },
+        { r:1, div:"D2", w:"Devils Angels", l:"Warranor Heat All-Stars", ws:32, ls:32, draw:true },
+        { r:1, div:"D2", w:"Neerim Wolves White", l:"Gladiators Suns", ws:27, ls:23 },
+        { r:1, div:"D3", w:"Rebels Pearls", l:"Chalkies Storm", ws:45, ls:16 },
+        { r:1, div:"D3", w:"Rebels Garnets", l:"Devils Vixens", ws:24, ls:18 },
+        { r:1, div:"D3", w:"Warranor Heat Spirit", l:"Gladiators Nova", ws:28, ls:20 },
+        { r:1, div:"D3", w:"Bunyip Vipers", l:"Gladiators Blaze", ws:40, ls:13 },
+        { r:2, div:"D1", w:"Bunyip Dream", l:"Warranor Heat Fever", ws:46, ls:37 },
+        { r:2, div:"D1", w:"Bunyip Fire", l:"Gladiators Shadows", ws:48, ls:30 },
+        { r:2, div:"D1", w:"Chalkies Lightning", l:"Rebels Sapphires", ws:71, ls:18 },
+        { r:2, div:"D1", w:"Warranor Heat Fire", l:"Neerim Wolves Blue", ws:42, ls:35 },
+        { r:2, div:"D2", w:"Gladiators Fury", l:"Rebels Opals", ws:37, ls:29 },
+        { r:2, div:"D2", w:"Gladiators Mercury", l:"Rebels Amethysts", ws:14, ls:13 },
+        { r:2, div:"D2", w:"Rebels Diamonds", l:"Gladiators Suns", ws:24, ls:14 },
+        { r:2, div:"D2", w:"Bunyip Flyers", l:"Warranor Heat Hotshots", ws:75, ls:16 },
+        { r:2, div:"D2", w:"Warranor Heat All-Stars", l:"Neerim Wolves White", ws:46, ls:19 },
+        { r:2, div:"D3", w:"Devils Vixens", l:"Gladiators Nova", ws:33, ls:14 },
+        { r:2, div:"D3", w:"Rebels Garnets", l:"Chalkies Storm", ws:24, ls:12 },
+        { r:2, div:"D3", w:"Gladiators Blaze", l:"Rebels Pearls", ws:26, ls:21 },
+        { r:2, div:"D3", w:"Bunyip Vipers", l:"Devils Liberty", ws:61, ls:14 },
+        { r:3, div:"D1", w:"Chalkies Lightning", l:"Neerim Wolves Blue", ws:45, ls:32 },
+        { r:3, div:"D1", w:"Bunyip Dream", l:"Rebels Sapphires", ws:88, ls:18 },
+        { r:3, div:"D1", w:"Warranor Heat Fever", l:"Gladiators Shadows", ws:51, ls:32 },
+        { r:3, div:"D1", w:"Bunyip Fire", l:"Warranor Heat Fire", ws:41, ls:30 },
+        { r:3, div:"D2", w:"Neerim Wolves White", l:"Devils Angels", ws:30, ls:15 },
+        { r:3, div:"D2", w:"Bunyip Flyers", l:"Rebels Amethysts", ws:49, ls:20 },
+        { r:3, div:"D2", w:"Warranor Heat All-Stars", l:"Rebels Diamonds", ws:41, ls:24 },
+        { r:3, div:"D2", w:"Gladiators Suns", l:"Rebels Opals", ff:true },
+        { r:3, div:"D2", w:"Gladiators Fury", l:"Warranor Heat Hotshots", ws:33, ls:19 },
+        { r:3, div:"D3", w:"Devils Vixens", l:"Warranor Heat Spirit", ws:19, ls:16 },
+        { r:3, div:"D3", w:"Gladiators Blaze", l:"Rebels Garnets", ws:28, ls:19 },
+        { r:3, div:"D3", w:"Rebels Pearls", l:"Gladiators Nova", ws:50, ls:15 },
+        { r:3, div:"D3", w:"Devils Liberty", l:"Chalkies Storm", ws:31, ls:28 },
+      ],
+    },
+    {
+      name: "U16 Boys",
+      stage2Options: [{"name": "Season recommendation, from Round 7: two swaps between Divisions 4 and 5", "text": ["Devils Vikings and Rebels Comets move up to Division 4. Both are 2–0 in Division 5 in Stage 2 (Vikings 36–25 and 57–16; Comets 48–14 and 68–21) and, adjusted for the strength of their opponents, both rate above Division 4’s three lowest teams.", "Bunyip Heat and Rebels Meteors move down to Division 5. Both are 0–2 in Division 4 in Stage 2 (Heat 19–36 and 29–44; Meteors 29–42 and 18–33) and are the two lowest-rated Division 4 teams, level with the top of Division 5.", "Divisions 1 to 3 are unchanged: Neerim Wolves Black, Bunyip Hornets, Bunyip Hawks and Yarragon Wildcats changed division at the Round 5 review, and no other team is clearly misplaced. Decided before Round 6, so Round 6 results do not change it. Divisions stay at 6 / 6 / 8 / 7 / 6. All results stand (Section 4.6a)."], "divisions": {"D1": ["Bunyip Thunder", "Neerim Wolves Black", "Rebels Suns", "Rebels Stars", "Devils Bucks", "Warranor Heat Kings"], "D2": ["Bunyip Hornets", "Rebels Storm", "Bunyip Nets", "Devils Chiefs", "Bunyip Hawks", "Gladiators Maximus"], "D3": ["Chalkies Tigers", "Neerim Wolves White", "Yarragon Wildcats", "Bunyip Knicks", "Bunyip Rockets", "Devils Knights", "Devils Grizzlies", "Rebels Hurricanes"], "D4": ["Chalkies Jets", "Rebels Typhoons", "Devils Vikings", "Rebels Comets", "Devils Mavericks", "Bunyip Pelicans", "Chalkies Kings"], "D5": ["Rebels Meteors", "Bunyip Heat", "Rebels Rockets", "Neerim Wolves Blue", "Chalkies Bandits", "Chalkies Thunder"]}, "ratings": {"Devils Bucks": 41, "Rebels Stars": 44, "Warranor Heat Kings": 32, "Gladiators Maximus": 2, "Bunyip Thunder": 71, "Rebels Suns": 48, "Bunyip Hornets": 44, "Rebels Storm": 31, "Devils Chiefs": 22, "Yarragon Wildcats": 5, "Bunyip Nets": 22, "Devils Grizzlies": -15, "Neerim Wolves Black": 52, "Bunyip Knicks": 2, "Chalkies Kings": -25, "Bunyip Heat": -38, "Bunyip Rockets": 1, "Rebels Hurricanes": -15, "Devils Knights": -4, "Neerim Wolves Blue": -59, "Rebels Typhoons": -3, "Bunyip Pelicans": -25, "Bunyip Hawks": 14, "Chalkies Bandits": -63, "Devils Vikings": -11, "Rebels Comets": -18, "Chalkies Jets": -2, "Rebels Rockets": -45, "Rebels Meteors": -36, "Chalkies Thunder": -67, "Neerim Wolves White": 8, "Chalkies Tigers": 9, "Devils Mavericks": -22}, "adopted": "16 Nov"}],
+      status: "recommended",
+      played: 3,
+      reviews: [
+        { round: 5,
+          text: "Four teams change division from Round 6. Divisions stay 6 / 6 / 8 / 7 / 6, and all results stand.",
+          moves: {
+            "Neerim Wolves Black": { to: "D1", call: "Clear", basis: "3–0 against Division 2 teams at +38% (77–40 v Chiefs, 75–21 v Wildcats), well clear of Rebels Storm (+21%)." },
+            "Bunyip Hornets": { to: "D2", call: "Close", basis: "Lowest in Division 1 on Stage 2 results (−16% over two games; lost 38–43 to Devils Bucks in Round 5). Hornets beat Neerim Wolves Black 45–40 in Round 2; the panel weighed Black's Stage 2 form (3–0, +38%) ahead of that result." },
+            "Bunyip Hawks": { to: "D2", call: "Close", basis: "Unbeaten (5–0), with clear wins over Bunyip Rockets (60–42) and Chalkies Tigers (58–38). Level with Neerim Wolves White (4–0, +16%); Hawks are ahead adjusted for opponents. Neerim Wolves White next in line." },
+            "Yarragon Wildcats": { to: "D3", call: "Clear", basis: "1–4, −30% against Division 2 teams, the only Look down flag in Division 2. Gladiators Maximus close to the line." },
+          },
+          ladder: "All results stand (Association Operations decision, 12 Nov)." },
+      ],
+      teams: [
+        { name: "Bunyip Thunder", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Devils Bucks", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Gladiators Maximus", club: "Gladiators", stage1: "D1", proposed: "D2", condition: "Subject to an approved change to the team list before Round 4. If it does not go ahead, the team stays in Division 1.", note: "Lost all three Division 1 games; weakest results in Division 1." },
+        { name: "Rebels Stars", club: "Rebels", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Suns", club: "Rebels", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Kings", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Hornets", club: "Bunyip", stage1: "D2", proposed: "D1", note: "Won all three Division 2 games, including against Neerim Wolves Black and Rebels Storm, the other leading teams." },
+        { name: "Bunyip Knicks", club: "Bunyip", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games." },
+        { name: "Bunyip Nets", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Devils Chiefs", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Grizzlies", club: "Devils", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games, each by about 30%." },
+        { name: "Neerim Wolves Black", club: "Neerim Wolves", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Storm", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Heat", club: "Bunyip", stage1: "D3", proposed: "D4" },
+        { name: "Bunyip Pelicans", club: "Bunyip", stage1: "D3", proposed: "D4" },
+        { name: "Bunyip Rockets", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Chalkies Kings", club: "Chalkies", stage1: "D3", proposed: "D4" },
+        { name: "Chalkies Tigers", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Devils Knights", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D3", proposed: "D5", note: "Weakest results in Division 3 across Stage 1 (one win, by forfeit). Placed in the new Division 5." },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Hurricanes", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Typhoons", club: "Rebels", stage1: "D3", proposed: "D4" },
+        { name: "Bunyip Hawks", club: "Bunyip", stage1: "D4", proposed: "D3", note: "Won all three games and has the strongest record in U16 Boys." },
+        { name: "Chalkies Bandits", club: "Chalkies", stage1: "D4", proposed: "D5" },
+        { name: "Chalkies Jets", club: "Chalkies", stage1: "D4", proposed: "D4", note: "Won all three Division 4 games. Meets the bottom of the old Division 3 in the new Division 4." },
+        { name: "Chalkies Thunder", club: "Chalkies", stage1: "D4", proposed: "D5" },
+        { name: "Devils Mavericks", club: "Devils", stage1: "D4", proposed: "D4", note: "Won both scored games. Meets the bottom of the old Division 3 in the new Division 4." },
+        { name: "Devils Vikings", club: "Devils", stage1: "D4", proposed: "D5" },
+        { name: "Rebels Comets", club: "Rebels", stage1: "D4", proposed: "D5" },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D4", proposed: "D4", note: "Won both scored games. Meets the bottom of the old Division 3 in the new Division 4." },
+        { name: "Rebels Rockets", club: "Rebels", stage1: "D4", proposed: "D5" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Devils Bucks", l:"Rebels Stars", ws:42, ls:31 },
+        { r:1, div:"D1", w:"Warranor Heat Kings", l:"Gladiators Maximus", ws:47, ls:33 },
+        { r:1, div:"D1", w:"Bunyip Thunder", l:"Rebels Suns", ws:66, ls:44 },
+        { r:1, div:"D2", w:"Bunyip Hornets", l:"Rebels Storm", ws:55, ls:44 },
+        { r:1, div:"D2", w:"Devils Chiefs", l:"Yarragon Wildcats", ws:50, ls:41 },
+        { r:1, div:"D2", w:"Bunyip Nets", l:"Devils Grizzlies", ws:64, ls:34 },
+        { r:1, div:"D2", w:"Neerim Wolves Black", l:"Bunyip Knicks", ws:80, ls:22 },
+        { r:1, div:"D3", w:"Chalkies Kings", l:"Bunyip Heat", ws:36, ls:29 },
+        { r:1, div:"D3", w:"Neerim Wolves White", l:"Chalkies Tigers", ff:true },
+        { r:1, div:"D3", w:"Bunyip Rockets", l:"Rebels Hurricanes", ws:48, ls:30 },
+        { r:1, div:"D3", w:"Devils Knights", l:"Neerim Wolves Blue", ws:50, ls:14 },
+        { r:1, div:"D3", w:"Rebels Typhoons", l:"Bunyip Pelicans", ws:42, ls:32 },
+        { r:1, div:"D4", w:"Bunyip Hawks", l:"Chalkies Bandits", ws:67, ls:20 },
+        { r:1, div:"D4", w:"Devils Vikings", l:"Rebels Comets", ws:18, ls:10 },
+        { r:1, div:"D4", w:"Chalkies Jets", l:"Rebels Rockets", ws:51, ls:19 },
+        { r:1, div:"D4", w:"Rebels Meteors", l:"Chalkies Thunder", ws:65, ls:16 },
+        { r:2, div:"D1", w:"Rebels Stars", l:"Gladiators Maximus", ws:102, ls:26 },
+        { r:2, div:"D1", w:"Rebels Suns", l:"Devils Bucks", ws:60, ls:43 },
+        { r:2, div:"D1", w:"Bunyip Thunder", l:"Warranor Heat Kings", ws:67, ls:30 },
+        { r:2, div:"D2", w:"Devils Chiefs", l:"Bunyip Knicks", ws:35, ls:25 },
+        { r:2, div:"D2", w:"Bunyip Hornets", l:"Neerim Wolves Black", ws:45, ls:40 },
+        { r:2, div:"D2", w:"Rebels Storm", l:"Devils Grizzlies", ws:62, ls:31 },
+        { r:2, div:"D2", w:"Bunyip Nets", l:"Yarragon Wildcats", ws:61, ls:36 },
+        { r:2, div:"D3", w:"Neerim Wolves White", l:"Devils Knights", ws:37, ls:30 },
+        { r:2, div:"D3", w:"Neerim Wolves Blue", l:"Rebels Typhoons", ff:true },
+        { r:2, div:"D3", w:"Rebels Hurricanes", l:"Bunyip Heat", ws:41, ls:19 },
+        { r:2, div:"D3", w:"Chalkies Tigers", l:"Bunyip Rockets", ws:41, ls:36 },
+        { r:2, div:"D3", w:"Bunyip Pelicans", l:"Chalkies Kings", ws:30, ls:27 },
+        { r:2, div:"D4", w:"Devils Mavericks", l:"Chalkies Thunder", ws:39, ls:18 },
+        { r:2, div:"D4", w:"Bunyip Hawks", l:"Rebels Rockets", ws:54, ls:13 },
+        { r:2, div:"D4", w:"Chalkies Jets", l:"Rebels Comets", ws:37, ls:29 },
+        { r:2, div:"D4", w:"Rebels Meteors", l:"Chalkies Bandits", ws:42, ls:26 },
+        { r:3, div:"D1", w:"Bunyip Thunder", l:"Devils Bucks", ws:42, ls:26 },
+        { r:3, div:"D1", w:"Rebels Suns", l:"Gladiators Maximus", ws:79, ls:40 },
+        { r:3, div:"D1", w:"Rebels Stars", l:"Warranor Heat Kings", ws:72, ls:56 },
+        { r:3, div:"D2", w:"Neerim Wolves Black", l:"Bunyip Nets", ws:58, ls:35 },
+        { r:3, div:"D2", w:"Rebels Storm", l:"Bunyip Knicks", ws:65, ls:36 },
+        { r:3, div:"D2", w:"Bunyip Hornets", l:"Devils Chiefs", ws:63, ls:43 },
+        { r:3, div:"D2", w:"Yarragon Wildcats", l:"Devils Grizzlies", ws:61, ls:31 },
+        { r:3, div:"D3", w:"Rebels Hurricanes", l:"Neerim Wolves Blue", ws:40, ls:15 },
+        { r:3, div:"D3", w:"Bunyip Rockets", l:"Chalkies Kings", ws:51, ls:30 },
+        { r:3, div:"D3", w:"Devils Knights", l:"Bunyip Heat", ws:37, ls:23 },
+        { r:3, div:"D3", w:"Chalkies Tigers", l:"Bunyip Pelicans", ws:66, ls:18 },
+        { r:3, div:"D3", w:"Neerim Wolves White", l:"Rebels Typhoons", ws:37, ls:34 },
+        { r:3, div:"D4", w:"Rebels Rockets", l:"Chalkies Thunder", ws:25, ls:15 },
+        { r:3, div:"D4", w:"Chalkies Jets", l:"Devils Vikings", ws:30, ls:23 },
+        { r:3, div:"D4", w:"Bunyip Hawks", l:"Rebels Comets", ws:75, ls:37 },
+        { r:3, div:"D4", w:"Devils Mavericks", l:"Chalkies Bandits", ws:60, ls:28 },
+      ],
+    },
+    {
+      name: "U14 Boys",
+      stage2Options: [{"name": "Decided 18 Nov: from Round 7, a nine-team Division 1 with a modified draw", "text": ["Division 1 grows to nine teams: the current six plus Bunyip Bucks, Devils Jets and Chalkies Redbacks. Rebels Suns and Warranor Heat Hornets both stay in Division 1 with their current players. Bunyip Bucks move up on results: they are the strongest team outside Division 1 on every measure. As with U19 Boys, this is an Association Operations decision on the competition structure, and results count from Round 4.", "The divisions below are reset in rating order so each has at least eight teams. Division 2 takes the three highest-rated Division 3 teams (Gladiators Raiders, Neerim Wolves Blue and Warranor Heat Breakers). Devils Spurs, Chalkies Mavericks and Devils Wizards move up to Division 3, and Rebels Thunder and Devils Lions move down to Division 4. Chalkies Taipans and Neerim Wolves White move up to Division 4, and Devils Magic and Rebels Jets move down to Division 5.", "Divisions: 9 / 8 / 8 / 9 / 8. Ratings include Round 6. Decided by Association Operations on 18 November; all results stand and ladders count from Round 4."], "divisions": {"D1": ["Chalkies Hoopers", "Neerim Wolves Blue 1", "Devils Clippers", "Bunyip Bucks", "Neerim Wolves White 1", "Devils Jets", "Warranor Heat Hornets", "Rebels Suns", "Chalkies Redbacks"], "D2": ["Devils Hornets", "Devils Knicks", "Chalkies United", "Gladiators Raiders", "Rebels Lightning", "Bunyip Cavaliers", "Neerim Wolves Blue", "Warranor Heat Breakers"], "D3": ["Bunyip Bulldogs", "Bunyip Sonics", "Rebels Meteors", "Rebels Typhoons", "Devils Spurs", "Chalkies Mavericks", "Devils Nets", "Devils Wizards"], "D4": ["Bunyip Grizzlies", "Devils Pacers", "Rebels Thunder", "Devils Lions", "Yarragon Wildcats", "Chalkies Taipans", "Neerim Wolves White", "Chalkies Hornets", "Devils Raiders"], "D5": ["Devils Magic", "Rebels Jets", "Devils Thunder", "Bunyip Lakers", "Bunyip Spurs", "Bunyip Suns", "Gladiators Trojans", "Chalkies Vipers"]}, "ratings": {"Devils Clippers": 85, "Neerim Wolves Blue 1": 94, "Chalkies Hoopers": 97, "Neerim Wolves White 1": 55, "Rebels Suns": 39, "Warranor Heat Hornets": 42, "Bunyip Bucks": 75, "Devils Hornets": 50, "Devils Knicks": 40, "Gladiators Raiders": 29, "Chalkies United": 30, "Bunyip Sonics": 2, "Devils Jets": 54, "Rebels Typhoons": 2, "Chalkies Redbacks": 29, "Bunyip Bulldogs": 4, "Neerim Wolves Blue": 11, "Devils Magic": -40, "Rebels Lightning": 26, "Warranor Heat Breakers": 6, "Rebels Meteors": 2, "Devils Lions": -18, "Devils Nets": -5, "Rebels Thunder": -17, "Devils Spurs": 1, "Bunyip Lakers": -62, "Yarragon Wildcats": -20, "Bunyip Suns": -71, "Devils Raiders": -33, "Chalkies Hornets": -28, "Devils Pacers": -15, "Chalkies Taipans": -25, "Bunyip Grizzlies": -14, "Rebels Jets": -46, "Devils Thunder": -61, "Bunyip Wizards": -99, "Chalkies Mavericks": 1, "Neerim Wolves White": -25, "Bunyip Spurs": -67, "Chalkies Vipers": -77, "Devils Wizards": -7, "Gladiators Trojans": -73, "Bunyip Cavaliers": 26}, "draw": {"title": "Division 1 draw, Rounds 7–15", "text": "Built to cut the most one-sided games without changing who is likely to make finals. The three teams closest in strength at the bottom (Rebels Suns, Warranor Heat Hornets and Chalkies Redbacks) meet each other twice, and the widest mismatches are not drawn. Every pair among the top six teams meets at least once, and the five teams in finals contention have schedules of similar strength. Devils Jets, who carry three Division 2 wins into the ladder, have the hardest schedule. On current ratings the draw has 18 expected close games and 4 expected routs, against 13 and 7 in a straight round robin. Simulated 40,000 times from the current ladder (results count from Round 4), the four strongest teams finish in the top four in about 88 seasons in 100, about the same as a straight round robin (90).", "rounds": [{"r": 7, "games": [["Chalkies Hoopers", "Warranor Heat Hornets"], ["Neerim Wolves Blue 1", "Chalkies Redbacks"], ["Devils Clippers", "Devils Jets"], ["Bunyip Bucks", "Rebels Suns"]], "bye": "Neerim Wolves White 1"}, {"r": 8, "games": [["Chalkies Hoopers", "Neerim Wolves Blue 1"], ["Devils Clippers", "Bunyip Bucks"], ["Neerim Wolves White 1", "Devils Jets"], ["Rebels Suns", "Chalkies Redbacks"]], "bye": "Warranor Heat Hornets"}, {"r": 9, "games": [["Chalkies Hoopers", "Neerim Wolves White 1"], ["Neerim Wolves Blue 1", "Devils Clippers"], ["Bunyip Bucks", "Chalkies Redbacks"], ["Warranor Heat Hornets", "Rebels Suns"]], "bye": "Devils Jets"}, {"r": 10, "games": [["Neerim Wolves Blue 1", "Rebels Suns"], ["Devils Clippers", "Warranor Heat Hornets"], ["Bunyip Bucks", "Devils Jets"], ["Neerim Wolves White 1", "Chalkies Redbacks"]], "bye": "Chalkies Hoopers"}, {"r": 11, "games": [["Chalkies Hoopers", "Devils Jets"], ["Neerim Wolves Blue 1", "Bunyip Bucks"], ["Devils Clippers", "Neerim Wolves White 1"], ["Warranor Heat Hornets", "Chalkies Redbacks"]], "bye": "Rebels Suns"}, {"r": 12, "games": [["Chalkies Hoopers", "Bunyip Bucks"], ["Neerim Wolves Blue 1", "Neerim Wolves White 1"], ["Devils Jets", "Warranor Heat Hornets"], ["Rebels Suns", "Chalkies Redbacks"]], "bye": "Devils Clippers"}, {"r": 13, "games": [["Chalkies Hoopers", "Neerim Wolves Blue 1"], ["Devils Clippers", "Bunyip Bucks"], ["Neerim Wolves White 1", "Warranor Heat Hornets"], ["Devils Jets", "Rebels Suns"]], "bye": "Chalkies Redbacks"}, {"r": 14, "games": [["Chalkies Hoopers", "Chalkies Redbacks"], ["Devils Clippers", "Devils Jets"], ["Bunyip Bucks", "Neerim Wolves White 1"], ["Warranor Heat Hornets", "Rebels Suns"]], "bye": "Neerim Wolves Blue 1"}, {"r": 15, "games": [["Chalkies Hoopers", "Devils Clippers"], ["Neerim Wolves Blue 1", "Devils Jets"], ["Neerim Wolves White 1", "Rebels Suns"], ["Warranor Heat Hornets", "Chalkies Redbacks"]], "bye": "Bunyip Bucks"}]}, "adopted": "18 Nov"}],
+      status: "recommended",
+      played: 3,
+      reviews: [
+        { round: 4,
+          text: "Two teams change division from Round 5. Divisions are now 7 / 7 / 10 / 10 / 8.",
+          moves: {
+            "Bunyip Bucks": { to: "D1", call: "Clear", basis: "Bunyip's request to stay in Division 2 was reviewed after Round 4. Unbeaten in Division 2 (4–0), including 70–24 over Gladiators Raiders in Round 4." },
+            "Gladiators Raiders": { to: "D3", call: "Club request", basis: "Moves to Division 3 at Gladiators' request (a club may place its own team lower where the six-team floor holds)." },
+          },
+          ladder: "Both teams keep their Round 4 result (Bucks v Raiders) on the ladder (Association Operations decision, 12 Nov, in place of the Section 4.6a reset)." },
+        { round: 5,
+          text: "Three teams change division from Round 6. Divisions are now 6 / 8 / 10 / 10 / 8, and all results stand.",
+          moves: {
+            "Bunyip Bucks": { to: "D2", call: "Club request", basis: "Returns to Division 2 at Bunyip's request, which the club-request rule allows while every division keeps six teams. Against teams still in Division 2 their record is +23%, below the Look up line." },
+            "Bunyip Sonics": { to: "D3", call: "Clear", basis: "−41% over four games against Division 2 teams, including 11–65 v Devils Jets in Round 5." },
+            "Chalkies Redbacks": { to: "D2", call: "Clear", basis: "+27% over four games against Division 3 teams, including 48–23 v Rebels Meteors in Round 5." },
+          },
+          ladder: "All results stand (Association Operations decision, 12 Nov)." },
+      ],
+      teams: [
+        { name: "Chalkies Hoopers", club: "Chalkies", stage1: "D1", proposed: "D1" },
+        { name: "Devils Clippers", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves Blue 1", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves White 1", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Suns", club: "Rebels", stage1: "D1", proposed: "D1", floor: "D1", note: "Weakest results in Division 1 across Stage 1." },
+        { name: "Warranor Heat Hornets", club: "Warranor", stage1: "D1", proposed: "D1", floor: "D1", note: "Lost all three Division 1 games." },
+        { name: "Bunyip Bucks", club: "Bunyip", stage1: "D2", proposed: "D2", byRequest: true, note: "Stays in Division 2 at the club's request. Division 1 stays at six teams. Reviewed after Round 4." },
+        { name: "Bunyip Cavaliers", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Sonics", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Chalkies United", club: "Chalkies", stage1: "D2", proposed: "D2" },
+        { name: "Devils Hornets", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Jets", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Knicks", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Typhoons", club: "Rebels", stage1: "D2", proposed: "D3", note: "Weakest results in Division 2 across Stage 1." },
+        { name: "Bunyip Bulldogs", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Chalkies Redbacks", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Devils Lions", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Devils Magic", club: "Devils", stage1: "D3", proposed: "D4", note: "Weakest results in Division 3 across Stage 1." },
+        { name: "Devils Nets", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Lightning", club: "Rebels", stage1: "D3", proposed: "D2", note: "Top of Division 3 on average margin." },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Thunder", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Warranor Heat Breakers", club: "Warranor", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Grizzlies", club: "Bunyip", stage1: "D4", proposed: "D4" },
+        { name: "Bunyip Lakers", club: "Bunyip", stage1: "D4", proposed: "D5", note: "One of the two weakest results in Division 4. Two teams move each way between Divisions 4 and 5." },
+        { name: "Bunyip Suns", club: "Bunyip", stage1: "D4", proposed: "D5", note: "One of the two weakest results in Division 4. Two teams move each way between Divisions 4 and 5." },
+        { name: "Chalkies Hornets", club: "Chalkies", stage1: "D4", proposed: "D4" },
+        { name: "Chalkies Taipans", club: "Chalkies", stage1: "D4", proposed: "D5", byRequest: true, note: "Moves to Division 5 at the club's request." },
+        { name: "Devils Pacers", club: "Devils", stage1: "D4", proposed: "D4", note: "Stays in Division 4 at the club's request. Reviewed after Round 4." },
+        { name: "Devils Raiders", club: "Devils", stage1: "D4", proposed: "D4" },
+        { name: "Devils Spurs", club: "Devils", stage1: "D4", proposed: "D4" },
+        { name: "Rebels Jets", club: "Rebels", stage1: "D4", proposed: "D4" },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D4", proposed: "D4" },
+        { name: "Bunyip Spurs", club: "Bunyip", stage1: "D5", proposed: "D5" },
+        { name: "Bunyip Wizards", club: "Bunyip", stage1: "D5", withdrawn: true },
+        { name: "Chalkies Mavericks", club: "Chalkies", stage1: "D5", proposed: "D4", note: "One of the two strongest results in Division 5. Two teams move each way between Divisions 4 and 5." },
+        { name: "Chalkies Vipers", club: "Chalkies", stage1: "D5", proposed: "D5" },
+        { name: "Devils Thunder", club: "Devils", stage1: "D5", proposed: "D5" },
+        { name: "Devils Wizards", club: "Devils", stage1: "D5", proposed: "D4", note: "One of the two strongest results in Division 5. Two teams move each way between Divisions 4 and 5." },
+        { name: "Gladiators Trojans", club: "Gladiators", stage1: "D5", proposed: "D5" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D5", proposed: "D5" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Devils Clippers", l:"Neerim Wolves Blue 1", ws:46, ls:45 },
+        { r:1, div:"D1", w:"Chalkies Hoopers", l:"Neerim Wolves White 1", ws:59, ls:22 },
+        { r:1, div:"D1", w:"Rebels Suns", l:"Warranor Heat Hornets", ws:40, ls:37 },
+        { r:1, div:"D2", w:"Bunyip Bucks", l:"Devils Hornets", ws:55, ls:42 },
+        { r:1, div:"D2", w:"Devils Knicks", l:"Gladiators Raiders", ws:39, ls:34 },
+        { r:1, div:"D2", w:"Chalkies United", l:"Bunyip Sonics", ws:55, ls:25 },
+        { r:1, div:"D2", w:"Devils Jets", l:"Rebels Typhoons", ws:85, ls:30 },
+        { r:1, div:"D3", w:"Chalkies Redbacks", l:"Bunyip Bulldogs", ws:37, ls:14 },
+        { r:1, div:"D3", w:"Neerim Wolves Blue", l:"Devils Magic", ws:45, ls:19 },
+        { r:1, div:"D3", w:"Rebels Lightning", l:"Warranor Heat Breakers", ws:36, ls:24 },
+        { r:1, div:"D3", w:"Rebels Meteors", l:"Devils Lions", ws:53, ls:28 },
+        { r:1, div:"D3", w:"Devils Nets", l:"Rebels Thunder", ws:32, ls:28 },
+        { r:1, div:"D4", w:"Devils Spurs", l:"Bunyip Lakers", ws:30, ls:5 },
+        { r:1, div:"D4", w:"Yarragon Wildcats", l:"Bunyip Suns", ws:36, ls:10 },
+        { r:1, div:"D4", w:"Devils Raiders", l:"Chalkies Hornets", ws:36, ls:24 },
+        { r:1, div:"D4", w:"Devils Pacers", l:"Chalkies Taipans", ws:29, ls:24 },
+        { r:1, div:"D4", w:"Bunyip Grizzlies", l:"Rebels Jets", ws:34, ls:15 },
+        { r:1, div:"D5", w:"Devils Thunder", l:"Bunyip Wizards", ws:18, ls:8 },
+        { r:1, div:"D5", w:"Chalkies Mavericks", l:"Neerim Wolves White", ws:42, ls:25 },
+        { r:1, div:"D5", w:"Bunyip Spurs", l:"Chalkies Vipers", ws:22, ls:20 },
+        { r:1, div:"D5", w:"Devils Wizards", l:"Gladiators Trojans", ws:66, ls:24 },
+        { r:2, div:"D1", w:"Chalkies Hoopers", l:"Rebels Suns", ws:69, ls:14 },
+        { r:2, div:"D1", w:"Devils Clippers", l:"Neerim Wolves White 1", ws:45, ls:25 },
+        { r:2, div:"D1", w:"Neerim Wolves Blue 1", l:"Warranor Heat Hornets", ws:75, ls:27 },
+        { r:2, div:"D2", w:"Chalkies United", l:"Bunyip Cavaliers", ws:47, ls:34 },
+        { r:2, div:"D2", w:"Bunyip Sonics", l:"Rebels Typhoons", ws:51, ls:39 },
+        { r:2, div:"D2", w:"Bunyip Bucks", l:"Devils Jets", ws:52, ls:26 },
+        { r:2, div:"D2", w:"Devils Hornets", l:"Gladiators Raiders", ws:45, ls:43 },
+        { r:2, div:"D3", w:"Bunyip Bulldogs", l:"Rebels Meteors", ws:31, ls:25 },
+        { r:2, div:"D3", w:"Devils Lions", l:"Rebels Thunder", ws:35, ls:28 },
+        { r:2, div:"D3", w:"Rebels Lightning", l:"Devils Magic", ws:51, ls:11 },
+        { r:2, div:"D3", w:"Chalkies Redbacks", l:"Warranor Heat Breakers", ws:32, ls:29 },
+        { r:2, div:"D3", w:"Neerim Wolves Blue", l:"Devils Nets", ws:44, ls:29 },
+        { r:2, div:"D4", w:"Bunyip Grizzlies", l:"Chalkies Taipans", ws:37, ls:14 },
+        { r:2, div:"D4", w:"Devils Pacers", l:"Rebels Jets", ws:46, ls:23 },
+        { r:2, div:"D4", w:"Devils Spurs", l:"Chalkies Hornets", ws:31, ls:28 },
+        { r:2, div:"D4", w:"Yarragon Wildcats", l:"Bunyip Lakers", ws:25, ls:14 },
+        { r:2, div:"D4", w:"Devils Raiders", l:"Bunyip Suns", ws:33, ls:16 },
+        { r:2, div:"D5", w:"Devils Wizards", l:"Bunyip Wizards", ff:true },
+        { r:2, div:"D5", w:"Chalkies Vipers", l:"Devils Thunder", ws:26, ls:26, draw:true },
+        { r:2, div:"D5", w:"Chalkies Mavericks", l:"Bunyip Spurs", ws:41, ls:11 },
+        { r:2, div:"D5", w:"Neerim Wolves White", l:"Gladiators Trojans", ws:74, ls:22 },
+        { r:3, div:"D1", w:"Chalkies Hoopers", l:"Devils Clippers", ws:27, ls:16 },
+        { r:3, div:"D1", w:"Neerim Wolves White 1", l:"Warranor Heat Hornets", ws:50, ls:30 },
+        { r:3, div:"D1", w:"Neerim Wolves Blue 1", l:"Rebels Suns", ws:77, ls:19 },
+        { r:3, div:"D2", w:"Bunyip Cavaliers", l:"Gladiators Raiders", ws:34, ls:29 },
+        { r:3, div:"D2", w:"Devils Hornets", l:"Chalkies United", ws:36, ls:21 },
+        { r:3, div:"D2", w:"Bunyip Bucks", l:"Rebels Typhoons", ws:72, ls:10 },
+        { r:3, div:"D2", w:"Devils Knicks", l:"Bunyip Sonics", ws:49, ls:22 },
+        { r:3, div:"D3", w:"Bunyip Bulldogs", l:"Devils Lions", ws:55, ls:26 },
+        { r:3, div:"D3", w:"Rebels Thunder", l:"Devils Magic", ws:25, ls:12 },
+        { r:3, div:"D3", w:"Rebels Meteors", l:"Warranor Heat Breakers", ws:30, ls:23 },
+        { r:3, div:"D3", w:"Chalkies Redbacks", l:"Devils Nets", ws:54, ls:35 },
+        { r:3, div:"D3", w:"Rebels Lightning", l:"Neerim Wolves Blue", ws:27, ls:24 },
+        { r:3, div:"D4", w:"Devils Raiders", l:"Bunyip Lakers", ws:28, ls:12 },
+        { r:3, div:"D4", w:"Chalkies Hornets", l:"Yarragon Wildcats", ws:25, ls:24 },
+        { r:3, div:"D4", w:"Devils Spurs", l:"Chalkies Taipans", ws:20, ls:19 },
+        { r:3, div:"D4", w:"Devils Pacers", l:"Bunyip Grizzlies", ws:45, ls:26 },
+        { r:3, div:"D4", w:"Rebels Jets", l:"Bunyip Suns", ws:44, ls:26 },
+        { r:3, div:"D5", w:"Chalkies Mavericks", l:"Gladiators Trojans", ws:70, ls:10 },
+        { r:3, div:"D5", w:"Devils Thunder", l:"Bunyip Spurs", ws:21, ls:17 },
+        { r:3, div:"D5", w:"Devils Wizards", l:"Chalkies Vipers", ws:55, ls:7 },
+        { r:3, div:"D5", w:"Neerim Wolves White", l:"Bunyip Wizards", ff:true },
+      ],
+    },
+    {
+      name: "U14 Girls",
+      stage2Options: [{"name": "Season recommendation, from Round 7: Warranor Heat Falcons return to Division 2", "text": ["Warranor Heat Falcons return to Division 2 at Warranor’s request. They moved up after Stage 1 on a close call (a 37–29 win over Devils Diamonds) and lost all three Division 1 games in Stage 2 (18–21, 8–47 and 7–63). Adjusted for the strength of their opponents, they rate level with the top of Division 2 (+22 against +13), so they should be competitive there without running away with it. No Division 2 team moves up in their place: Division 2’s top teams rate about 30 points below the rest of Division 1.", "Bunyip Mystics stay in Division 1: they rate well above every Division 2 team, and losing games in Division 1 does not by itself mean a team belongs in Division 2.", "Between Divisions 2 and 3, Gladiators Mercury (2–0 in Stage 2) and Gladiators Blaze (0–3) rate level overall (−37 and −40). It is a close call, so neither team moves. Divisions become 7 / 8 / 7. All results stand (Section 4.6a)."], "divisions": {"D1": ["Warranor Heat Phantoms", "Bunyip Aces", "Warranor Heat Phoenix", "Gladiators Shadows", "Devils Belles", "Bunyip Mystics", "Neerim Wolves Blue"], "D2": ["Warranor Heat Falcons", "Devils Diamonds", "Yarragon Wildcats", "Warranor Heat Flames", "Gladiators Suns", "Rebels Rubies", "Rebels Gems", "Gladiators Blaze"], "D3": ["Gladiators Mercury", "Rebels Rhinestones", "Devils Opals", "Bunyip Fever", "Devils Swifts", "Bunyip Ravens", "Neerim Wolves White"]}, "ratings": {"Bunyip Mystics": 60, "Gladiators Shadows": 72, "Warranor Heat Phantoms": 112, "Bunyip Aces": 107, "Warranor Heat Phoenix": 101, "Neerim Wolves Blue": 44, "Warranor Heat Falcons": 22, "Rebels Rubies": -18, "Gladiators Suns": -9, "Devils Opals": -63, "Devils Diamonds": 13, "Rebels Gems": -23, "Gladiators Mercury": -37, "Devils Swifts": -78, "Rebels Rhinestones": -62, "Neerim Wolves White": -126, "Warranor Heat Flames": -5, "Gladiators Blaze": -40, "Devils Belles": 66, "Bunyip Ravens": -80, "Bunyip Fever": -67, "Yarragon Wildcats": 13}, "adopted": "16 Nov"}],
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Bunyip Aces", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Mystics", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Devils Belles", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Gladiators Shadows", club: "Gladiators", stage1: "D1", proposed: "D1", floor: "D1", note: "Lost all three Division 1 games." },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Phantoms", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Phoenix", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Devils Diamonds", club: "Devils", stage1: "D2", proposed: "D2", note: "Lost to Warranor Heat Falcons head-to-head. First considered for Division 1 at the Round 4 review." },
+        { name: "Devils Opals", club: "Devils", stage1: "D2", proposed: "D3", note: "Lost all three Division 2 games, to the three teams directly above them." },
+        { name: "Gladiators Suns", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Gems", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Rubies", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Warranor Heat Falcons", club: "Warranor", stage1: "D2", proposed: "D1", note: "Won all three Division 2 games against progressively stronger opponents (Rubies, Suns, then Diamonds 37\u201329). Strongest team in Division 2 adjusted for opponents." },
+        { name: "Bunyip Fever", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Ravens", club: "Bunyip", stage1: "D3", proposed: "D3", note: "Both wins came against the bottom two Division 3 teams. First considered for Division 2 at the Round 4 review." },
+        { name: "Devils Swifts", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Gladiators Blaze", club: "Gladiators", stage1: "D3", proposed: "D2", note: "Beat Rebels Rhinestones 32\u201313 and Bunyip Fever 21\u20139. The only loss was to Warranor Heat Flames, who also move up to Division 2. Moves up so Divisions 2 and 3 have seven teams each and a bye for scheduling." },
+        { name: "Gladiators Mercury", club: "Gladiators", stage1: "D3", proposed: "D3" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3", proposed: "D3" },
+        { name: "Rebels Rhinestones", club: "Rebels", stage1: "D3", proposed: "D3" },
+        { name: "Warranor Heat Flames", club: "Warranor", stage1: "D3", proposed: "D2", note: "Won both scored Division 3 games, including 34\u201315 over Gladiators Blaze. Two games only (bye in Round 2), so reviewed after Round 4." },
+        { name: "Yarragon Wildcats", club: "Yarragon", stage1: "D3", proposed: "D2", note: "Won all three Division 3 games (one by forfeit), including 30\u201314 over Gladiators Mercury." },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Bunyip Mystics", l:"Gladiators Shadows", ws:34, ls:9 },
+        { r:1, div:"D1", w:"Warranor Heat Phantoms", l:"Bunyip Aces", ws:30, ls:25 },
+        { r:1, div:"D1", w:"Warranor Heat Phoenix", l:"Neerim Wolves Blue", ws:61, ls:18 },
+        { r:1, div:"D2", w:"Warranor Heat Falcons", l:"Rebels Rubies", ws:41, ls:17 },
+        { r:1, div:"D2", w:"Gladiators Suns", l:"Devils Opals", ws:26, ls:22 },
+        { r:1, div:"D2", w:"Devils Diamonds", l:"Rebels Gems", ws:40, ls:9 },
+        { r:1, div:"D3", w:"Yarragon Wildcats", l:"Bunyip Fever", ff:true },
+        { r:1, div:"D3", w:"Gladiators Mercury", l:"Devils Swifts", ws:38, ls:18 },
+        { r:1, div:"D3", w:"Rebels Rhinestones", l:"Neerim Wolves White", ws:56, ls:5 },
+        { r:1, div:"D3", w:"Warranor Heat Flames", l:"Gladiators Blaze", ws:34, ls:15 },
+        { r:2, div:"D1", w:"Bunyip Aces", l:"Devils Belles", ws:36, ls:15 },
+        { r:2, div:"D1", w:"Warranor Heat Phoenix", l:"Gladiators Shadows", ws:57, ls:26 },
+        { r:2, div:"D1", w:"Warranor Heat Phantoms", l:"Neerim Wolves Blue", ws:56, ls:6 },
+        { r:2, div:"D2", w:"Devils Diamonds", l:"Rebels Rubies", ws:20, ls:20, draw:true },
+        { r:2, div:"D2", w:"Rebels Gems", l:"Devils Opals", ws:36, ls:3 },
+        { r:2, div:"D2", w:"Warranor Heat Falcons", l:"Gladiators Suns", ws:37, ls:22 },
+        { r:2, div:"D3", w:"Bunyip Ravens", l:"Devils Swifts", ws:22, ls:18 },
+        { r:2, div:"D3", w:"Gladiators Blaze", l:"Bunyip Fever", ws:21, ls:9 },
+        { r:2, div:"D3", w:"Gladiators Mercury", l:"Neerim Wolves White", ws:38, ls:12 },
+        { r:2, div:"D3", w:"Yarragon Wildcats", l:"Rebels Rhinestones", ws:35, ls:4 },
+        { r:3, div:"D1", w:"Neerim Wolves Blue", l:"Bunyip Mystics", ws:33, ls:18 },
+        { r:3, div:"D1", w:"Warranor Heat Phantoms", l:"Gladiators Shadows", ws:50, ls:20 },
+        { r:3, div:"D1", w:"Warranor Heat Phoenix", l:"Devils Belles", ws:54, ls:29 },
+        { r:3, div:"D2", w:"Warranor Heat Falcons", l:"Devils Diamonds", ws:37, ls:29 },
+        { r:3, div:"D2", w:"Gladiators Suns", l:"Rebels Gems", ws:14, ls:8 },
+        { r:3, div:"D2", w:"Rebels Rubies", l:"Devils Opals", ws:33, ls:18 },
+        { r:3, div:"D3", w:"Bunyip Ravens", l:"Neerim Wolves White", ws:30, ls:7 },
+        { r:3, div:"D3", w:"Warranor Heat Flames", l:"Bunyip Fever", ws:25, ls:7 },
+        { r:3, div:"D3", w:"Gladiators Blaze", l:"Rebels Rhinestones", ws:32, ls:13 },
+        { r:3, div:"D3", w:"Yarragon Wildcats", l:"Gladiators Mercury", ws:30, ls:14 },
+      ],
+    },
+    {
+      name: "U12 Boys",
+      stage2Options: [{"name": "Season recommendation, from Round 7: Friday divisions rebalanced", "text": ["Gladiators Titans move up to Division 2 (6–0 this season, including 31–14, 66–4 and 19–6 in Stage 2). Adjusted for the strength of their opponents, they rate well above the rest of Division 3 and just below Division 2’s lowest team, so they should be competitive. Gladiators Felix move down to Division 5 (0–5; 4–27 and 9–52 in Stage 2), where they rate level with the top teams. Both moves were requested by Gladiators.", "Chalkies Knights (44–3, 42–5, 52–9) and Neerim Wolves White (52–4, 37–14) move up to Division 3. Bunyip Mavericks (0–3) and Devils Pistons (0–2) move down to Division 4. This reverses Stage 1 moves that did not work out: every team moving up rates 45–60 points above every team moving down.", "Bunyip Clippers stay in Division 2: they rate above every Division 3 team, and losing games in Division 2 does not by itself mean a team belongs in Division 3. Division 1 (Thursday, five teams) is unchanged. Friday divisions become 8 / 6 / 6 / 7. All results stand (Section 4.6a)."], "divisions": {"D2": ["Bunyip Spurs", "Warranor Heat Flyers", "Gladiators Kings", "Gladiators Trojans", "Devils Cavs", "Rebels Thunder", "Bunyip Clippers", "Gladiators Titans"], "D3": ["Devils Falcons", "Chalkies Knights", "Chalkies Phoenix", "Neerim Wolves White", "Rebels Meteors", "Gladiators Maximus"], "D4": ["Bunyip Kings", "Bunyip Lakers", "Devils Nuggets", "Bunyip Mavericks", "Devils Pistons", "Devils Kings"], "D5": ["Gladiators Felix", "Devils Suns", "Chalkies Vikings", "Gladiators Raiders", "Neerim Wolves Blue", "Devils Rockets", "Devils Vipers"]}, "ratings": {"Rebels Stars": 11, "Neerim Wolves Blue 1": 11, "Neerim Wolves White 1": 13, "Warranor Heat Fury": -25, "Gladiators Kings": 88, "Bunyip Clippers": 61, "Warranor Heat Flyers": 105, "Gladiators Trojans": 80, "Bunyip Spurs": 107, "Devils Cavs": 76, "Rebels Thunder": 74, "Devils Falcons": 28, "Gladiators Maximus": 7, "Devils Kings": -52, "Gladiators Titans": 45, "Chalkies Phoenix": 24, "Devils Nuggets": -25, "Gladiators Felix": -48, "Bunyip Kings": 0, "Neerim Wolves White": 20, "Rebels Meteors": 17, "Bunyip Lakers": -17, "Devils Pistons": -34, "Chalkies Vikings": -68, "Bunyip Mavericks": -25, "Devils Vipers": -126, "Devils Suns": -52, "Gladiators Raiders": -92, "Neerim Wolves Blue": -99, "Devils Rockets": -106, "Devils Braves": -20, "Chalkies Knights": 25}, "adopted": "16 Nov"}],
+      status: "recommended",
+      played: 3,
+      fixedDivs: { "D1": "Division 1 plays on a different night and is not part of this regrading. Its teams stay as nominated." },
+      teams: [
+        { name: "Devils Braves", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves Blue 1", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Neerim Wolves White 1", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Stars", club: "Rebels", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Fury", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Clippers", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Spurs", club: "Bunyip", stage1: "D2", proposed: "D2", note: "Unbeaten in D2, but Division 1 is not part of this regrading." },
+        { name: "Devils Cavs", club: "Devils", stage1: "D2", proposed: "D2" },
+        { name: "Devils Falcons", club: "Devils", stage1: "D2", proposed: "D3", note: "0–3 and well behind the rest of D2." },
+        { name: "Gladiators Kings", club: "Gladiators", stage1: "D2", proposed: "D2", note: "Strong in D2, but Division 1 is not part of this regrading." },
+        { name: "Gladiators Trojans", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Thunder", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Warranor Heat Flyers", club: "Warranor", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Kings", club: "Bunyip", stage1: "D3", proposed: "D4" },
+        { name: "Bunyip Lakers", club: "Bunyip", stage1: "D3", proposed: "D4" },
+        { name: "Chalkies Knights", club: "Chalkies", stage1: "D3", proposed: "D4", note: "Two games only (a win and a draw). Placed in Division 4 on the tie-break with Gladiators Maximus (adjusted for opponents). First reviewed after Round 4." },
+        { name: "Chalkies Phoenix", club: "Chalkies", stage1: "D3", proposed: "D3", byRequest: true, note: "Stays in Division 3 at the club's request. Strongest margin in D3 (+45% over two games)." },
+        { name: "Devils Kings", club: "Devils", stage1: "D3", proposed: "D4", note: "0–3 in D3." },
+        { name: "Devils Nuggets", club: "Devils", stage1: "D3", proposed: "D4" },
+        { name: "Gladiators Felix", club: "Gladiators", stage1: "D3", proposed: "D4", note: "0–3 in D3. The Round 1 game was a close 18–20 loss to Devils Nuggets; lost the other two 12–42 and 13–34." },
+        { name: "Gladiators Maximus", club: "Gladiators", stage1: "D3", proposed: "D3", note: "Stays in Division 3. Beat Bunyip Kings head-to-head." },
+        { name: "Gladiators Titans", club: "Gladiators", stage1: "D3", proposed: "D3", note: "Unbeaten in D3. Titans, Phoenix and Meteors stay together in Division 3, so the tie-break circle between them doesn't decide a placement." },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D3", proposed: "D4" },
+        { name: "Rebels Meteors", club: "Rebels", stage1: "D3", proposed: "D3", note: "Unbeaten in D3. Titans, Phoenix and Meteors stay together in Division 3, so the tie-break circle between them doesn't decide a placement." },
+        { name: "Bunyip Mavericks", club: "Bunyip", stage1: "D4", proposed: "D3", note: "Strongest margin in D4. Ahead of Devils Suns on their common opponent (Devils Pistons)." },
+        { name: "Chalkies Vikings", club: "Chalkies", stage1: "D4", proposed: "D5" },
+        { name: "Devils Pistons", club: "Devils", stage1: "D4", proposed: "D3", note: "Unbeaten in D4, including a head-to-head win over Devils Suns." },
+        { name: "Devils Rockets", club: "Devils", stage1: "D4", proposed: "D5" },
+        { name: "Devils Suns", club: "Devils", stage1: "D4", proposed: "D5", note: "Next in line for Division 3." },
+        { name: "Devils Vipers", club: "Devils", stage1: "D4", proposed: "D5" },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D4", proposed: "D5" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D4", proposed: "D5" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Rebels Stars", l:"Neerim Wolves Blue 1", ws:39, ls:31 },
+        { r:1, div:"D1", w:"Neerim Wolves White 1", l:"Warranor Heat Fury", ws:79, ls:21 },
+        { r:1, div:"D2", w:"Gladiators Kings", l:"Bunyip Clippers", ws:50, ls:10 },
+        { r:1, div:"D2", w:"Warranor Heat Flyers", l:"Gladiators Trojans", ws:29, ls:25 },
+        { r:1, div:"D2", w:"Bunyip Spurs", l:"Devils Cavs", ws:26, ls:16 },
+        { r:1, div:"D2", w:"Rebels Thunder", l:"Devils Falcons", ws:20, ls:11 },
+        { r:1, div:"D3", w:"Gladiators Maximus", l:"Devils Kings", ws:17, ls:11 },
+        { r:1, div:"D3", w:"Gladiators Titans", l:"Chalkies Phoenix", ws:30, ls:28 },
+        { r:1, div:"D3", w:"Devils Nuggets", l:"Gladiators Felix", ws:20, ls:18 },
+        { r:1, div:"D3", w:"Bunyip Kings", l:"Neerim Wolves White", ws:13, ls:11 },
+        { r:1, div:"D3", w:"Rebels Meteors", l:"Bunyip Lakers", ws:34, ls:8 },
+        { r:1, div:"D4", w:"Devils Pistons", l:"Chalkies Vikings", ws:19, ls:10 },
+        { r:1, div:"D4", w:"Bunyip Mavericks", l:"Devils Vipers", ws:48, ls:4 },
+        { r:1, div:"D4", w:"Devils Suns", l:"Gladiators Raiders", ws:24, ls:4 },
+        { r:1, div:"D4", w:"Neerim Wolves Blue", l:"Devils Rockets", ws:18, ls:9 },
+        { r:2, div:"D1", w:"Rebels Stars", l:"Warranor Heat Fury", ws:45, ls:21 },
+        { r:2, div:"D1", w:"Neerim Wolves Blue 1", l:"Devils Braves", ws:46, ls:19 },
+        { r:2, div:"D2", w:"Bunyip Spurs", l:"Warranor Heat Flyers", ws:26, ls:20 },
+        { r:2, div:"D2", w:"Devils Cavs", l:"Bunyip Clippers", ws:32, ls:22 },
+        { r:2, div:"D2", w:"Rebels Thunder", l:"Gladiators Trojans", ws:22, ls:20 },
+        { r:2, div:"D2", w:"Gladiators Kings", l:"Devils Falcons", ws:32, ls:10 },
+        { r:2, div:"D3", w:"Chalkies Knights", l:"Gladiators Felix", ws:42, ls:12 },
+        { r:2, div:"D3", w:"Gladiators Maximus", l:"Bunyip Kings", ws:25, ls:10 },
+        { r:2, div:"D3", w:"Rebels Meteors", l:"Neerim Wolves White", ws:23, ls:23, draw:true },
+        { r:2, div:"D3", w:"Chalkies Phoenix", l:"Devils Kings", ws:54, ls:2 },
+        { r:2, div:"D3", w:"Gladiators Titans", l:"Bunyip Lakers", ws:25, ls:15 },
+        { r:2, div:"D4", w:"Bunyip Mavericks", l:"Neerim Wolves Blue", ws:26, ls:4 },
+        { r:2, div:"D4", w:"Chalkies Vikings", l:"Gladiators Raiders", ws:10, ls:10, draw:true },
+        { r:2, div:"D4", w:"Devils Rockets", l:"Devils Vipers", ws:8, ls:4 },
+        { r:2, div:"D4", w:"Devils Pistons", l:"Devils Suns", ws:20, ls:9 },
+        { r:3, div:"D1", w:"Devils Braves", l:"Warranor Heat Fury", ws:31, ls:26 },
+        { r:3, div:"D1", w:"Neerim Wolves White 1", l:"Rebels Stars", ws:41, ls:28 },
+        { r:3, div:"D2", w:"Gladiators Trojans", l:"Devils Cavs", ws:20, ls:16 },
+        { r:3, div:"D2", w:"Warranor Heat Flyers", l:"Gladiators Kings", ws:31, ls:20 },
+        { r:3, div:"D2", w:"Bunyip Spurs", l:"Rebels Thunder", ws:27, ls:12 },
+        { r:3, div:"D2", w:"Bunyip Clippers", l:"Devils Falcons", ws:30, ls:8 },
+        { r:3, div:"D3", w:"Bunyip Lakers", l:"Devils Kings", ws:20, ls:11 },
+        { r:3, div:"D3", w:"Bunyip Kings", l:"Gladiators Felix", ws:34, ls:13 },
+        { r:3, div:"D3", w:"Chalkies Knights", l:"Devils Nuggets", ws:24, ls:24, draw:true },
+        { r:3, div:"D3", w:"Gladiators Titans", l:"Neerim Wolves White", ws:30, ls:21 },
+        { r:3, div:"D3", w:"Rebels Meteors", l:"Gladiators Maximus", ws:20, ls:12 },
+        { r:3, div:"D4", w:"Devils Suns", l:"Chalkies Vikings", ws:22, ls:5 },
+        { r:3, div:"D4", w:"Neerim Wolves Blue", l:"Devils Rockets", ws:13, ls:9 },
+        { r:3, div:"D4", w:"Gladiators Raiders", l:"Devils Vipers", ws:16, ls:13 },
+        { r:3, div:"D4", w:"Devils Pistons", l:"Bunyip Mavericks", ws:17, ls:14 },
+      ],
+    },
+    {
+      name: "U12 Girls",
+      stage2Options: [{"name": "Season recommendation, from Round 7: no division changes", "text": ["Divisions stay at 8 / 8 for the rest of the season.", "Devils Liberty (0–3 in Division 1 in Stage 2) and Devils Sparks (3–0 in Division 2) were considered for a swap. Adjusted for the strength of their opponents, the two teams rate level overall (0 and −5), so it was a close call. After discussion with Devils, both teams stay where they are.", "Bunyip Opals and Warranor Heat Sparrows stay in Division 1: both rate clearly above every Division 2 team, and losing games in Division 1 does not by itself mean a team belongs in Division 2. The Mercy Rule applies to U12 from Round 7. All results stand (Section 4.6a)."], "divisions": {"D1": ["Warranor Heat Ballers", "Gladiators Shadows", "Gladiators Suns", "Devils Blazers", "Chalkies Stars", "Warranor Heat Sparrows", "Bunyip Opals", "Devils Liberty"], "D2": ["Devils Sparks", "Warranor Heat Jets", "Rebels Crystals", "Chalkies Diamonds", "Neerim Wolves White", "Neerim Wolves Blue", "Bunyip Sparks", "Gladiators Mercury"]}, "ratings": {"Devils Blazers": 38, "Bunyip Opals": 16, "Gladiators Suns": 77, "Warranor Heat Sparrows": 19, "Warranor Heat Ballers": 90, "Gladiators Shadows": 78, "Chalkies Diamonds": -36, "Gladiators Mercury": -93, "Chalkies Stars": 27, "Rebels Crystals": -23, "Devils Liberty": 0, "Warranor Heat Jets": -22, "Devils Sparks": -5, "Neerim Wolves White": -38, "Neerim Wolves Blue": -57, "Bunyip Sparks": -72}, "adopted": "16 Nov"}],
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Bunyip Opals", club: "Bunyip", stage1: "D1", proposed: "D1", note: "Stays in Division 1 for now. The Association has kept Division 1 at eight teams for Stage 2; reviewed after each Stage 2 round." },
+        { name: "Devils Blazers", club: "Devils", stage1: "D1", proposed: "D1", note: "Beat both teams moving down. First considered for Division 2 if a Division 1 team drops at a Stage 2 review." },
+        { name: "Gladiators Shadows", club: "Gladiators", stage1: "D1", proposed: "D1" },
+        { name: "Gladiators Suns", club: "Gladiators", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Ballers", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Sparrows", club: "Warranor", stage1: "D1", proposed: "D1", note: "Stays in Division 1 for now. The Association has kept Division 1 at eight teams for Stage 2; reviewed after each Stage 2 round." },
+        { name: "Bunyip Sparks", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Chalkies Diamonds", club: "Chalkies", stage1: "D2", proposed: "D2" },
+        { name: "Chalkies Stars", club: "Chalkies", stage1: "D2", proposed: "D1", note: "Won all three Division 2 games. Against the common opponent Rebels Crystals they won by 52%, where Devils Sparks drew." },
+        { name: "Devils Liberty", club: "Devils", stage1: "D2", proposed: "D1", note: "Won all three Division 2 games, the strongest team in Division 2 adjusted for opponents." },
+        { name: "Devils Sparks", club: "Devils", stage1: "D2", proposed: "D2", note: "Unbeaten (two wins and a draw). First considered for Division 1 at the Round 4 review." },
+        { name: "Gladiators Mercury", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Neerim Wolves Blue", club: "Neerim Wolves", stage1: "D2", proposed: "D2" },
+        { name: "Neerim Wolves White", club: "Neerim Wolves", stage1: "D2", proposed: "D2" },
+        { name: "Rebels Crystals", club: "Rebels", stage1: "D2", proposed: "D2" },
+        { name: "Warranor Heat Jets", club: "Warranor", stage1: "D2", proposed: "D2" },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Devils Blazers", l:"Bunyip Opals", ws:28, ls:26 },
+        { r:1, div:"D1", w:"Gladiators Suns", l:"Warranor Heat Sparrows", ws:34, ls:7 },
+        { r:1, div:"D1", w:"Warranor Heat Ballers", l:"Gladiators Shadows", ws:45, ls:24 },
+        { r:1, div:"D2", w:"Chalkies Diamonds", l:"Gladiators Mercury", ws:15, ls:4 },
+        { r:1, div:"D2", w:"Chalkies Stars", l:"Rebels Crystals", ws:25, ls:8 },
+        { r:1, div:"D2", w:"Devils Liberty", l:"Warranor Heat Jets", ws:25, ls:7 },
+        { r:1, div:"D2", w:"Devils Sparks", l:"Neerim Wolves White", ws:20, ls:14 },
+        { r:1, div:"D2", w:"Neerim Wolves Blue", l:"Bunyip Sparks", ws:20, ls:9 },
+        { r:2, div:"D1", w:"Gladiators Suns", l:"Bunyip Opals", ws:37, ls:7 },
+        { r:2, div:"D1", w:"Warranor Heat Ballers", l:"Devils Blazers", ws:30, ls:8 },
+        { r:2, div:"D1", w:"Gladiators Shadows", l:"Warranor Heat Sparrows", ws:37, ls:15 },
+        { r:2, div:"D2", w:"Chalkies Stars", l:"Bunyip Sparks", ws:49, ls:6 },
+        { r:2, div:"D2", w:"Devils Liberty", l:"Neerim Wolves White", ws:31, ls:13 },
+        { r:2, div:"D2", w:"Rebels Crystals", l:"Devils Sparks", ws:14, ls:14, draw:true },
+        { r:2, div:"D2", w:"Neerim Wolves Blue", l:"Gladiators Mercury", ws:16, ls:8 },
+        { r:2, div:"D2", w:"Warranor Heat Jets", l:"Chalkies Diamonds", ws:35, ls:22 },
+        { r:3, div:"D1", w:"Gladiators Shadows", l:"Bunyip Opals", ws:29, ls:0 },
+        { r:3, div:"D1", w:"Gladiators Suns", l:"Warranor Heat Ballers", ws:15, ls:12 },
+        { r:3, div:"D1", w:"Devils Blazers", l:"Warranor Heat Sparrows", ws:56, ls:10 },
+        { r:3, div:"D2", w:"Chalkies Stars", l:"Warranor Heat Jets", ws:23, ls:13 },
+        { r:3, div:"D2", w:"Chalkies Diamonds", l:"Bunyip Sparks", ws:25, ls:9 },
+        { r:3, div:"D2", w:"Devils Sparks", l:"Gladiators Mercury", ws:28, ls:2 },
+        { r:3, div:"D2", w:"Devils Liberty", l:"Neerim Wolves Blue", ws:31, ls:8 },
+        { r:3, div:"D2", w:"Rebels Crystals", l:"Neerim Wolves White", ws:20, ls:16 },
+      ],
+    },
+    {
+      name: "U10 Boys",
+      stage2Options: [{"name": "Season recommendation, from Round 7: Devils Jets up, Bunyip Hornets down", "text": ["Devils Jets move up to Division 2. They moved down after Stage 1 on two close Division 2 losses (5–6 and 7–20), then won all three Division 3 games in Stage 2 (30–0, 28–13 and 20–4; +68% average).", "Bunyip Hornets move down to Division 3. They lost all three Division 2 games in Stage 2 (2–8, 7–11 and 6–15; −42% average). Adjusted for the strength of their opponents, the two teams rate level (+15 each), so the swap does not leave either division with a team well above or below the rest.", "No other changes. Neerim Wolves and Warranor Heat Vipers lost all three Division 1 games in Stage 2 but still rate above every Division 2 team, and losing games in Division 1 does not by itself mean a team belongs in Division 2. The Mercy Rule and the individual scoring cap apply from Round 7. Divisions stay at 6 / 7 / 8 / 6. All results stand (Section 4.6a)."], "divisions": {"D1": ["Bunyip Hawks", "Chalkies Bears", "Devils Celtics", "Gladiators Raiders", "Warranor Heat Vipers", "Neerim Wolves"], "D2": ["Devils Giants", "Devils Magic", "Bunyip Stars", "Rebels Hurricanes", "Gladiators Felix", "Gladiators Caesars", "Devils Jets"], "D3": ["Bunyip Hornets", "Bunyip Magic", "Chalkies Raptors", "Bunyip Raptors", "Rebels Jets", "Devils Knicks", "Devils Pistons", "Gladiators Trojans"], "D4": ["Devils Thunder", "Bunyip Jazz", "Gladiators Maximus", "Rebels Rockets", "Devils Raptors", "Warranor Heat Taipans"]}, "ratings": {"Devils Celtics": 122, "Neerim Wolves": 70, "Rebels Hurricanes": 55, "Devils Giants": 57, "Gladiators Raiders": 110, "Warranor Heat Vipers": 97, "Bunyip Hawks": 152, "Chalkies Bears": 152, "Gladiators Caesars": 28, "Devils Jets": 15, "Gladiators Felix": 35, "Devils Knicks": -50, "Devils Magic": 57, "Bunyip Stars": 56, "Chalkies Raptors": -24, "Bunyip Jazz": -88, "Bunyip Magic": -12, "Devils Thunder": -85, "Rebels Jets": -48, "Devils Raptors": -143, "Devils Pistons": -54, "Rebels Rockets": -133, "Bunyip Raptors": -46, "Gladiators Maximus": -108, "Gladiators Trojans": -56, "Warranor Heat Taipans": -175, "Bunyip Hornets": 15}, "adopted": "16 Nov"}],
+      status: "recommended",
+      played: 3,
+      teams: [
+        { name: "Bunyip Hawks", club: "Bunyip", stage1: "D1", proposed: "D1" },
+        { name: "Chalkies Bears", club: "Chalkies", stage1: "D1", proposed: "D1" },
+        { name: "Devils Celtics", club: "Devils", stage1: "D1", proposed: "D1" },
+        { name: "Devils Giants", club: "Devils", stage1: "D1", proposed: "D2", note: "Bottom of D1 with Hurricanes. Lost to Neerim Wolves head-to-head and behind Devils Celtics on common opponents." },
+        { name: "Neerim Wolves", club: "Neerim Wolves", stage1: "D1", proposed: "D1" },
+        { name: "Rebels Hurricanes", club: "Rebels", stage1: "D1", proposed: "D2", note: "Bottom of D1 with Giants. Behind Neerim Wolves on common opponents (Giants, Vipers)." },
+        { name: "Gladiators Raiders", club: "Gladiators", stage1: "D1", proposed: "D1" },
+        { name: "Warranor Heat Vipers", club: "Warranor", stage1: "D1", proposed: "D1" },
+        { name: "Bunyip Hornets", club: "Bunyip", stage1: "D2", proposed: "D2" },
+        { name: "Bunyip Stars", club: "Bunyip", stage1: "D2", proposed: "D2", note: "Part of a tie-break circle with Felix and Devils Magic. Reviewed after Round 4." },
+        { name: "Devils Jets", club: "Devils", stage1: "D2", proposed: "D3", note: "0\u20132 in D2. Behind Bunyip Hornets on common opponent Devils Magic." },
+        { name: "Devils Knicks", club: "Devils", stage1: "D2", proposed: "D3", note: "Lost both games heavily (2\u201330, 0\u201336). Moves one division only; first to review after Round 4." },
+        { name: "Devils Magic", club: "Devils", stage1: "D2", proposed: "D2", note: "Part of a tie-break circle with Felix and Bunyip Stars. Reviewed after Round 4." },
+        { name: "Gladiators Caesars", club: "Gladiators", stage1: "D2", proposed: "D2" },
+        { name: "Gladiators Felix", club: "Gladiators", stage1: "D2", proposed: "D2", note: "Unbeaten in D2, but Felix, Bunyip Stars and Devils Magic each beat another on the tie-break, so none moves up yet. First to review after Round 4." },
+        { name: "Bunyip Jazz", club: "Bunyip", stage1: "D3", proposed: "D4", note: "Bottom six of D3. Behind Bunyip Raptors on common opponent Chalkies Raptors." },
+        { name: "Bunyip Magic", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Bunyip Raptors", club: "Bunyip", stage1: "D3", proposed: "D3" },
+        { name: "Chalkies Raptors", club: "Chalkies", stage1: "D3", proposed: "D3" },
+        { name: "Devils Pistons", club: "Devils", stage1: "D3", proposed: "D3" },
+        { name: "Devils Raptors", club: "Devils", stage1: "D3", proposed: "D4", note: "0\u20133 in D3." },
+        { name: "Devils Thunder", club: "Devils", stage1: "D3", proposed: "D4", note: "0\u20133 in D3." },
+        { name: "Rebels Jets", club: "Rebels", stage1: "D3", proposed: "D3", note: "Unbeaten, but all three wins came against the bottom three teams. Stays in the new top-six D3." },
+        { name: "Rebels Rockets", club: "Rebels", stage1: "D3", proposed: "D4", note: "Bottom six of D3." },
+        { name: "Gladiators Maximus", club: "Gladiators", stage1: "D3", proposed: "D4", note: "Bottom six of D3. Lost 0\u201324 to Bunyip Raptors head-to-head. Won their last two; close to the line." },
+        { name: "Gladiators Trojans", club: "Gladiators", stage1: "D3", proposed: "D3", note: "Unbeaten. A D2 move fails the tie-break against Bunyip Magic and Devils Pistons, so stays in the top-six D3." },
+        { name: "Warranor Heat Taipans", club: "Warranor", stage1: "D3", proposed: "D4", note: "0\u20133 in D3, 2 points in three games." },
+      ],
+      games: [
+        { r:1, div:"D1", w:"Devils Celtics", l:"Neerim Wolves", ws:24, ls:5 },
+        { r:1, div:"D1", w:"Rebels Hurricanes", l:"Devils Giants", ws:9, ls:9, draw:true },
+        { r:1, div:"D1", w:"Gladiators Raiders", l:"Warranor Heat Vipers", ws:35, ls:22 },
+        { r:1, div:"D1", w:"Bunyip Hawks", l:"Chalkies Bears", ws:23, ls:16 },
+        { r:1, div:"D2", w:"Gladiators Caesars", l:"Devils Jets", ws:6, ls:5 },
+        { r:1, div:"D2", w:"Gladiators Felix", l:"Devils Knicks", ws:30, ls:2 },
+        { r:1, div:"D2", w:"Devils Magic", l:"Bunyip Stars", ws:12, ls:6 },
+        { r:1, div:"D3", w:"Chalkies Raptors", l:"Bunyip Jazz", ws:15, ls:4 },
+        { r:1, div:"D3", w:"Bunyip Magic", l:"Devils Thunder", ws:20, ls:2 },
+        { r:1, div:"D3", w:"Rebels Jets", l:"Devils Raptors", ws:37, ls:4 },
+        { r:1, div:"D3", w:"Devils Pistons", l:"Rebels Rockets", ws:13, ls:0 },
+        { r:1, div:"D3", w:"Bunyip Raptors", l:"Gladiators Maximus", ws:24, ls:0 },
+        { r:1, div:"D3", w:"Gladiators Trojans", l:"Warranor Heat Taipans", ws:15, ls:0 },
+        { r:2, div:"D1", w:"Chalkies Bears", l:"Gladiators Raiders", ws:17, ls:6 },
+        { r:2, div:"D1", w:"Bunyip Hawks", l:"Devils Celtics", ws:15, ls:4 },
+        { r:2, div:"D1", w:"Neerim Wolves", l:"Devils Giants", ws:22, ls:14 },
+        { r:2, div:"D1", w:"Warranor Heat Vipers", l:"Rebels Hurricanes", ws:30, ls:5 },
+        { r:2, div:"D2", w:"Devils Magic", l:"Devils Jets", ws:20, ls:7 },
+        { r:2, div:"D2", w:"Bunyip Stars", l:"Gladiators Caesars", ws:14, ls:9 },
+        { r:2, div:"D2", w:"Gladiators Felix", l:"Bunyip Hornets", ws:10, ls:4 },
+        { r:2, div:"D3", w:"Gladiators Trojans", l:"Bunyip Raptors", ws:9, ls:6 },
+        { r:2, div:"D3", w:"Chalkies Raptors", l:"Bunyip Magic", ws:12, ls:12, draw:true },
+        { r:2, div:"D3", w:"Devils Pistons", l:"Bunyip Jazz", ws:4, ls:3 },
+        { r:2, div:"D3", w:"Rebels Rockets", l:"Devils Raptors", ws:15, ls:8 },
+        { r:2, div:"D3", w:"Rebels Jets", l:"Devils Thunder", ws:18, ls:6 },
+        { r:2, div:"D3", w:"Gladiators Maximus", l:"Warranor Heat Taipans", ws:15, ls:1 },
+        { r:3, div:"D1", w:"Chalkies Bears", l:"Devils Celtics", ws:16, ls:6 },
+        { r:3, div:"D1", w:"Bunyip Hawks", l:"Devils Giants", ws:29, ls:3 },
+        { r:3, div:"D1", w:"Warranor Heat Vipers", l:"Neerim Wolves", ws:14, ls:11 },
+        { r:3, div:"D1", w:"Gladiators Raiders", l:"Rebels Hurricanes", ws:33, ls:18 },
+        { r:3, div:"D2", w:"Bunyip Hornets", l:"Devils Magic", ws:11, ls:9 },
+        { r:3, div:"D2", w:"Bunyip Stars", l:"Devils Knicks", ws:36, ls:0 },
+        { r:3, div:"D2", w:"Gladiators Felix", l:"Gladiators Caesars", ws:10, ls:10, draw:true },
+        { r:3, div:"D3", w:"Bunyip Jazz", l:"Devils Raptors", ws:17, ls:2 },
+        { r:3, div:"D3", w:"Bunyip Magic", l:"Devils Pistons", ws:6, ls:4 },
+        { r:3, div:"D3", w:"Chalkies Raptors", l:"Bunyip Raptors", ws:10, ls:6 },
+        { r:3, div:"D3", w:"Rebels Jets", l:"Warranor Heat Taipans", ws:26, ls:1 },
+        { r:3, div:"D3", w:"Gladiators Maximus", l:"Rebels Rockets", ws:17, ls:5 },
+        { r:3, div:"D3", w:"Gladiators Trojans", l:"Devils Thunder", ws:14, ls:6 },
+      ],
+    },
+  ],
+};
+
+/* Winter 2026 Season Review benchmarks (settled season): average winning margin, close-game rate. */
+const BENCHMARKS = {
+  "U10 Boys":     { avg: 0.27, close: 0.42 },
+  "U10 Girls":    { avg: 0.51, close: 0.22 },
+  "U12 Boys":     { avg: 0.23, close: 0.52 },
+  "U12 Girls":    { avg: 0.31, close: 0.40 },
+  "U14 Boys":     { avg: 0.29, close: 0.36 },
+  "U14 Girls":    { avg: 0.45, close: 0.20 },
+  "U16 Boys":     { avg: 0.27, close: 0.37 },
+  "U16/19 Girls": { avg: 0.33, close: 0.38 },
+  "U19 Boys":     { avg: 0.22, close: 0.54 },
+  _allJuniorRout: 0.21,
+  _gradingRout: 0.33,
+};
+
+/* Method settings — change only if the Association changes the method. */
+const METHOD = { close: 0.20, clear: 0.33, major: 0.50, look: 0.25, watch: 0.15, floor: 6, level: 0.10 };
+/* ===================== END OF DATA — nothing below needs editing ===================== */
+</script>
+
+<style>
+:root{
+ --red:#C41E33;--red-deep:#9A1626;--blue:#3A3F47;
+ --ink:#111316;--ink-2:#3A3E45;--muted:#5E636B;--faint:#A3A8B0;--line:#ECECEE;--line2:#E2E3E6;--track:#F1F1EF;--hover:#F1F1EF;
+ --page:#FBFBFA;--card:#FFFFFF;--soft:#F7F7F5;--gold:#F7941D;--wash:#FBEDEF;
+ --ok:#111316;--ok-bg:#F1F1EF;--up-bg:#EEF0F2;--down-bg:#FBEDEF;
+ --b-close:#F1F1EF;--b-clear:#FDEBD3;--b-major:#F4CDD3;--b-rout:#C41E33;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Geist,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.mono,.kpi .n,.avg,.num,.mv,.conf,.floor,.status{font-family:"Geist Mono",ui-monospace,monospace}
+button{font-family:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+
+/* chrome: rail + top bar (rep-program style) */
+.app{display:flex;min-height:100vh}
+nav.tabs{flex:0 0 72px;border-right:1px solid var(--line);padding:16px 0;display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:0;height:100vh;background:var(--page);z-index:20}
+nav.tabs img{width:52px;height:auto;margin-bottom:16px}
+nav.tabs button{position:relative;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);border:0;background:none;cursor:pointer;padding:0}
+nav.tabs button:hover{background:var(--hover);color:var(--ink)}
+nav.tabs button[aria-selected=true]{background:var(--hover);color:var(--ink)}
+nav.tabs button[aria-selected=true]::before{content:"";position:absolute;left:-14px;top:10px;width:3px;height:24px;border-radius:2px;background:var(--red)}
+nav.tabs .tl{position:absolute;left:52px;background:var(--ink);color:#fff;font-size:12px;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;font-weight:500}
+nav.tabs button:hover .tl,nav.tabs button:focus-visible .tl{opacity:1}
+nav.tabs .ts{display:none}
+.shell{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{border-bottom:1px solid var(--line);padding:12px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;position:sticky;top:0;background:rgba(251,251,250,.92);backdrop-filter:blur(6px);z-index:10}
+.crumb{font-size:13px;color:var(--muted);white-space:nowrap}.crumb b{color:var(--ink);font-weight:500}.crumb span.sl{color:var(--faint);margin:0 4px}
+.agewrap{position:relative;flex:1 1 420px;min-width:0;display:flex;justify-content:flex-end}
+.ages{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;border:1px solid var(--line2);border-radius:10px;padding:3px;background:var(--card);max-width:100%}
+.ages::-webkit-scrollbar{display:none}
+.ages button{border:0;background:transparent;padding:5px 9px;border-radius:7px;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.ages button:hover{color:var(--ink)}
+.ages button[aria-pressed=true]{background:var(--ink);color:#fff}
+.ages i{width:6px;height:6px;border-radius:50%;background:var(--faint);flex:none}
+.ages i.recommended{background:var(--red)}.ages i.review{background:var(--gold)}
+.ages button[aria-pressed=true] i{background:#fff}
+.agemore{display:none}
+.stamp{font-size:12px;color:var(--muted);white-space:nowrap}.stamp b{font-family:"Geist Mono",monospace;font-weight:500;color:var(--ink);margin-left:6px}
+.eyebrow{margin:0 0 10px;font-family:"Geist Mono",monospace;font-size:12px;color:var(--red)}
+main{padding:40px 0 48px}
+main .wrap{max-width:1200px;padding:0 32px}
+.lead{font-size:clamp(1.35rem,2.6vw,2rem);font-weight:500;letter-spacing:-.02em;line-height:1.28;max-width:940px;margin-bottom:10px}
+.lead b{font-weight:500;font-style:italic;color:var(--muted)}
+.status{display:inline;font-size:12px;font-weight:400;padding:0;color:var(--red)}
+.status.review{color:#9A5A08}
+.status.pending{color:var(--muted)}
+@media (prefers-color-scheme:dark){.status.review{background:#3A2C17;color:#E9A64A}}
+
+.notices{margin:-8px 0 32px;font-size:13px;border-bottom:1px solid var(--line)}
+.notices li{list-style:none;display:grid;grid-template-columns:76px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line);line-height:1.45}
+.notices b{font-family:"Geist Mono",monospace;font-size:11px;font-weight:400;color:var(--red);padding-top:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0 36px}
+.kpi{padding:20px 20px 20px 0;display:flex;flex-direction:column;gap:6px}
+.kpi .n{font-size:26px;font-weight:500;letter-spacing:-.02em;line-height:1.1;order:2}
+.kpi .l{font-size:12px;font-weight:400;color:var(--muted);order:1}
+.kpi .c{font-size:12px;color:var(--muted);order:3}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.panel h2{font-size:1rem;font-weight:600;letter-spacing:-.005em}
+.sub{font-size:.76rem;color:var(--muted);margin:3px 0 14px;max-width:60rem}
+.gap{margin-top:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+
+/* divisions */
+.div-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line2);padding-bottom:8px;margin-bottom:2px}
+.div-h h3{font-size:1.05rem;font-weight:600}
+.floor{font-size:.7rem;font-weight:500;border-radius:999px;padding:3px 9px;background:var(--ok-bg);color:var(--ok)}
+.floor.neutral{background:var(--track);color:var(--muted)}
+.floor.bad{background:var(--down-bg);color:var(--red-deep)}
+details.team{border-top:1px solid var(--line)}
+details.team:first-of-type{border-top:0}
+details.team summary{list-style:none;display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:10px 6px;margin:0 -6px;border-radius:6px;cursor:pointer}
+details.team summary::-webkit-details-marker{display:none}
+details.team.up summary{background:linear-gradient(90deg,var(--up-bg),transparent 75%)}
+details.team.down summary{background:linear-gradient(90deg,var(--down-bg),transparent 75%)}
+.logo{width:30px;height:30px;border-radius:8px;object-fit:contain;background:#fff;border:1px solid var(--line);display:block}
+.ini{width:30px;height:30px;border-radius:6px;display:grid;place-items:center;background:var(--ink);color:var(--card);font-size:.6rem;font-weight:600}
+.tn{font-weight:500;font-size:.88rem;line-height:1.2}
+.tm{font-size:.72rem;color:var(--muted);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.mv{font-weight:600;font-size:.68rem;border-radius:4px;padding:1px 6px;background:var(--up-bg);color:var(--blue)}
+.mv.down{background:var(--down-bg);color:var(--red)}
+.avg{font-weight:600;font-size:.9rem;text-align:right;min-width:3.2rem}
+.pos{color:var(--ok)}.neg{color:var(--red)}
+.conf{font-weight:600;font-size:.66rem;border-radius:4px;padding:1px 6px}
+.conf.ok{color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.conf.req{color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.conf.close{color:#8A5300;box-shadow:inset 0 0 0 1px #E9A64A;background:#FCEFD9}
+.note.auto{color:var(--ink);font-weight:500}
+.opth{font-size:1.05rem;font-weight:600;margin:4px 0 12px}
+.s2tbl{width:100%}
+.team .rk{font-weight:600;color:var(--muted);min-width:18px;font-size:.8rem;margin-right:2px}
+.s2row{display:flex;align-items:center;gap:10px;padding:8px 0}
+.s2row>div:nth-child(2){flex:1}
+.drawbox{margin-top:14px}
+.drawgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:10px}
+.drawrd{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.drh{font-weight:600;margin-bottom:6px}
+.drg{font-size:.88rem;padding:6px 8px;border-radius:7px;margin:4px 0}
+.drg.b-Rout{color:#fff}
+.drp{font-size:.76rem;opacity:.85;margin-top:2px}
+.drb{font-size:.82rem;color:var(--muted);padding-top:6px}
+.drawbox summary{cursor:pointer;font-weight:500}
+.s2games{display:grid;gap:6px;margin:8px 0 4px}
+.s2note{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.nextg{display:grid;gap:4px;margin:4px 0 12px}
+.nextg .row{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:.86rem;padding:6px 0;border-bottom:1px solid var(--line)}
+.nextg .when{font-weight:500;min-width:118px}
+.nextg .where{color:var(--muted)}
+.revlog td,.revlog th{vertical-align:top}
+.revsec{margin-bottom:30px;padding-bottom:22px;border-bottom:2px dashed var(--line)}
+.revsec .sub{margin:0 0 14px}
+.revgames{display:grid;gap:6px;margin:6px 0 10px}
+.revg{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.88rem}
+.revg .dv{font-weight:500;color:var(--muted);min-width:28px}
+.revh3{font-size:.95rem;font-weight:600;margin:20px 0 8px}
+.optsec{margin-top:28px;padding-top:20px;border-top:2px dashed var(--line)}
+.optsec .opth{margin-bottom:4px}
+.optsizes{font-size:.78rem;font-weight:500;color:var(--ink-2);margin:0 0 12px}
+.fixnote{padding:8px 0 4px!important}
+.note.warnsoft{color:#8A5300;font-weight:600}
+.note.warn{color:var(--red);font-weight:500}
+.note{font-size:.76rem;color:var(--ink-2);padding:0 0 12px 40px;line-height:1.45}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.72rem;color:var(--muted);margin-top:14px;align-items:center}
+.legend i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:14px 16px;font-size:.84rem;line-height:1.55;margin-top:18px;color:var(--ink-2)}
+.callout b{color:var(--ink)}
+
+/* tables */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.82rem}
+th{text-align:left;font-size:.68rem;font-weight:500;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+td.t{font-weight:500;white-space:nowrap}
+.num{text-align:right}
+.tcell{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.tw table{min-width:600px}
+.tcell .logo,.tcell .ini{width:22px;height:22px;flex:none}
+.chip{display:inline-block;border-radius:5px;padding:3px 8px;font-size:.72rem;font-weight:600;white-space:nowrap;color:var(--ink)}
+.b-Close{background:var(--b-close)}.b-Clear{background:var(--b-clear)}.b-Major{background:var(--b-major)}.b-Rout{background:var(--b-rout);color:#fff}
+.b-Forfeit,.b-Bye{background:var(--track);color:var(--muted)}
+.b-Loss{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+h3.dh{font-size:.88rem;font-weight:600;margin:18px 0 4px}
+h3.dh:first-child{margin-top:0}
+.filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filter button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;font-size:.74rem;font-weight:500;cursor:pointer}
+.filter button[aria-pressed=true]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+
+/* chart */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:.74rem;line-height:1.45;padding:8px 10px;border-radius:6px;max-width:260px;opacity:0;transition:opacity .1s;z-index:20}
+#tip b{display:block}
+
+/* method */
+.prose p{font-size:.86rem;color:var(--ink-2);line-height:1.6;max-width:60rem;margin-bottom:.8rem}
+.prose b{color:var(--ink)}
+blockquote{border-left:3px solid var(--red);padding:8px 12px;margin:0 0 12px;background:var(--soft);border-radius:0 6px 6px 0;font-size:.84rem;line-height:1.55;color:var(--ink-2)}
+blockquote cite{display:block;font-style:normal;font-weight:600;font-size:.7rem;color:var(--muted);margin-bottom:4px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0 4px}
+.step{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--soft)}
+.step.now{border-color:var(--red);box-shadow:inset 0 3px 0 var(--red)}
+.step .k{font-size:.66rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.step .t{font-weight:600;margin:2px 0 4px}
+.step .d{font-size:.74rem;color:var(--muted);line-height:1.45}
+.empty{padding:28px 20px;text-align:center;color:var(--muted);font-size:.88rem}
+.empty b{display:block;color:var(--ink);font-size:1rem;margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:24px;padding:16px 0 32px;font-size:.72rem;color:var(--muted)}
+.narrow{display:none}
+.mitem{padding:10px 0;border-top:1px solid var(--line)}.mitem:first-child{border-top:0}
+.mhead{display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:.86rem;margin-bottom:6px}
+.mchips{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding-left:30px}
+.gitem{padding:10px 0;border-top:1px solid var(--line)}.gitem:first-child{border-top:0}
+.gtop{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:var(--muted);font-weight:500;margin-bottom:6px}
+.gline{display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:.84rem;padding:2px 0}
+.gline.lose{font-weight:500;color:var(--ink-2)}
+@media(max-width:700px){.wide{display:none}.narrow{display:block}}
+.cform{display:grid;gap:10px;margin:4px 0 16px}
+.crow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.cform label{display:grid;gap:4px;font-size:.72rem;font-weight:500;color:var(--muted)}
+.cform input,.cform select,.cform textarea{font:inherit;font-size:.86rem;font-weight:500;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:9px 11px;width:100%}
+.cform textarea{resize:vertical;min-height:84px}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:2px solid var(--red);outline-offset:0;border-color:transparent}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cfoot{display:flex;align-items:center;gap:12px;justify-content:flex-end;flex-wrap:wrap}
+.cfoot button{border:0;background:var(--red);color:#fff;font:inherit;font-weight:500;font-size:.84rem;border-radius:8px;padding:10px 18px;cursor:pointer}
+.cfoot button:disabled{opacity:.55;cursor:default}
+.cmsg{font-size:.76rem;color:var(--muted);margin-right:auto}.cmsg.err{color:var(--red);font-weight:600}.cmsg.ok{color:var(--ok);font-weight:600}
+.ccount{font-size:.7rem;color:var(--muted)}
+.clist{border-top:1px solid var(--line)}
+.citem{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.citem:last-child{border-bottom:0}
+.chead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:.84rem}
+.chead b{font-weight:500}.chead span{font-size:.72rem;color:var(--muted)}
+.cbody{font-size:.86rem;color:var(--ink-2);line-height:1.55;margin-top:3px;white-space:pre-wrap;overflow-wrap:anywhere}
+.cempty{font-size:.82rem;color:var(--muted);padding:14px 0}
+
+/* ---- mobile ---- */
+.nmore{display:none}
+@media(max-width:980px){.top{padding:10px 20px}main .wrap{padding:0 20px}}
+@media(max-width:720px){
+ .app{flex-direction:column}
+ nav.tabs{position:fixed;bottom:0;top:auto;left:0;right:0;height:60px;flex-direction:row;justify-content:space-around;border-right:0;border-top:1px solid var(--line);padding:0 4px;background:rgba(251,251,250,.96);backdrop-filter:blur(6px)}
+ nav.tabs img{display:none}
+ nav.tabs button{width:auto;flex:1;height:52px;flex-direction:column;gap:2px;border-radius:8px}
+ nav.tabs button[aria-selected=true]::before{left:50%;margin-left:-12px;top:-4px;width:24px;height:3px}
+ nav.tabs .tl{display:none}nav.tabs .ts{display:block;font-size:9px;font-weight:500;white-space:nowrap}
+ nav.tabs svg{width:18px;height:18px}
+ .bandrow{grid-template-columns:96px 1fr 70px}
+ .top{padding:10px 16px;gap:8px}
+ .stamp{display:none}
+ .agewrap{flex:1 1 100%;justify-content:flex-start}
+ main{padding:24px 0 96px}main .wrap{padding:0 16px}
+ .lead{font-size:1.35rem}
+ .notices li{grid-template-columns:1fr;gap:2px}
+ .notices li.older{display:none}
+ .notices.open li.older{display:grid}
+ .nmore{display:inline-block;border:0;background:none;color:var(--red);font:inherit;font-size:12px;padding:8px 0;cursor:pointer}
+ .kpi{padding:14px 12px 14px 0}
+}
+.bandrow{display:grid;grid-template-columns:130px 1fr 90px;gap:12px;align-items:center;min-height:34px;border-top:1px solid var(--line);font-size:13px}
+.bandrow:first-of-type{border-top:0}.bandrow .bn{font-family:"Geist Mono",monospace;font-size:12px;color:var(--muted);text-align:right}
+.split{display:flex;height:10px;border-radius:3px;overflow:hidden;gap:2px;background:var(--line);min-width:80px}.split i{display:block;height:10px}
+.legend i.b-Close{background:var(--b-close)}.legend i.b-Clear{background:var(--b-clear)}.legend i.b-Major{background:var(--b-major)}.legend i.b-Rout{background:var(--b-rout)}
+.rtrack{position:relative;display:inline-block;vertical-align:middle;width:min(260px,50vw);height:8px;border-radius:4px;background:var(--line)}
+.rtrack i{display:block;height:8px;border-radius:4px;background:var(--red)}.rtrack b{position:absolute;top:-4px;width:2px;height:16px;background:var(--ink);margin-left:-1px}
+.rtl{font-family:"Geist Mono",monospace;font-size:12px;margin-left:10px}
+tr.me td{background:var(--hover)}tr.tot td{font-weight:600;border-top:1px solid var(--line2)}
+.lad table{min-width:0}.lad tr.cut td{border-top:1px dashed var(--red)}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #F5A623;outline-offset:2px}
+@media print{nav.tabs,.agewrap{display:none}[data-panel]{display:block!important}.top{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="app">
+<nav class="tabs" role="tablist" aria-label="Views"><img id="wbaLogo" alt="Warragul Basketball Association">
+ <button role="tab" data-tab="season" aria-selected="false" aria-label="Season (Round 7 on)"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V3M4 3h10l-2 3 2 3H4"/></svg><span class="tl">Season (Round 7 on)</span><span class="ts">Season</span></button>
+ <button role="tab" data-tab="stage2" aria-selected="true" aria-label="Stage 2 divisions"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V9M10 16V4M16 16v-5"/></svg><span class="tl">Stage 2 divisions</span><span class="ts">Stage 2</span></button>
+ <button role="tab" data-tab="s2results" aria-selected="false" aria-label="Stage 2 results"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h12M4 15h7"/></svg><span class="tl">Stage 2 results</span><span class="ts">S2 games</span></button>
+ <button role="tab" data-tab="divisions" aria-selected="false" aria-label="Stage 1 placements"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h4v12H3zM8 4h4v12H8zM13 4h4v12h-4z"/></svg><span class="tl">Stage 1 placements</span><span class="ts">S1 divs</span></button>
+ <button role="tab" data-tab="results" aria-selected="false" aria-label="Stage 1 results"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h12M4 15h12"/></svg><span class="tl">Stage 1 results</span><span class="ts">S1 games</span></button>
+ <button role="tab" data-tab="strength" aria-selected="false" aria-label="Stage 1 strength"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14M4 6h12M4 6l-2 6h4zM16 6l-2 6h4z"/></svg><span class="tl">Stage 1 strength</span><span class="ts">Strength</span></button>
+ <button role="tab" data-tab="method" aria-selected="false" aria-label="How we decide"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 9v5M10 6.5v.5"/></svg><span class="tl">How we decide</span><span class="ts">Method</span></button>
+</nav>
+<div class="shell">
+<div class="top">
+ <div class="crumb">Junior grading<span class="sl">/</span><b id="crumbAge"></b></div>
+ <div class="agewrap"><div class="ages" id="ages" role="group" aria-label="Age group"></div><button class="agemore" id="ageMore" type="button" aria-label="More age groups">›</button></div>
+ <span id="mupdated" hidden></span>
+</div>
+<main><div class="wrap">
+ <p class="eyebrow">// <span id="season"></span> · updated <span id="updated"></span> · <span id="statusPill"></span></p>
+ <p class="lead" id="lead"></p>
+ <div class="kpis" id="kpis"></div>
+ <ul class="notices" id="notices"></ul>
+
+ <section data-panel="stage2">
+  <div id="s2top"></div>
+  <h2 class="opth" id="s2colsHead" hidden></h2>
+  <div class="grid3" id="s2cols"></div>
+  <div class="legend" id="s2Legend"><span>Sorted by wins, then average margin</span><span>Figure on the right: average Stage 2 margin, as a share of points</span><span>All Stage 2 results count, including games played before a team changed division</span><span>Flags use games against teams now in the same division (see How we decide)</span><span>Tap a team for its games</span></div>
+  <div id="s2opts"></div>
+  <div id="s2reviews"></div>
+ </section>
+
+ <section data-panel="s2results" hidden>
+  <div id="s2rounds"></div>
+ </section>
+
+ <section data-panel="season" hidden>
+  <div id="seasonBody"></div>
+  <div id="s2next"></div>
+  <div id="seasonAll"></div>
+ </section>
+
+ <section data-panel="divisions" hidden>
+  <div id="review"></div>
+  <h2 class="opth" id="optAHead" hidden></h2>
+  <div class="grid3" id="divcols"></div>
+  <div id="options"></div>
+  <div class="legend" id="divLegend"><span><i style="background:var(--up-bg);border:1px solid var(--blue)"></i>Recommended to move up</span><span><i style="background:var(--down-bg);border:1px solid var(--red)"></i>Recommended to move down</span><span>Figure on the right: average Stage 1 margin, as a share of points</span><span>Tap a team for the reason</span></div>
+ </section>
+
+ <section data-panel="results" hidden>
+  <div class="panel">
+   <h2>Round by round</h2>
+   <p class="sub">Each team's margin in each Stage 1 game, as a share of the points scored in that game. Wins are coloured by band; losses are shown in grey. Teams are listed in their Stage 1 division, strongest first.</p>
+   <div id="matrix"></div>
+   <div class="legend"><span class="chip b-Close">Close</span> under 20% <span class="chip b-Clear">Clear win</span> 20–33% <span class="chip b-Major">Major blowout</span> 33–50% <span class="chip b-Rout">Rout</span> 50%+ <span class="chip b-Loss">−14% v …</span> loss (the band shows on the winner) <span class="chip b-Forfeit">Forfeit</span> not counted in margins</div>
+  </div>
+  <div class="panel gap">
+   <h2>Every game</h2>
+   <p class="sub">All Stage 1 games, with the winning margin and its band.</p>
+   <div class="filter" id="gameFilter"></div>
+   <div class="glist narrow" id="gamesList"></div>
+   <div class="tw wide"><table><thead><tr><th>Round</th><th>Div</th><th>Winner</th><th>Loser</th><th class="num" id="scoreTh">Score</th><th class="num">Margin</th><th>Band</th></tr></thead><tbody id="gamesBody"></tbody></table></div>
+  </div>
+ </section>
+
+ <section data-panel="strength" hidden>
+  <div class="panel">
+   <h2>Average Stage 1 margin, every team</h2>
+   <p class="sub">Average share-of-points margin across each team's scored games. Past +25% points to a higher division, past −25% to a lower one. Grouped by Stage 1 division.</p>
+   <div class="chart" id="chart"></div>
+  </div>
+  <div class="panel gap">
+   <h2>Team table</h2>
+   <p class="sub">The same figures as a table, with a cross-check. <b>Adjusted for opponents</b> adds each opponent's own rating to the margin against them: a team's rating is how far above or below the division average it performed (0% = average for that Stage 1 division), so a stronger opponent is one rated above 0% and a weaker opponent one rated below. A 20% win over a team rated −15% counts as +5%; a 10% loss to a team rated +25% counts as +15%. Placements use the plain average; the adjusted figure is a second look, and with three games it can swing on one result. See How we decide for the full method.</p>
+   <div class="tw"><table><thead><tr><th>Team</th><th>Stage 1</th><th class="num">W–L</th><th class="num">Scored games</th><th class="num">Avg margin</th><th class="num">Adjusted for opponents</th><th>Signal</th><th>Stage 2</th></tr></thead><tbody id="teamBody"></tbody></table></div>
+  </div>
+ </section>
+
+ <section data-panel="method" hidden>
+  <div class="panel prose">
+   <h2>Stage 2: how the reviews work</h2>
+   <p class="sub">Rounds 4 to 6. The official ladder has started.</p>
+   <p><b>Reviewed after every round.</b> After Rounds 4, 5 and 6 the Association reviews every division and may regrade a team that is <b>clearly misgraded</b>, keeping at least six teams in every division (Section 4.6). Section 6.5 representative floors still apply. The review after Round 6 is the last: any change it makes takes effect from Round 7, and divisions then lock.</p>
+   <p><b>Flags are prompts, not decisions.</b> Each review uses only games against teams that are now in the team's current division (for a team regraded in Stage 2, only from the round it moved):</p>
+   <ul>
+    <li><b>Look up / Look down:</b> average margin across all those games, Stage 1 and Stage 2, of <b>+25% or better</b> (or <b>−25% or worse</b>), from at least 2 games.</li>
+    <li><b>Form up / Form down:</b> the same ±25% on Stage 2 games only, from at least 3 games.</li>
+    <li><b>Watch up / Watch down:</b> at least 3 Stage 2 games, all won (or all lost), with either average beyond ±15%.</li>
+   </ul>
+   <p>Teams in the top or bottom division show the flag but cannot move further. Every recommended move is checked against every other team in the division with the tie-break (head-to-head, common opponents, adjusted for opponents, more games), and the six-team floor and Section 6.5 still apply. Club requests are listed separately and never change the numbers.</p>
+   <p><b>Results stand when a team moves.</b> Section 4.6a provides for a regraded team to restart on 0 games, with its games in the old division recorded as abandoned. For Summer 2026/27 the Association has decided instead that all Stage 2 results stand (12 Nov 2026): a team that changes division carries its results with it, and no games are abandoned. The Stage 2 standings on this site follow that decision. Review flags still use only games against teams now in the same division.</p>
+   <p><b>The official ladder is in PlayHQ.</b> The standings on this site are worked out from PlayHQ results to show how teams are tracking against their division; PlayHQ's ladder is the official one.</p>
+  </div>
+  <div class="panel gap prose">
+   <h2>The formula</h2>
+   <p class="sub">The measure used in the Winter 2026 Season Review, so seasons compare directly.</p>
+   <p><b>Margin = winning margin ÷ total points scored in the game.</b> A 64–31 game is 33 ÷ 95 = 35%. Measuring the margin as a share of points lets low- and high-scoring games be judged on the same footing: 100–45 is 38%, while 55–0 is 100%, though both are 55-point wins.</p>
+   <div class="tw"><table><thead><tr><th>Band</th><th>Margin</th><th>In plain terms</th></tr></thead><tbody>
+    <tr><td><span class="chip b-Close">Close</span></td><td>under 20%</td><td>Winner scored less than 1.5 times the loser</td></tr>
+    <tr><td><span class="chip b-Clear">Clear win</span></td><td>20% to under 33%</td><td>Up to 2 to 1</td></tr>
+    <tr><td><span class="chip b-Major">Major blowout</span></td><td>33% to under 50%</td><td>2 to 1 up to 3 to 1</td></tr>
+    <tr><td><span class="chip b-Rout">Rout</span></td><td>50% and over</td><td>Winner scored three times the loser or more</td></tr></tbody></table></div>
+   <p style="margin-top:14px"><b>Team strength</b> is the average of a team's signed margins (positive for wins, negative for losses) across its scored Stage 1 games. A team averaging <b>+25% or better</b> is flagged to look up a division; <b>−25% or worse</b>, to look down. Forfeits count as a win or loss but are left out of margins, because there is no real score.</p>
+   <p><b>Adjusted for opponents (cross-check).</b> The plain average treats a win over the bottom team the same as a win over the top team. The adjusted figure corrects for that, and is shown on the Team strength tab beside the plain average.</p>
+   <p><b>What makes an opponent stronger or weaker.</b> Every team in a Stage 1 division gets a rating: how far above or below the division average it performed, measured with the same share-of-points margins. The division average is set at 0%. An opponent rated above 0% is stronger than average; one rated below 0% is weaker. Ratings come only from results, not from team lists, club or last season.</p>
+   <p><b>How a game is credited.</b> Each game counts as the team's margin <i>plus</i> the opponent's rating, and a team's adjusted figure is the average of its games:</p>
+   <div class="tw"><table><thead><tr><th>Example</th><th class="num">Margin</th><th class="num">Opponent's rating</th><th class="num">Counts as</th></tr></thead><tbody>
+    <tr><td>Win over a weaker team</td><td class="num">+20%</td><td class="num">−15%</td><td class="num">+5%</td></tr>
+    <tr><td>Win over a stronger team</td><td class="num">+20%</td><td class="num">+15%</td><td class="num">+35%</td></tr>
+    <tr><td>Loss to a much stronger team</td><td class="num">−10%</td><td class="num">+25%</td><td class="num">+15%</td></tr>
+    <tr><td>Loss to a weaker team</td><td class="num">−10%</td><td class="num">−15%</td><td class="num">−25%</td></tr></tbody></table></div>
+   <p style="margin-top:12px">Because each team's rating depends on its opponents' ratings, all ratings in the division are worked out together, recalculating until they stop changing, then re-centred so the division average stays at 0%. Forfeits are left out. The figure only compares teams within the same Stage 1 division, and with three games per team one result can move it a long way, so it is a cross-check, not the basis for placement.</p>
+   <p><b>From flags to divisions.</b> Flags are a starting point, not an automatic move. Divisions are set by ranking teams on strength, moving the fewest teams needed, keeping every division at six teams or more, and avoiding a jump of two divisions on three games.</p>
+  </div>
+  <div class="panel gap prose" id="constraints">
+   <h2>Rules applied before any results</h2>
+   <p>Two Playing Conditions rules are applied first and override the results-based method: every division keeps at least six teams (Section 4.6), and a team that includes a Tier 1 or Tier 2 representative player must play in Division 1, or a Tier 3 player in Division 2 or higher (Section 6.5). A team covered by Section 6.5 is not regraded below that division, at the end of Stage 1 or at any Stage 2 review.</p>
+  </div>
+  <div class="panel gap prose" id="rules">
+   <h2>How sure we are, and how close teams are separated</h2>
+   <p class="sub">These rules were set before any placement was made and are applied the same way in every age group.</p>
+   <p><b>Three checks on every move.</b> Each team recommended to move is compared with <b>every</b> other team in its Stage 1 division that is not moving the same way, not just the next team on average margin. A move is a <b>Clear call</b> only if no team is level with it and, against the closest team, all of these hold:</p>
+   <div class="tw"><table><thead><tr><th>Check</th><th>Passes when</th></tr></thead><tbody>
+    <tr><td>1. Separation</td><td>The two teams' average margins are at least 10 points apart. With three games, smaller gaps are within normal game-to-game variation, so the teams are treated as level.</td></tr>
+    <tr><td>2. One game can't flip it</td><td>Removing any single game from the moving team's results still leaves it on the same side of the other team.</td></tr>
+    <tr><td>3. Other measures agree</td><td>The moving team is also ahead (or behind, for a move down) on points per game and on the adjusted-for-opponents figure.</td></tr></tbody></table></div>
+   <p style="margin-top:12px">A team is <b>level</b> with the moving team if they are within 10 points, if removing one game changes their order, or if the head-to-head result went the other way. Any level team is a rival. The move is a <b>Close call</b>, and the moving team must win the tie-break below against <b>each</b> rival. The other team is marked <b>Next in line</b> (or <b>Close to the line</b>) and is the first considered at each Stage 2 review.</p>
+   <p><b>Tie-break, in order.</b> The first step that separates the teams decides:</p>
+   <div class="tw"><table><thead><tr><th>Step</th><th>Separates the teams when</th></tr></thead><tbody>
+    <tr><td>1. Head-to-head</td><td>They played each other: the winner ranks higher.</td></tr>
+    <tr><td>2. Common opponents</td><td>They played the same other teams: the better average margin against those teams ranks higher.</td></tr>
+    <tr><td>3. Adjusted for opponents</td><td>The higher adjusted figure ranks higher.</td></tr>
+    <tr><td>4. More evidence</td><td>The team with more scored games ranks higher.</td></tr></tbody></table></div>
+   <p style="margin-top:12px">These checks are worked out automatically from the results shown on this page, so anyone can verify them.</p>
+  </div>
+  <div class="panel gap">
+   <h2>Where this sits in the season</h2>
+   <div class="steps">
+    <div class="step"><div class="k">Stage 1 · Rounds 1–3</div><div class="t">Grade</div><div class="d">Teams play in their nominated divisions. No moves. Results do not count toward the ladder.</div></div>
+    <div class="step"><div class="k">End of Stage 1</div><div class="t">Preliminary divisions</div><div class="d">Association Operations sets divisions on observed team strength, as published here.</div></div>
+    <div class="step now"><div class="k">Now · Stage 2 · Rounds 4–6</div><div class="t">Validate</div><div class="d">Ladder starts. Reviewed after every round; a clearly misgraded team may be regraded.</div></div>
+    <div class="step"><div class="k">After Round 6</div><div class="t">Final review, then lock</div><div class="d">The last review may regrade a team from Round 7. Divisions are then locked for the rest of the season.</div></div>
+   </div>
+  </div>
+  <div class="panel gap">
+   <h2>The Playing Conditions being applied</h2>
+   <p class="sub">WBA Junior Domestic Playing Conditions, Version 1.9.3, October 2026.</p>
+   <blockquote><cite>Section 4.6 · Stage 1 — Grade</cite>Teams play one regular game per round. Results are used to assess team strength only and do not count toward the ladder. No team moves division during Stage 1. At the conclusion of Stage 1, Association Operations establishes preliminary divisions based on observed team strength.</blockquote>
+   <blockquote><cite>Section 4.6 · Nomination</cite>Clubs nominate the division for each team before the season. Association Operations does not pre-assign divisions and intervenes only where numbers require it — a minimum six (6) team division floor applies — or to resolve uneven pools. Where a club enters two or more teams in one age group, players must be distributed as evenly as practical across those teams by the end of Stage 1.</blockquote>
+   <blockquote><cite>Section 4.6 · Stage 2 — Validate</cite>The official ladder begins. Association Operations reviews grading after each round and may regrade a team that is clearly misgraded, maintaining the six (6) team floor. The grading rule modifications in Section 4.6b continue to apply during Stage 2. Divisions lock at the completion of Round 6.</blockquote>
+   <blockquote><cite>Section 4.6 · Stage 3 — Season</cite>Divisions are locked and no further grading adjustments are made. Every result counts toward the ladder and finals eligibility applies.</blockquote>
+   <blockquote><cite>Section 4.6a · Ladder Reset and Regrading</cite>Stage 1 results do not count toward the ladder. The official ladder commences at Round 4 (Stage 2) and carries through to the end of the season. A team regraded by decision of Association Operations during Stage 2 moves to its new division with zero (0) games played and zero percentage. Results of games played against that team in its previous division are recorded as abandoned. No team may be regraded after the completion of Round 6.</blockquote>
+   <p class="note"><b>Association Operations decision, 12 Nov 2026:</b> for Summer 2026/27, results stand when a team is regraded in Stage 2. No games are recorded as abandoned and teams keep their games and percentage.</p>
+  </div>
+  <div class="panel gap">
+   <h2>Against last winter</h2>
+   <p class="sub">This age group's Stage 1 games beside the Winter 2026 Season Review figures for the same measure.</p>
+   <div class="tw"><table><thead><tr><th>Measure</th><th class="num">Stage 1, this season</th><th class="num">Winter 2026</th></tr></thead><tbody id="bmBody"></tbody></table></div>
+  </div>
+ </section>
+
+ <section class="panel gap" id="comments" hidden>
+  <h2 id="commentsTitle">Club comments</h2>
+  <p class="sub">Comments from clubs about this age group's results and divisions. They appear straight away and stay visible to everyone. Keep them to teams and grading: no player names, no links, and be respectful. Association Operations may remove any comment. Formal appeals go through the WBA complaints process (Section 11), not here.</p>
+  <form id="cForm" class="cform" novalidate>
+   <div class="crow">
+    <label>Your name<input name="name" maxlength="60" required autocomplete="name"></label>
+    <label>Club<select name="club" required><option value="">Select…</option></select></label>
+   </div>
+   <label>Comment<textarea name="comment" maxlength="600" rows="3" required></textarea></label>
+   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+   <div class="cfoot"><span id="cMsg" class="cmsg" role="status"></span><span class="ccount" id="cCount">0 / 600</span><button type="submit" id="cBtn">Post comment</button></div>
+  </form>
+  <div id="cList" class="clist"></div>
+ </section>
+ <footer>Margins are shown to the nearest whole per cent (one decimal where a game sits on a band line, e.g. 19.5% is Close); bands use the exact figure. PlayHQ's automated grading suggestions are not used. Questions about a placement go to Association Operations.</footer>
+</div></main>
+</div></div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+/* Comments: Formspree form ID and its PUBLIC READ-ONLY key (Form → Settings → HTTP API). Never put the master key here. */
+const COMMENTS = { formId: "xoejokrl", readKey: "c4ae6216077d7a4d033a7fc0a26ec8e2e5fa1804" };
+</script>
+<script>
+/* Stage 2 data, generated from the PlayHQ advanced fixture export by s2gen.py */
+const STAGE2 = __STAGE2__;
+</script>
+<script>
+const LOGOS = __LOGOS__;
+document.getElementById('wbaLogo').src = __WBALOGO__;
+</script>
+<script>
+(function(){
+const M=METHOD;
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;};
+const sgn=v=>{const r=Math.round(Math.abs(v)*100);return (r===0?'':v>0?'+':'−')+r+'%';};
+const p0=v=>Math.round(v*100)+'%';
+const band=m=>m==null?'Forfeit':m<M.close?'Close':m<M.clear?'Clear win':m<M.major?'Major blowout':'Rout';
+/* whole per cent, or one decimal where rounding would cross a band line (e.g. 19.5% is Close) */
+const fm=m=>{const r=Math.round(m*100);return band(r/100)===band(m)?String(r):(m*100).toFixed(1);};
+const bcls=b=>'b-'+b.split(' ')[0];
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const divName=d=>'Division '+String(d).replace(/^D/,'');
+const INI={'Bunyip':'BUN','Devils':'DEV','Neerim Wolves':'NW','Chalkies':'CHK','Rebels':'REB','Gladiators':'GLA','Yarragon':'YAR','Warranor':'WAR'};
+const badge=c=>{if(LOGOS[c]){const i=el('img','logo');i.alt=c;i.src=LOGOS[c];return i;}return el('span','ini',INI[c]||String(c||'?').slice(0,3).toUpperCase());};
+const tcell=(name,club)=>{const s=el('span','tcell');s.append(badge(club),name);return s;};
+const STAGE1_ROUNDS=3;
+const wl=t=>t.won+'–'+t.lost+(t.drawn?'–'+t.drawn:'');
+const chipFor=(g,lab)=>{lab=lab||'';
+ if(g.kind==='bye')return el('span','chip b-Bye',lab+'Bye');
+ if(g.kind==='tocome')return el('span','chip b-Bye',lab+'To come');
+ if(g.pending)return el('span','chip b-Bye',lab+'Result pending v '+g.opp);
+ if(g.ff)return el('span','chip b-Forfeit',lab+(g.won?'W':'L')+' forfeit v '+g.opp);
+ if(g.draw)return el('span','chip b-Close',lab+'Draw v '+g.opp);
+ return el('span','chip '+(g.won?bcls(g.band):'b-Loss'),lab+(g.won?'+':'−')+fm(g.margin)+'% v '+g.opp);};
+/* "YYYY-MM-DD HH:MM" in Melbourne time -> "Wed 21 Oct 2026, 5:00 pm AEDT" */
+function fmtUpdated(s){const m=/^(\d{4})-(\d{2})-(\d{2})[ T](\d{1,2}):(\d{2})$/.exec(String(s).trim());if(!m)return s;
+ const [y,mo,d,h,mi]=m.slice(1).map(Number);
+ /* Melbourne daylight time: first Sunday in October 2am to first Sunday in April 3am */
+ const firstSun=(yy,mm)=>{const x=new Date(Date.UTC(yy,mm-1,1));return 1+((7-x.getUTCDay())%7);};
+ const v=((mo*100+d)*100+h);const aS=firstSun(y,4),oS=firstSun(y,10);
+ const dst=v>=((10*100+oS)*100+2)||v<((4*100+aS)*100+3);
+ const wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(Date.UTC(y,mo-1,d)).getUTCDay()];
+ const mon=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][mo-1];
+ return wd+' '+d+' '+mon+' '+y+', '+((h%12)||12)+':'+String(mi).padStart(2,'0')+' '+(h<12?'am':'pm')+' '+(dst?'AEDT':'AEST');}
+const sortDiv=(a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true});
+
+/* ---- the three checks and the tie-break, applied to every recommended move ---- */
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+let CUR_FIXED={};
+function tiebreak(a,b){ /* returns {winner, text}; a and b are teams */
+ const h=a.opp[b.name];
+ if(h&&h.length){const v=mean(h);if(v!==0){const w=v>0?a:b;return {winner:w.name,step:'head-to-head',text:'Head-to-head: '+w.name+' won by '+fm(Math.abs(v))+'%.'};}}
+ const com=Object.keys(a.opp).filter(c=>c!==b.name&&b.opp[c]);
+ if(com.length){const d=mean(com.map(c=>mean(a.opp[c])-mean(b.opp[c])));if(Math.abs(d)>=0.005){const w=d>0?a:b;return {winner:w.name,step:'common opponents',text:'Against common opponents ('+com.join(', ')+'), '+w.name+' were '+Math.round(Math.abs(d)*100)+(Math.round(Math.abs(d)*100)===1?' point':' points')+' better.'};}}
+ if(a.adj!=null&&b.adj!=null&&Math.round(a.adj*100)!==Math.round(b.adj*100)){const w=a.adj>b.adj?a:b,l=w===a?b:a;return {winner:w.name,step:'adjusted for opponents',text:'No head-to-head or common opponents to separate them. Adjusted for opponents: '+w.name+' '+sgn(w.adj)+' v '+l.name+' '+sgn(l.adj)+'.'};}
+ if(a.scored!==b.scored){const w=a.scored>b.scored?a:b;return {winner:w.name,step:'more games',text:w.name+' have more scored games ('+w.scored+').'};}
+ return {winner:null,step:'none',text:'Nothing separates them; Association Operations decides.'};
+}
+function assess(teams){
+ /* Each moving team is compared with EVERY team in its Stage 1 division that is not moving the same way.
+    Any team it is not clearly separated from is a rival, and the mover must win the tie-break against each rival. */
+ const divs=[...new Set(teams.map(t=>t.stage1))];
+ divs.forEach(d=>{if((CUR_FIXED||{})[d])return;const inD=teams.filter(t=>t.stage1===d&&t.avg!=null&&!t.withdrawn);
+  const check=(m,n,dir)=>{const gap=dir*(m.avg-n.avg),fails=[],level=[];
+   if(gap<METHOD.level){fails.push('within '+Math.round(METHOD.level*100)+' points');level.push(1);}
+   if(dir>0?m.looMin<n.avg:m.looMax>n.avg){fails.push('one game changes the order');level.push(1);}
+   const hh=m.opp[n.name];if(hh&&hh.length&&dir*mean(hh)<0){fails.push(dir>0?'lost to them head-to-head':'beat them head-to-head');level.push(1);}
+   if(m.ppg!=null&&n.ppg!=null&&dir*(m.ppg-n.ppg)<=0)fails.push('not ahead on points per game');
+   if(m.adj!=null&&n.adj!=null&&dir*(m.adj-n.adj)<=0)fails.push('not ahead adjusted for opponents');
+   return {other:n.name,gap,fails,dir,rival:level.length>0};};
+  [['Up',1],['Down',-1]].forEach(([mv,dir])=>{
+   const movers=inD.filter(t=>t.move===mv),others=inD.filter(t=>t.move!==mv);
+   movers.forEach(m=>{
+    const all=others.map(n=>check(m,n,dir));
+    const nearest=all.sort((a,b)=>a.gap-b.gap)[0];
+    const rivals=all.filter(x=>x.rival||(x===nearest&&x.fails.length)).map(x=>{const n=teams.find(t=>t.name===x.other);const tb=tiebreak(m,n);
+      /* for a move down the team that "wins" the tie-break is the one that stays */
+      const pinned=(dir<0&&n.floor&&sortDiv(n.floor,n.stage1)>=0)||(n.byRequest&&n.move!==mv);
+      const ok=pinned||(dir>0?tb.winner===m.name:tb.winner===n.name);return {...x,tb,ok,pinned};});
+    if(m.byRequest){m.conf={request:true,dir};return;}
+    m.conf={clear:!rivals.length,nearest,rivals,dir};
+    rivals.filter(r=>!r.pinned).forEach(r=>{const n=teams.find(t=>t.name===r.other);(n.near=n.near||[]).push({other:m.name,gap:r.gap,tb:r.tb,dir,ok:r.ok});});
+   });});});
+}
+
+/* ---- compute everything from DATA ---- */
+function build(ag){
+ const games=ag.games.map((g,i)=>{const m=(g.ff||g.pending)?null:(g.ws!=null&&g.ls!=null?(g.ws-g.ls)/(g.ws+g.ls):g.m);return {...g,i,margin:m,band:g.pending?'Pending':band(m)};});
+ const rounds=STAGE1_ROUNDS;
+ const played=ag.played!=null?ag.played:(games.length?Math.max(...games.map(g=>g.r)):0);
+ const inProgress=ag.status==='in progress';
+ const S1DIVS=[...new Set(ag.teams.map(t=>t.stage1))].sort(sortDiv),TOPDIV=S1DIVS[0],BOTDIV=S1DIVS[S1DIVS.length-1];
+ const teams=ag.teams.map(t=>{
+  const all=games.filter(g=>g.w===t.name||g.l===t.name);const mine=all.filter(g=>!g.pending);
+  const signed=mine.filter(g=>g.margin!=null).map(g=>g.w===t.name?g.margin:-g.margin);
+  const avg=signed.length?signed.reduce((a,b)=>a+b,0)/signed.length:null;
+  const byRound={};for(let r=1;r<=rounds;r++){const g=all.find(x=>x.r===r);byRound[r]=g?{won:g.w===t.name,opp:g.w===t.name?g.l:g.w,margin:g.margin,band:g.band,draw:!!g.draw,pending:!!g.pending,ff:!!g.ff}:{kind:r<=played?'bye':'tocome'};}
+  const move=t.withdrawn?'Withdrawn':!t.proposed||t.proposed===t.stage1?'Stay':(sortDiv(t.proposed,t.stage1)<0?'Up':'Down');
+  return {...t,won:mine.filter(g=>!g.draw&&g.w===t.name).length,lost:mine.filter(g=>!g.draw&&g.l===t.name).length,drawn:mine.filter(g=>g.draw).length,scored:signed.length,avg,byRound,move,
+   signal:inProgress?'After Round 3':(ag.fixedDivs||{})[t.stage1]?'Not regraded':avg==null?'No result':avg>=M.look?(t.stage1===TOPDIV?'Top division':'Look up'):avg<=-M.look?(t.stage1===BOTDIV?'Bottom division':'Look down'):'Holding'};
+ });
+ const scored=games.filter(g=>g.margin!=null);
+ /* Adjusted for opponents: each team's rating = average of (its margin + its opponent's rating),
+    solved repeatedly and centred on zero within each Stage 1 division. */
+ const R={};teams.forEach(t=>R[t.name]=t.avg??0);
+ for(let it=0;it<200;it++){const N={};
+  teams.forEach(t=>{const v=scored.filter(g=>g.w===t.name||g.l===t.name).map(g=>g.w===t.name?g.margin+R[g.l]:-g.margin+R[g.w]);N[t.name]=v.length?v.reduce((a,b)=>a+b,0)/v.length:0;});
+  [...new Set(teams.map(t=>t.stage1))].forEach(d=>{const ts=teams.filter(t=>t.stage1===d&&t.scored);const mu=ts.reduce((a,t)=>a+N[t.name],0)/(ts.length||1);ts.forEach(t=>N[t.name]-=mu);});
+  Object.assign(R,N);}
+ teams.forEach(t=>t.adj=t.scored?R[t.name]:null);
+ /* evidence used by the checks and tie-break */
+ teams.forEach(t=>{const sg=scored.filter(g=>g.w===t.name||g.l===t.name);
+  const ms=sg.map(g=>g.w===t.name?g.margin:-g.margin);
+  t.loo=ms.length>1?ms.map((_,i)=>ms.filter((__,j)=>j!==i).reduce((a,b)=>a+b,0)/(ms.length-1)):ms.slice();
+  t.looMin=t.loo.length?Math.min(...t.loo):null;t.looMax=t.loo.length?Math.max(...t.loo):null;
+  const pts=sg.filter(g=>g.ws!=null).map(g=>g.w===t.name?g.ws-g.ls:g.ls-g.ws);t.ppg=pts.length===sg.length&&pts.length?pts.reduce((a,b)=>a+b,0)/pts.length:null;
+  t.opp={};sg.forEach(g=>{const o=g.w===t.name?g.l:g.w;(t.opp[o]=t.opp[o]||[]).push(g.w===t.name?g.margin:-g.margin);});});
+ const decided=ag.status==='recommended'&&teams.length&&teams.every(t=>t.proposed||t.withdrawn);
+ CUR_FIXED=ag.fixedDivs||{};if(decided)assess(teams);
+ return {games,teams,rounds,played,inProgress,scored,decided,forfeits:games.filter(g=>g.ff).length,
+  close:scored.filter(g=>g.band==='Close').length,rout:scored.filter(g=>g.band==='Rout').length,
+  avgWin:scored.length?scored.reduce((a,g)=>a+g.margin,0)/scored.length:null,
+  active:teams.filter(t=>!t.withdrawn).length,withdrawn:teams.filter(t=>t.withdrawn),
+  moves:teams.filter(t=>t.move==='Up'||t.move==='Down').length,up:teams.filter(t=>t.move==='Up').length,down:teams.filter(t=>t.move==='Down').length};
+}
+
+let AGE=null,TAB='stage2',GF='All';
+function readHash(){let h='';try{h=location.hash;}catch(e){}const [a,t]=h.slice(1).split('/');const ag=DATA.ageGroups.find(x=>slug(x.name)===a);if(ag)AGE=ag.name;if(['season','stage2','s2results','divisions','results','strength','method'].includes(t))TAB=t;}
+function setHash(){try{history.replaceState(null,'','#'+slug(AGE)+'/'+TAB);}catch(e){}}
+
+function render(){
+ const ag=DATA.ageGroups.find(a=>a.name===AGE);const X=build(ag);
+ $('season').textContent=DATA.season;if($('crumbAge'))$('crumbAge').textContent=AGE;$('updated').textContent=fmtUpdated(DATA.updated);$('mupdated').textContent='Updated '+fmtUpdated(DATA.updated);
+ // age buttons
+ const ab=$('ages');ab.innerHTML='';
+ DATA.ageGroups.forEach(a=>{const b=el('button');const d=el('i',a.status==='recommended'?'recommended':(a.status==='in review'||a.status==='in progress')?'review':'');b.append(d,a.name);b.setAttribute('aria-pressed',a.name===AGE);b.title=a.status;b.onclick=()=>{AGE=a.name;GF='All';setHash();render();};ab.appendChild(b);});
+ const aw=ab.parentElement,upd=()=>aw.classList.toggle('end',ab.scrollLeft+ab.clientWidth>=ab.scrollWidth-4);
+ if(!ab.dataset.wired){ab.dataset.wired=1;ab.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);$('ageMore').onclick=()=>ab.scrollBy({left:ab.clientWidth*0.7,behavior:'smooth'});}
+ const act=ab.querySelector('[aria-pressed=true]');if(act){const l=act.offsetLeft-ab.offsetLeft,r=l+act.offsetWidth;if(l<ab.scrollLeft||r>ab.scrollLeft+ab.clientWidth-40)ab.scrollLeft=Math.max(0,l-16);}
+ upd();
+ // notices
+ const nt=$('notices');nt.innerHTML='';const ups=(DATA.updates||[]).slice(0,4);ups.forEach((u,i)=>{const li=el('li',i?'older':null);li.append(el('b',null,u.date),u.text);nt.appendChild(li);});
+ if(ups.length>1){const mb=el('button','nmore',nt.classList.contains('open')?'Show fewer updates':'Show all updates ('+ups.length+')');mb.type='button';mb.onclick=()=>{nt.classList.toggle('open');render();};nt.appendChild(mb);}
+ nt.hidden=!ups.length;
+ // tabs
+ document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===TAB));
+ document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==TAB);
+ // status + lead
+ const sp=$('statusPill');sp.innerHTML='';
+ const st=ag.status==='recommended'?['recommended','Recommended Stage 2 divisions']:ag.status==='in review'?['review','Stage 1 results in · divisions being set']:ag.status==='in progress'?['review','Stage 1 in progress · provisional']:['pending','Not yet published'];
+ const RV=(ag.reviews||[]);if(ag.status==='recommended'&&RV.length)st[1]='Stage 2 divisions · Round '+RV[RV.length-1].round+' review';
+ sp.appendChild(el('span','status '+st[0],st[1]));
+ const lead=$('lead');lead.innerHTML='';
+ const kp=$('kpis');kp.innerHTML='';kp.style.display='';
+ if(['stage2','s2results','season'].includes(TAB)&&STAGE2.ages&&STAGE2.ages[ag.name]){renderStage2(ag,sp,lead,kp);if(TAB==='season')renderSeason(ag,sp,lead,kp);else if(TAB==='s2results'){lead.innerHTML='';lead.append(ag.name+': ',el('b',null,'Stage 2 results'),', Rounds 4–6, game by game.');}renderComments(ag);return;}
+ const pending=ag.status==='pending'||!ag.teams.length;
+ document.querySelectorAll('[data-panel]').forEach(p=>{if(pending&&p.dataset.panel!=='method')p.hidden=true;});
+ if(pending){lead.textContent=ag.name+' Stage 1 results are being reviewed. Results and recommended divisions will be published here.';
+  if(TAB!=='method'){const e=el('div','panel empty');e.append(el('b',null,'Coming soon'),'Check back after the review, or select another age group above.');kp.appendChild(e);kp.style.display='block';}
+  renderBench(ag,X);renderComments(ag);return;}
+ kp.style.display='';
+ const d1=X.teams.filter(t=>t.stage1==='D1').length;
+ if(X.decided&&RV.length){const R=RV[RV.length-1],n=Object.keys(R.moves||{}).length;lead.append(ag.name+': ',el('b',null,String(n)),' team'+(n===1?'':'s')+' change division after the Round '+R.round+' review'+(R.date?' ('+R.date+')':'')+'.');}
+ else if(X.decided){lead.append(ag.name+': ',el('b',null,String(X.moves)),' of '+X.active+' teams are recommended to change division for Stage 2');
+  lead.append(d1<M.floor&&!(ag.fixedDivs||{}).D1?', bringing Division 1 from '+d1+' teams up to the six-team floor.':'.');}
+ else if(X.inProgress)lead.append(ag.name+': Stage 1 is under way, with '+(X.played===1?'Round 1':'Rounds 1–'+X.played)+' of '+STAGE1_ROUNDS+' played. These results are provisional; recommended divisions will be published after Round '+STAGE1_ROUNDS+'.');
+ else lead.append(ag.name+': Stage 1 results for all '+X.teams.length+' teams are in. Recommended divisions will be published once the review is complete.');
+ const k=(n,l,c)=>{const d=el('div','kpi');d.append(el('div','n',n),el('div','l',l),el('div','c',c||''));kp.appendChild(d);};
+ const bm=BENCHMARKS[ag.name];
+ k(String(X.active),'Teams',X.withdrawn.length?X.withdrawn.length+' withdrawn after Stage 1':[...new Set(X.teams.map(t=>t.stage1))].length+' divisions in Stage 1');
+ k(String(X.scored.length),'Scored games',X.forfeits+' forfeit'+(X.forfeits===1?'':'s')+' not counted'+(X.games.some(g=>g.pending)?' · results pending':''));
+ k(X.scored.length?p0(X.close/X.scored.length):'—','Close games',bm?'Winter 2026: '+p0(bm.close):'');
+ k(String(X.rout),'Routs (50%+)',X.scored.length?p0(X.rout/X.scored.length)+' of games · Winter grading: '+p0(BENCHMARKS._gradingRout):'');
+ if(X.decided&&RV.length){const R=RV[RV.length-1],ms=Object.values(R.moves||{});let up=0,dn=0;const cur={};X.teams.forEach(t=>cur[t.name]=t.proposed);RV.slice(0,-1).forEach(r=>Object.entries(r.moves||{}).forEach(([a,m])=>cur[a]=m.to));Object.entries(R.moves||{}).forEach(([a,m])=>sortDiv(m.to,cur[a])<0?up++:dn++);k(String(up+dn),'Teams moving','Round '+R.round+' review · '+up+' up, '+dn+' down');}
+ else if(X.decided)k(String(X.moves),'Teams moving',X.up+' up, '+X.down+' down');
+ else if(X.inProgress)k(X.played+' of '+STAGE1_ROUNDS,'Rounds played','Divisions set after Round '+STAGE1_ROUNDS);
+ else k(String(X.teams.filter(t=>t.signal==='Look up'||t.signal==='Look down').length),'Teams flagged','Past ±25% average margin');
+ renderDivisions(ag,X);renderReview(ag,X);renderResults(ag,X);if(TAB==='strength')renderStrength(ag,X);else renderStrengthTable(ag,X);renderBench(ag,X);renderComments(ag);
+}
+
+function teamRow(t,X){
+ const det=el('details','team'+(t.move==='Up'?' up':t.move==='Down'?' down':''));
+ const s=el('summary');s.appendChild(badge(t.club));const mid=el('div');mid.appendChild(el('div','tn',t.name));
+ const meta=el('div','tm');
+ if(X.decided&&t.move!=='Stay')meta.appendChild(el('span','mv'+(t.move==='Down'?' down':''),(t.move==='Up'?'▲ from ':'▼ from ')+t.stage1));
+ if(X.decided&&t.condition)meta.appendChild(el('span','conf close','Conditional'));
+ if(X.decided&&t.conf)meta.appendChild(el('span','conf '+(t.conf.request?'req':t.conf.clear?'ok':'close'),t.conf.request?'Club request':t.conf.clear?'Clear call':'Close call'));
+ if(X.decided&&t.near&&t.near.some(n=>n.ok))meta.appendChild(el('span','conf close',t.near.find(n=>n.ok).dir>0?'Next in line':'Close to the line'));
+ if(!X.decided&&!X.inProgress&&t.signal!=='Holding'&&t.signal!=='No result')meta.appendChild(el('span','mv'+(t.signal==='Look down'?' down':''),t.signal));
+ meta.appendChild(el('span',null,wl(t)+(t.drawn?' (W–L–D)':'')+' in Stage 1'));mid.appendChild(meta);s.appendChild(mid);
+ s.appendChild(el('div','avg '+(t.avg>0?'pos':t.avg<0?'neg':''),t.avg==null?'—':sgn(t.avg)));det.appendChild(s);
+ det.appendChild(el('p','note',(X.decided&&t.note)||(X.decided?'':X.inProgress?'Stage 1 still in progress. Placement is reviewed after Round '+STAGE1_ROUNDS+'.':'Placement to be confirmed after the review.')));
+ if(X.decided&&t.condition)det.appendChild(el('p','note warnsoft',t.condition));
+ if(X.decided&&t.conf&&t.conf.request)det.appendChild(el('p','note auto','Placed at the club\'s request. Club requests to place a team lower are accepted where the six-team floor and Section 6.5 allow.'));
+ if(X.decided&&t.conf&&!t.conf.request){const c=t.conf;
+  if(c.clear&&c.nearest)det.appendChild(el('p','note auto','Clear call: '+Math.round(c.nearest.gap*100)+' points '+(c.dir>0?'ahead of ':'behind ')+c.nearest.other+', the closest team in '+divName(t.stage1)+', and clearly separated from every team on every check.'));
+  c.rivals.forEach(r=>det.appendChild(el('p','note auto','Close call against '+r.other+' ('+r.fails.join('; ')+'). '+(r.pinned&&(X.teams.find(z=>z.name===r.other)||{}).byRequest?r.other+' stays in '+divName(t.stage1)+' at the club\'s request, so this team moves instead.':r.pinned&&r.tb.winner!==r.other?r.other+' must stay in '+divName(t.stage1)+' under Section 6.5, so this team moves instead.':'Tie-break: '+r.tb.text))));
+  c.rivals.filter(r=>!r.ok).forEach(r=>det.appendChild(el('p','note warn','Check: the tie-break favours '+r.other+' '+(c.dir>0?'moving up':'moving down')+' instead of '+t.name+'. Review this placement.')));}
+ if(X.decided&&t.floor&&t.proposed&&sortDiv(t.proposed,t.floor)>0)det.appendChild(el('p','note warn','Check: Section 6.5 requires this team to play in '+divName(t.floor)+' or higher.'));
+ if(X.decided&&t.floor&&t.move==='Stay'&&t.signal==='Look down')det.appendChild(el('p','note auto','Stays in '+divName(t.stage1)+': Section 6.5 requires this team to play in '+divName(t.floor)+' (representative player division floor), so it cannot be regraded down.'));
+ if(X.decided&&t.near)t.near.filter(n=>n.ok).forEach(n=>det.appendChild(el('p','note auto',(n.dir>0?'Next in line: close to ':'Close to the line: close to ')+n.other+' ('+Math.round(Math.abs(n.gap)*100)+' points apart). Placed by the tie-break: '+n.tb.text+' Reviewed after each Stage 2 round.')));
+ return det;}
+
+function renderDivisions(ag,X,hostEl){
+ const host=hostEl||$('divcols');host.innerHTML='';
+ const key=X.decided?'proposed':'stage1';
+ const act=X.teams.filter(t=>!(X.decided&&t.withdrawn));
+ [...new Set(act.map(t=>t[key]))].sort(sortDiv).forEach(d=>{const tt=act.filter(t=>t[key]===d).sort((a,b)=>(b.avg??-9)-(a.avg??-9));
+  const card=el('div','panel');const h=el('div','div-h');h.appendChild(el('h3',null,divName(d)));
+  const fx=(ag.fixedDivs||{})[d];
+  h.appendChild(X.inProgress||fx?el('span','floor neutral',tt.length+' teams'+(fx?' · not regraded':'')):el('span','floor'+(tt.length<M.floor?' bad':''),tt.length+' teams · '+(tt.length<M.floor?'below floor':'meets floor')));
+  if(fx){card.appendChild(h);card.appendChild(el('p','note auto fixnote',fx));tt.forEach(t=>card.appendChild(teamRow(t,X)));host.appendChild(card);return;}
+  card.appendChild(h);tt.forEach(t=>card.appendChild(teamRow(t,X)));host.appendChild(card);});
+ if(hostEl)return;
+ $('divLegend').hidden=!X.decided;
+ /* alternative structures (e.g. Option B) shown under the main recommendation */
+ const opts=X.decided?(ag.options||[]):[];const oh=$('optAHead'),ob=$('options');ob.innerHTML='';
+ const hasRv=!!(ag.reviews||[]).length;oh.hidden=!opts.length&&!hasRv;if(opts.length)oh.textContent=ag.optionA||'Option A: recommended divisions';else if(hasRv)oh.textContent=ag.stage1Head||'End of Stage 1 placements';
+ opts.forEach(o=>{const sec=el('section','optsec');sec.appendChild(el('h2','opth',o.name));if(o.text)sec.appendChild(el('p','sub',o.text));
+  const changed=new Set(Object.keys(o.proposed||{}).filter(n=>{const b=ag.teams.find(t=>t.name===n);return b&&b.proposed!==o.proposed[n];}));
+  const alt={...ag,options:null,fixedDivs:o.fixedDivs!==undefined?o.fixedDivs:ag.fixedDivs,teams:ag.teams.map(t=>{const n={...t,proposed:(o.proposed||{})[t.name]||t.proposed};
+   if(changed.has(t.name))n.note=(o.notes||{})[t.name]||null;else if(o.notes&&o.notes[t.name])n.note=o.notes[t.name];return n;})};
+  const AX=build(alt);const sizes=[...new Set(AX.teams.filter(t=>!t.withdrawn).map(t=>t.proposed))].sort(sortDiv).map(d=>AX.teams.filter(t=>!t.withdrawn&&t.proposed===d).length).join(' / ');
+  sec.appendChild(el('p','optsizes',AX.moves+' teams change division · '+sizes));
+  const g=el('div','grid3');sec.appendChild(g);renderDivisions(alt,AX,g);ob.appendChild(sec);});
+}
+
+/* Stage 2 reviews (after Rounds 4-6): current divisions, the round's results and the ladder effect */
+function renderReview(ag,X){
+ const host=$('review');host.innerHTML='';const rv=ag.reviews||[];if(!rv.length||!X.decided)return;
+ const cur={};X.teams.filter(t=>!t.withdrawn).forEach(t=>cur[t.name]=t.proposed);
+ rv.forEach(r=>Object.entries(r.moves||{}).forEach(([n,m])=>{m.from=m.from||cur[n];cur[n]=m.to;}));
+ const R=rv[rv.length-1],mv=R.moves||{};
+ const gm=(R.games||[]).map(g=>{const m=g.ff?null:(g.ws-g.ls)/(g.ws+g.ls);return {...g,margin:m,band:g.ff?'Forfeit':band(m)};});
+ const res=n=>{const g=gm.find(x=>x.w===n||x.l===n);if(!g)return null;const won=g.w===n;return {g,won,signed:g.margin==null?null:(won?g.margin:-g.margin),opp:won?g.l:g.w};};
+ const sec=el('section','revsec');
+ sec.appendChild(el('h2','opth','Current divisions after the Round '+R.round+' review ('+R.date+')'));
+ if(R.text)sec.appendChild(el('p','sub',R.text));
+ const grid=el('div','grid3');
+ [...new Set(Object.values(cur))].sort(sortDiv).forEach(d=>{
+  const names=Object.keys(cur).filter(n=>cur[n]===d);
+  const sk=n=>{const r=res(n);return r&&r.signed!=null?r.signed:-9;};names.sort((a,b)=>sk(b)-sk(a));
+  const card=el('div','panel');const h=el('div','div-h');h.appendChild(el('h3',null,divName(d)));
+  h.appendChild(el('span','floor'+(names.length<M.floor?' bad':''),names.length+' teams · '+(names.length<M.floor?'below floor':'meets floor')));card.appendChild(h);
+  names.forEach(n=>{const t=X.teams.find(z=>z.name===n),m=mv[n],up=m&&sortDiv(m.to,m.from)<0;
+   const det=el('details','team'+(m?(up?' up':' down'):''));const s=el('summary');s.appendChild(badge(t.club));
+   const mid=el('div');mid.appendChild(el('div','tn',n));const meta=el('div','tm');
+   if(m){meta.appendChild(el('span','mv'+(up?'':' down'),(up?'▲ from ':'▼ from ')+m.from));if(m.call)meta.appendChild(el('span','conf '+(m.call==='Clear'?'ok':'close'),m.call+' call'));}
+   if(R.next&&R.next[n])meta.appendChild(el('span','conf close',R.next[n]));
+   const r=res(n);meta.appendChild(el('span',null,r?'Round '+R.round+': '+(r.g.draw?'drew':r.won?'won':'lost')+' v '+r.opp:'Round '+R.round+': bye'));
+   mid.appendChild(meta);s.appendChild(mid);
+   s.appendChild(el('div','avg '+(r&&r.signed>0?'pos':r&&r.signed<0?'neg':''),r&&r.signed!=null?sgn(r.signed):'—'));det.appendChild(s);
+   det.appendChild(el('p','note',(m&&m.basis)||(R.notes&&R.notes[n])||'No change at this review.'));
+   if(m)det.appendChild(el('p','note auto','Moves to '+divName(m.to)+' from Round '+(R.round+1)+'. Its results so far stand on the ladder.'));
+   card.appendChild(det);});
+  grid.appendChild(card);});
+ sec.appendChild(grid);
+ sec.appendChild(el('h3','revh3','Round '+R.round+' results'));
+ const gl=el('div','revgames');gm.slice().sort((a,b)=>sortDiv(a.div,b.div)).forEach(g=>{const row=el('div','revg');row.appendChild(el('span','dv',g.div));
+  row.appendChild(el('span',null,g.w+' '+(g.ff?'(forfeit)':g.ws+'–'+g.ls)+' '+g.l));
+  if(g.margin!=null)row.appendChild(el('span','chip '+bcls(g.band),fm(g.margin)+'% · '+g.band));
+  gl.appendChild(row);});
+ sec.appendChild(gl);
+ if(R.ladder)sec.appendChild(el('p','note auto',R.ladder));
+ host.appendChild(sec);}
+
+/* ---------- Stage 2 board (Rounds 4-6) ---------- */
+
+const W26=__W26__;
+const SEASON_FROM=7;
+function seasonStats(games){const sc=games.filter(g=>!g.ff&&(g.ws+g.ls)>0);const b={Close:0,'Clear win':0,'Major blowout':0,Rout:0};let ms=0;
+ sc.forEach(g=>{const m=g.draw?0:(g.ws-g.ls)/(g.ws+g.ls);b[band(m)]++;ms+=m;});return {n:sc.length,ff:games.filter(g=>g.ff).length,b,avg:sc.length?ms/sc.length:null};}
+const wPct=(W,k)=>W&&W.games?(W.bands[k]||0)/W.games:null;
+const pc=v=>v==null?'–':Math.round(v*100)+'%';
+function splitBar(b,n){const s=el('div','split');[['Close','var(--b-close)'],['Clear win','var(--b-clear)'],['Major blowout','var(--b-major)'],['Rout','var(--b-rout)']].forEach(([k,c])=>{const v=n?(b[k]||0)/n:0;if(v<=0)return;const i=el('i');i.style.width=(v*100)+'%';i.style.background=c;i.title=k+' '+Math.round(v*100)+'%';s.appendChild(i);});return s;}
+function renderSeason(ag,sp,lead,kp){
+ const S=STAGE2.ages[ag.name];const W=W26[ag.name]||null;
+ const games=S.games.filter(g=>g.r>=SEASON_FROM).map(g=>({...g,margin:g.ff?null:g.draw?0:(g.ws-g.ls)/(g.ws+g.ls)}));games.forEach(g=>g.band=g.ff?'Forfeit':band(g.margin));
+ const st=seasonStats(games);const rounds=[...new Set(games.map(g=>g.r))].sort((a,b)=>a-b);
+ const wb=k=>W?(W.bands[k==='Clear win'?'Clear':k==='Major blowout'?'Major':k]||0)/W.games:null;
+ lead.innerHTML='';kp.innerHTML='';
+ if(!st.n){lead.append(ag.name+': ',el('b',null,'the regular season starts at Round '+SEASON_FROM+'.'),' Results will be tracked here as they come in, against Winter 2026.');}
+ else{lead.append(ag.name+': ',el('b',null,st.n+' regular-season game'+(st.n===1?'':'s')),' so far. '+pc(st.b.Close/st.n)+' close and '+pc(st.b.Rout/st.n)+' routs'+(W?', against '+pc(wb('Close'))+' and '+pc(wb('Rout'))+' in Winter 2026.':'.'));}
+ const K=(n,l,c)=>{const d=el('div','kpi');d.append(el('div','n',n),el('div','l',l),el('div','c',c));kp.appendChild(d);};
+ K(String(st.n),'Games played',rounds.length?(rounds.length===1?'Round '+rounds[0]:'Rounds '+rounds[0]+'–'+rounds[rounds.length-1]):'From Round '+SEASON_FROM);
+ K(st.n?pc(st.b.Close/st.n):'–','Close games (under 20%)',W?'Winter 2026: '+pc(wb('Close')):'');
+ K(st.n?pc(st.b.Rout/st.n):'–','Routs (50%+)',W?'Winter 2026: '+pc(wb('Rout')):'');
+ K(st.avg!=null?pc(st.avg):'–','Average winning margin',W?'Winter 2026: '+pc(W.avg):'');
+ K(st.n+st.ff?(st.ff/(st.n+st.ff)*100).toFixed(1):'–','Forfeits per 100 games',W&&W.ffPer100!=null?'Winter 2026: '+W.ffPer100.toFixed(1):'');
+ const host=$('seasonBody');host.innerHTML='';
+ // bands
+ const pb=el('div','panel');pb.appendChild(el('h2',null,'Margin bands'));
+ pb.appendChild(el('p','sub','Every regular-season game, grouped by the winning margin as a share of the points scored, against the same age group in Winter 2026 (Rounds 4–12). Forfeits are left out.'));
+ const row=(lab,b,n,note)=>{const r=el('div','bandrow');r.append(el('span','bl',lab),splitBar(b,n),el('span','bn',note));pb.appendChild(r);};
+ row('Summer 2026/27',st.b,st.n,st.n?st.n+' games':'no games yet');
+ if(W){const wbb={'Close':W.bands.Close||0,'Clear win':W.bands.Clear||0,'Major blowout':W.bands.Major||0,'Rout':W.bands.Rout||0};row('Winter 2026',wbb,W.games,W.games+' games');}
+ const lg=el('div','legend');[['Close','under 20%'],['Clear','20–33%'],['Major','33–50%'],['Rout','50%+']].forEach(([k,d])=>{const s=el('span');const i=el('i','b-'+k);s.append(i,(k==='Clear'?'Clear win':k==='Major'?'Major blowout':k)+' '+d);lg.appendChild(s);});pb.appendChild(lg);
+ host.appendChild(pb);
+ // round by round
+ const pr=el('div','panel gap');pr.appendChild(el('h2',null,'Round by round'));
+ pr.appendChild(el('p','sub','Close games and routs in each round. The marker on each bar is the Winter 2026 rout rate for this age group'+(W?' ('+pc(wb('Rout'))+')':'')+'.'));
+ if(!rounds.length)pr.appendChild(el('p','empty','No regular-season rounds played yet.'));
+ else{const tb=el('table');tb.innerHTML='<thead><tr><th>Round</th><th class="num">Games</th><th class="num">Close</th><th class="num">Routs</th><th>Rout rate</th></tr></thead>';const bd=el('tbody');
+  rounds.forEach(rn=>{const s=seasonStats(games.filter(g=>g.r===rn));const tr=el('tr');tr.append(el('td','t','Round '+rn),el('td','num',String(s.n)),el('td','num',String(s.b.Close)),el('td','num',String(s.b.Rout)));
+   const td=el('td');const tk=el('div','rtrack');const fill=el('i');fill.style.width=(s.n?s.b.Rout/s.n*100:0)+'%';tk.appendChild(fill);if(W){const mk=el('b');mk.style.left=(wb('Rout')*100)+'%';tk.appendChild(mk);}const lab=el('span','rtl',s.n?pc(s.b.Rout/s.n):'–');td.append(tk,lab);tr.appendChild(td);bd.appendChild(tr);});
+  tb.appendChild(bd);const tw=el('div','tw');tw.appendChild(tb);pr.appendChild(tw);}
+ host.appendChild(pr);
+ // by division
+ const divs=Object.keys(S.divisions).sort(sortDiv);
+ const pd=el('div','panel gap');pd.appendChild(el('h2',null,'By division'));
+ pd.appendChild(el('p','sub','Each division against the same division in Winter 2026. A division is marked to watch once a third or more of its games are routs, from at least four games.'));
+ const tb=el('table');tb.innerHTML='<thead><tr><th>Division</th><th class="num">Teams</th><th class="num">Games</th><th class="num">Close</th><th class="num">Routs</th><th class="num">Avg margin</th><th class="num">Winter 2026 close / routs</th><th></th></tr></thead>';const bd=el('tbody');
+ divs.forEach(d=>{const s=seasonStats(games.filter(g=>g.div===d));const wd=W&&W.divs[d];const tr=el('tr');
+  tr.append(el('td','t',divName(d)),el('td','num',String(S.divisions[d].length)),el('td','num',String(s.n)),el('td','num',s.n?pc(s.b.Close/s.n):'–'),el('td','num',s.n?pc(s.b.Rout/s.n):'–'),el('td','num',s.avg!=null?pc(s.avg):'–'),
+   el('td','num',wd?pc((wd.bands.Close||0)/wd.games)+' / '+pc((wd.bands.Rout||0)/wd.games):'–'));
+  const fl=el('td');if(s.n>=4&&s.b.Rout/s.n>=1/3)fl.appendChild(el('span','chip b-Major','Watch'));tr.appendChild(fl);bd.appendChild(tr);});
+ tb.appendChild(bd);const tw=el('div','tw');tw.appendChild(tb);pd.appendChild(tw);host.appendChild(pd);
+ // ladders (Section 4.6a: results from Round 4 count)
+ const pl=el('div','panel gap');pl.appendChild(el('h2',null,'Ladders'));
+ pl.appendChild(el('p','sub','Unofficial ladders worked out from the PlayHQ results. Every result from Round 4 counts (Section 4.6a), including games a team played before changing division. 3 points for a win, 2 for a draw, 1 for a loss and 0 for a forfeit loss; ranked on points per game, then percentage. PlayHQ is the official ladder.'));
+ const g4=S.games.filter(g=>g.r>=4);
+ const grid=el('div','grid3');
+ divs.forEach(d=>{const rows=S.divisions[d].map(n=>{const r={n,p:0,w:0,l:0,dr:0,f:0,a:0,pts:0};g4.forEach(g=>{if(g.w!==n&&g.l!==n)return;r.p++;const me=g.w===n;
+   if(g.ff){if(me){r.w++;r.pts+=3;r.f+=20;}else{r.l++;r.a+=20;}return;}
+   const pf=me?g.ws:g.ls,pa=me?g.ls:g.ws;r.f+=pf;r.a+=pa;if(g.draw||pf===pa){r.dr++;r.pts+=2;}else if(pf>pa){r.w++;r.pts+=3;}else{r.l++;r.pts+=1;}});
+   r.avg=r.p?r.pts/r.p:0;r.pct=r.a?r.f/r.a*100:0;return r;}).sort((x,y)=>y.avg-x.avg||y.pct-x.pct);
+  const c=el('div','panel lad');const h=el('div','div-h');h.append(el('h3',null,divName(d)),el('span','floor neutral',rows.length+' teams'));c.appendChild(h);
+  const t2=el('table');t2.innerHTML='<thead><tr><th></th><th>Team</th><th class="num">P</th><th class="num">W–L</th><th class="num">%</th><th class="num">Pts/g</th></tr></thead>';const b2=el('tbody');
+  rows.forEach((r,i)=>{const tr=el('tr');if(i===3)tr.className='cut';const tn=el('td');const cl=ag.teams.find(x=>x.name===r.n);tn.appendChild(tcell(r.n,cl?cl.club:Object.keys(INI).find(k=>r.n.startsWith(k))||r.n.split(' ')[0]));
+   tr.append(el('td','num',String(i+1)),tn,el('td','num',String(r.p)),el('td','num',r.w+'–'+r.l+(r.dr?'–'+r.dr:'')),el('td','num',r.a?Math.round(r.pct)+'':'–'),el('td','num',r.p?r.avg.toFixed(2):'–'));b2.appendChild(tr);});
+  t2.appendChild(b2);c.appendChild(t2);grid.appendChild(c);});
+ pl.appendChild(grid);host.appendChild(pl);
+ // results by round
+ rounds.slice().reverse().forEach(rn=>{const pn=el('div','panel gap');pn.appendChild(el('h2',null,'Round '+rn+' results'));if(S.dates&&S.dates[rn])pn.appendChild(el('p','sub',S.dates[rn]));
+  const gl=el('div','revgames');games.filter(g=>g.r===rn).sort((a,b)=>sortDiv(a.div,b.div)).forEach(g=>{const row=el('div','revg');row.appendChild(el('span','dv',g.div));
+   row.appendChild(el('span',null,g.w+(g.ff?' (forfeit) ':' '+g.ws+'–'+g.ls+' ')+g.l+(g.draw?' (draw)':'')));
+   if(g.margin!=null&&!g.draw)row.appendChild(el('span','chip '+bcls(g.band),fm(g.margin)+'% · '+g.band));gl.appendChild(row);});
+  pn.appendChild(gl);host.appendChild(pn);});
+ // all age groups
+ const ah=$('seasonAll');ah.innerHTML='';const pa=el('div','panel gap');pa.appendChild(el('h2',null,'All age groups'));
+ pa.appendChild(el('p','sub','Regular-season competitiveness across the competition so far, against Winter 2026 (Rounds 4–12; Winter excludes U10 Girls, which does not run this summer).'));
+ const tA=el('table');tA.innerHTML='<thead><tr><th>Age group</th><th class="num">Games</th><th class="num">Close</th><th class="num">Routs</th><th class="num">Avg margin</th><th class="num">Winter 2026 close / routs</th><th>Bands</th></tr></thead>';const bA=el('tbody');
+ const allG=[];DATA.ageGroups.forEach(a=>{const SS=STAGE2.ages[a.name];if(!SS)return;const gg=SS.games.filter(g=>g.r>=SEASON_FROM);allG.push(...gg);const s=seasonStats(gg);const w=W26[a.name];const tr=el('tr');if(a.name===ag.name)tr.className='me';
+  const bt=el('td');bt.appendChild(splitBar(s.b,s.n));
+  tr.append(el('td','t',a.name),el('td','num',String(s.n)),el('td','num',s.n?pc(s.b.Close/s.n):'–'),el('td','num',s.n?pc(s.b.Rout/s.n):'–'),el('td','num',s.avg!=null?pc(s.avg):'–'),el('td','num',w?pc((w.bands.Close||0)/w.games)+' / '+pc((w.bands.Rout||0)/w.games):'–'),bt);bA.appendChild(tr);});
+ const sT=seasonStats(allG),wT=W26.All;const tr=el('tr','tot');const bt=el('td');bt.appendChild(splitBar(sT.b,sT.n));
+ tr.append(el('td','t','All'),el('td','num',String(sT.n)),el('td','num',sT.n?pc(sT.b.Close/sT.n):'–'),el('td','num',sT.n?pc(sT.b.Rout/sT.n):'–'),el('td','num',sT.avg!=null?pc(sT.avg):'–'),el('td','num',pc((wT.bands.Close||0)/wT.games)+' / '+pc((wT.bands.Rout||0)/wT.games)),bt);bA.appendChild(tr);
+ tA.appendChild(bA);const twA=el('div','tw');twA.appendChild(tA);pa.appendChild(twA);ah.appendChild(pa);
+ sp.innerHTML='';sp.appendChild(el('span','status','Regular season'));
+}
+function renderStage2(ag,sp,lead,kp){
+ const S0=STAGE2.ages[ag.name];const S={...S0,games:S0.games.filter(g=>g.r<=6),played:(S0.played||[]).filter(r=>r<=6)};const RV=ag.reviews||[];
+ const clubOf=n=>{const t=ag.teams.find(x=>x.name===n);if(t)return t.club;const k=Object.keys(INI).find(c=>n.startsWith(c));return k||n.split(' ')[0];};
+ const s1Of=n=>{const t=ag.teams.find(x=>x.name===n);return t?t.stage1:null;};
+ const floorOf=n=>{const t=ag.teams.find(x=>x.name===n);return t?t.floor:null;};
+ const cur={};Object.entries(S.divisions).forEach(([d,ns])=>ns.forEach(n=>cur[n]=d));
+ if(S.next)RV.forEach(r=>{if(r.round+1>=S.next.r)Object.entries(r.moves||{}).forEach(([n,m])=>{if(n in cur&&cur[n]!==m.to){S.divisions[cur[n]]=S.divisions[cur[n]].filter(x=>x!==n);(S.divisions[m.to]=S.divisions[m.to]||[]).push(n);cur[n]=m.to;}});});
+ const divs=Object.keys(S.divisions).sort(sortDiv),top=divs[0],bottom=divs[divs.length-1];
+ const games=S.games.map(g=>({...g,margin:g.ff?null:(g.ws-g.ls)/(g.ws+g.ls),band:g.ff?'Forfeit':band((g.ws-g.ls)/(g.ws+g.ls))}));
+ const counted=games;
+ const S1G=(ag.games||[]).filter(g=>g.r<=3&&!g.pending);
+ const reviewedTo={};RV.forEach(r=>Object.entries(r.moves||{}).forEach(([n,m])=>reviewedTo[n]={round:r.round,to:m.to}));
+ const T={};Object.keys(cur).forEach(n=>{const mine=games.filter(g=>(g.w===n||g.l===n));const cg=mine;
+  const r={name:n,club:clubOf(n),div:cur[n],p:cg.length,w:cg.filter(g=>!g.draw&&g.w===n).length,d:cg.filter(g=>g.draw).length,pf:0,pa:0,ms:[],games:mine};
+  r.l=r.p-r.w-r.d;cg.forEach(g=>{if(g.ff)return;const me=g.w===n;r.pf+=me?g.ws:g.ls;r.pa+=me?g.ls:g.ws;r.ms.push(g.draw?0:me?g.margin:-g.margin);});
+  r.avg=r.ms.length?r.ms.reduce((a,b)=>a+b,0)/r.ms.length:null;
+  // updated method (senior dashboard, 10 Nov): evidence = games against teams in the team's CURRENT division; a team regraded in Stage 2 counts only from the round it moved
+  const eff=reviewedTo[n]?reviewedTo[n].round+1:0,same=g=>{const o=g.w===n?g.l:g.w;return cur[o]===r.div&&g.r>=eff;};
+  const sg=g=>g.ff?null:g.draw?0:(g.w===n?1:-1)*(g.ws-g.ls)/(g.ws+g.ls);
+  const allG=S1G.filter(g=>(g.w===n||g.l===n)&&same(g)).concat(games.filter(g=>(g.w===n||g.l===n)&&same(g)));
+  const s2G=games.filter(g=>(g.w===n||g.l===n)&&same(g)&&g.div===r.div);
+  const av=a=>{const v=a.map(sg).filter(x=>x!=null);return v.length?{n:v.length,avg:v.reduce((x,y)=>x+y,0)/v.length}:{n:0,avg:null};};
+  const A=av(allG),B=av(s2G);r.allN=A.n;r.allAvg=A.avg;r.s2N=B.n;r.s2Avg=B.avg;
+  const s2w=s2G.filter(g=>!g.draw&&g.w===n).length,s2l=s2G.filter(g=>!g.draw&&g.l===n).length;
+  const fl=[];
+  if(A.n>=2&&A.avg>=M.look)fl.push(['up','Look up']);else if(A.n>=2&&A.avg<=-M.look)fl.push(['down','Look down']);
+  if(B.n>=3&&B.avg>=M.look)fl.push(['up','Form up']);else if(B.n>=3&&B.avg<=-M.look)fl.push(['down','Form down']);
+  if(s2G.length>=3&&s2w===s2G.length&&((A.avg>M.watch)||(B.avg>M.watch)))fl.push(['up','Watch up']);
+  else if(s2G.length>=3&&s2l===s2G.length&&((A.avg<-M.watch)||(B.avg<-M.watch)))fl.push(['down','Watch down']);
+  r.flags=fl;r.dir=fl.length?fl[0][0]:null;
+  r.edge=r.dir==='up'&&r.div===top?'Top division':r.dir==='down'&&r.div===bottom?'Bottom division':null;
+  r.locked=!!(r.dir==='down'&&floorOf(n)&&sortDiv(r.div,floorOf(n))<=0);
+  if((ag.fixedDivs||{})[r.div]||S.played.includes(7)||(ag.stage2Options||[]).some(o=>o.decided)){r.flags=[];r.dir=null;r.edge=null;}
+  T[n]=r;});
+ const played=S.played||[],last=played[played.length-1];
+ // status, lead, kpis
+ sp.innerHTML='';const RSX=(ag.stage2Options||[]).some(o=>o.decided);const LOCK=played.includes(7)||(RSX&&played.includes(6));const FINAL=!LOCK&&played.includes(6);sp.appendChild(el('span','status recommended',LOCK&&RSX?'Two divisions from Round 7':LOCK?'Divisions locked':FINAL?'Final review after Round 6':played.length?'Stage 2 · Round '+last+' of 6 played':'Stage 2 · Round 4 under way'));
+ const nx=S.next;
+ const nd=nx&&nx.games.length?[...new Set(nx.games.map(g=>g.date).filter(Boolean))].join(' and '):(nx&&nx.date)||'';
+ const RS0=(ag.stage2Options||[]).find(o=>o.decided);
+ if(LOCK&&RS0)lead.append(ag.name+': ',el('b',null,'two divisions from Round '+RS0.fromRound+'.'),' Stage 2 is complete; the competition has been restructured for the rest of the season (decided '+RS0.decided+').');
+ else if(LOCK)lead.append(ag.name+': ',el('b',null,'Stage 2 complete.'),' Divisions are locked for the rest of the season.');
+ else if(FINAL&&(ag.stage2Options||[]).some(o=>o.adopted))lead.append(ag.name+': ',el('b',null,'Stage 2 complete.'),' Divisions from Round 7 for the rest of the season are set out below.');
+ else if(FINAL)lead.append(ag.name+': ',el('b',null,'Stage 2 complete (Rounds 4–6).'),' The final review follows Round 6; any change takes effect from Round 7, and divisions then lock for the rest of the season.');
+ else if(played.length)lead.append(ag.name+': ',el('b',null,(played.length===1?'Round '+last:'Rounds 4–'+last)+' played'),' ('+(S.dates[last]||'')+').',nx?' Next: Round '+nx.r+(nd?', '+nd:'')+'.':'');
+ else lead.append(ag.name+': ',el('b',null,'Round '+(nx?nx.r:4)+' under way'),nd?' (results due '+nd+').':'.');
+ const k=(n,l,c)=>{const d=el('div','kpi');d.append(el('div','n',n),el('div','l',l),el('div','c',c||''));kp.appendChild(d);};
+ const sc=counted.filter(g=>g.margin!=null),bm=BENCHMARKS[ag.name];
+ k(String(Object.keys(cur).length),'Teams',divs.length+' divisions · '+divs.map(d=>S.divisions[d].length).join(' / '));
+ k(String(sc.length),'Stage 2 games',sc.length?'counted for the standings':'none yet');
+ k(sc.length?p0(sc.filter(g=>g.band==='Close').length/sc.length):'—','Close games',bm?'Winter 2026: '+p0(bm.close):'');
+ k(String(sc.filter(g=>g.band==='Rout').length),'Routs (50%+)',sc.length?p0(sc.filter(g=>g.band==='Rout').length/sc.length)+' of games':'');
+ renderS2Options(ag,S);const RS=(ag.stage2Options||[]).find(o=>o.decided);
+ const nf=Object.values(T).filter(r=>r.flags.length&&!r.edge&&!r.locked).length;
+ if(LOCK&&RS)k(Object.values(RS.divisions).map(x=>x.length).join(' / '),'From Round '+RS.fromRound,Object.keys(RS.divisions).length+' divisions, ladders from Round 4');else if(LOCK)k('Locked','Divisions','No regrading after Round 6');else k(String(nf),'Teams flagged','For the next review');
+ // divisions
+ const host=$('s2cols');host.innerHTML='';
+ divs.forEach(d=>{const s1c={};S.divisions[d].forEach(n=>{const s=s1Of(n);if(s&&s!==d)s1c[s]=(s1c[s]||0)+1;});const half=S.divisions[d].length/2;
+  const rows=S.divisions[d].map(n=>T[n]).sort((a,b)=>(b.w+b.d/2)-(a.w+a.d/2)||((b.avg??-9)-(a.avg??-9))||a.name.localeCompare(b.name));
+  const card=el('div','panel');const h=el('div','div-h');h.appendChild(el('h3',null,divName(d)));
+  h.appendChild(el('span','floor neutral',rows.length+' teams · '+(S.nights[d]||'')));card.appendChild(h);
+  rows.forEach((r,i)=>{const det=el('details','team'+(r.dir&&!r.edge&&!r.locked?' '+r.dir:''));const s=el('summary');
+   s.appendChild(badge(r.club));const mid=el('div');mid.appendChild(el('div','tn',r.name));const meta=el('div','tm');
+   r.flags.forEach(f=>meta.appendChild(el('span',(r.edge||r.locked)?'conf':'mv'+(f[0]==='down'?' down':''),f[1])));
+   if(r.edge)meta.appendChild(el('span','conf',r.edge));
+   const rv=reviewedTo[r.name];if(rv)meta.appendChild(el('span','conf close','Moved at Round '+rv.round+' review'));
+   else{const s1=s1Of(r.name);if(s1&&s1!==r.div&&!(s1c[s1]>half))meta.appendChild(el('span','conf',(sortDiv(r.div,s1)<0?'▲ ':'▼ ')+'from '+s1+' after Stage 1'));}
+   meta.appendChild(el('span',null,r.p?(r.w+'–'+r.l+(r.d?'–'+r.d:'')+(r.d?' (W–L–D)':'')+(r.pf+r.pa?' · '+r.pf+'–'+r.pa:' · forfeit')):r.games.length?'0 games counted (division change)':'No Stage 2 games yet'));
+   mid.appendChild(meta);s.appendChild(mid);
+   s.appendChild(el('div','avg '+(r.avg>0?'pos':r.avg<0?'neg':''),r.avg==null?'—':sgn(r.avg)));det.appendChild(s);
+   const gl=el('div','s2games');
+   r.games.slice().sort((a,b)=>a.r-b.r).forEach(g=>{const me=g.w===r.name,opp=me?g.l:g.w;const row=el('div','revg');row.appendChild(el('span','dv','R'+g.r));
+    row.appendChild(el('span',null,(g.draw?'Drew ':me?'Won ':'Lost ')+(g.ff?'by forfeit':(me?g.ws+'–'+g.ls:g.ls+'–'+g.ws))+' v '+opp));
+    if(g.margin!=null&&!g.draw)row.appendChild(el('span','chip '+(me?bcls(g.band):'b-Loss'),(me?'+':'−')+fm(g.margin)+'%'));
+    if(g.div!==r.div)row.appendChild(el('span','chip b-Loss','Played in '+g.div));gl.appendChild(row);});
+   if(!r.games.length)gl.appendChild(el('p','note','No Stage 2 games yet.'));
+   det.appendChild(gl);
+   if(rv)det.appendChild(el('p','note auto','Moved to '+divName(rv.to)+' at the Round '+rv.round+' review. Its results so far stand on the ladder.'));
+   det.appendChild(el('p','note auto','Against teams now in '+divName(r.div)+': '+(r.allN?sgn(r.allAvg)+' over '+r.allN+' game'+(r.allN===1?'':'s')+' (Stage 1 and 2)':'no games yet')+(r.s2N?'; Stage 2 only '+sgn(r.s2Avg)+' over '+r.s2N:'')+'.'));
+   if(r.locked)det.appendChild(el('p','note auto','Section 6.5 requires this team to play in '+divName(floorOf(r.name))+', so it is not regraded down.'));
+   else if(r.edge)det.appendChild(el('p','note auto','Flagged, but this is the '+(r.edge==='Top division'?'top':'bottom')+' division, so no move is possible.'));
+   else if(r.flags.length)det.appendChild(el('p','note auto','Flagged for the next review. A flag is a prompt, not a decision: a team is regraded only if it is clearly misgraded (Section 4.6), every move is checked against the tie-break, and the six-team floor still applies.'));
+   card.appendChild(det);});
+  host.appendChild(card);});
+  // results by round
+ const rh=$('s2rounds');rh.innerHTML='';
+ played.slice().reverse().concat(S.games.some(g=>!played.includes(g.r))?[...new Set(S.games.filter(g=>!played.includes(g.r)).map(g=>g.r))]:[]).forEach(rn=>{
+  const pn=el('div','panel gap');pn.appendChild(el('h2',null,'Round '+rn+' results'+(played.includes(rn)?'':' (so far)')));
+  if(S.dates[rn])pn.appendChild(el('p','sub',S.dates[rn]+(Object.values(S.nights).every(x=>x===Object.values(S.nights)[0])?'':' (nights vary by division)')));
+  const gl=el('div','revgames');games.filter(g=>g.r===rn).sort((a,b)=>sortDiv(a.div,b.div)).forEach(g=>{const row=el('div','revg');row.appendChild(el('span','dv',g.div));
+   row.appendChild(el('span',null,g.w+(g.ff?' (forfeit) ':' '+g.ws+'–'+g.ls+' ')+g.l+(g.draw?' (draw)':'')));
+   if(g.margin!=null&&!g.draw)row.appendChild(el('span','chip '+bcls(g.band),fm(g.margin)+'% · '+g.band));
+   gl.appendChild(row);});
+  pn.appendChild(gl);rh.appendChild(pn);});
+ // next round
+ const nh=$('s2next');nh.innerHTML='';
+ if(nx&&nx.games.length){const pn=el('div','panel gap');pn.appendChild(el('h2',null,'Round '+nx.r+' draw'+(nx.date?' · '+nx.date:'')));
+  pn.appendChild(el('p','sub','As drawn in PlayHQ. PlayHQ is the official fixture; check it for any late changes.'));
+  divs.forEach(d=>{const gs=nx.games.filter(g=>g.div===d),by=nx.byes.filter(b=>b.div===d);if(!gs.length&&!by.length)return;
+   pn.appendChild(el('h3','revh3',divName(d)));const box=el('div','nextg');
+   gs.forEach(g=>{const row=el('div','row');row.appendChild(el('span','when',(g.date&&g.date!==nx.date?g.date+' ':'')+(g.time||'')));row.appendChild(el('span',null,g.h+' v '+g.a));row.appendChild(el('span','where',[g.venue,g.court].filter(Boolean).join(', ')));box.appendChild(row);});
+   by.forEach(b=>{const row=el('div','row');row.appendChild(el('span','when','Bye'));row.appendChild(el('span',null,b.team));box.appendChild(row);});
+   pn.appendChild(box);});
+  nh.appendChild(pn);}
+ // review log
+ const rl=$('s2reviews');rl.innerHTML='';
+ const pn=el('div','panel gap');pn.appendChild(el('h2',null,'Stage 2 review decisions'));
+ if(!RV.length)pn.appendChild(el('p','sub','No team has been regraded in Stage 2 yet. Reviews follow each round up to Round 6.'));
+ const fromOf={};ag.teams.forEach(x=>fromOf[x.name]=x.proposed||x.stage1);
+ RV.forEach(r=>{pn.appendChild(el('h3','revh3','Round '+r.round+' review'+(r.date?' · '+r.date:'')));if(r.text)pn.appendChild(el('p','sub',r.text));
+  Object.entries(r.moves||{}).forEach(([n,m])=>{const from=m.from||fromOf[n];const row=el('div','revg');row.appendChild(tcell(n,clubOf(n)));
+   const up=from&&sortDiv(m.to,from)<0;row.appendChild(el('span','mv'+(up?'':' down'),(up?'▲ ':'▼ ')+(from?from+' → ':'')+m.to));if(m.call)row.appendChild(el('span','conf '+(m.call==='Clear'?'ok':'close'),m.call+' call'));
+   pn.appendChild(row);if(m.basis)pn.appendChild(el('p','note',m.basis));fromOf[n]=m.to;});if(r.ladder)pn.appendChild(el('p','s2note',r.ladder));});
+ rl.appendChild(pn);
+}
+
+function renderS2Options(ag,S){$('s2opts').innerHTML='';$('s2top').innerHTML='';const hd=$('s2colsHead');hd.hidden=true;(ag.stage2Options||[]).forEach(o=>{const top=o.decided||o.adopted;const host=top?$('s2top'):$('s2opts');const ph=o.priorHead||(o.adopted?'Stage 2 results, Rounds 4–6':'');if(top&&ph){hd.hidden=false;hd.textContent=ph;}
+ const pn=el('div','panel gap optsec');pn.appendChild(el('h2',null,o.name));(o.text||[]).forEach(p=>pn.appendChild(el('p','sub',p)));
+ const cur={};Object.entries(S.divisions).forEach(([d,ns])=>ns.forEach(n=>cur[n]=d));
+ const clubOf=n=>{const t=ag.teams.find(x=>x.name===n);return t?t.club:n.split(' ')[0];};
+ const grid=el('div','grid3');Object.keys(o.divisions).sort(sortDiv).forEach(d=>{const card=el('div','panel');const h=el('div','div-h');h.appendChild(el('h3',null,divName(d)));h.appendChild(el('span','floor',o.divisions[d].length+' teams'));card.appendChild(h);
+  o.divisions[d].forEach(n=>{const row=el('div','team');const s=el('div','s2row');s.appendChild(badge(clubOf(n)));const mid=el('div');mid.appendChild(el('div','tn',n));const meta=el('div','tm');
+   if(o.current&&o.current[n])cur[n]=o.current[n];if(cur[n]&&cur[n]!==d)meta.appendChild(el('span','mv'+(sortDiv(d,cur[n])<0?'':' down'),(sortDiv(d,cur[n])<0?'▲ ':'▼ ')+'from '+cur[n]));else meta.appendChild(el('span',null,'stays in '+(cur[n]||'')));
+   mid.appendChild(meta);s.appendChild(mid);const r=o.ratings&&o.ratings[n];s.appendChild(el('div','avg '+(r>0?'pos':r<0?'neg':''),r==null?'—':(r>0?'+':r<0?'−':'')+Math.abs(r)));row.appendChild(s);card.appendChild(row);});
+  grid.appendChild(card);});
+ pn.appendChild(grid);
+ if(o.ratings)pn.appendChild(el('p','s2note','Figure on the right: rating across all games played so far (Rounds 1–'+(S.played.length?Math.max(...S.played):3)+'), adjusted for the strength of each opponent. 0 = the '+ag.name+' average; each point is one percentage point of margin.'));
+ if(o.draw){const dt=el('details','drawbox');dt.appendChild(el('summary',null,o.draw.title));if(o.draw.text)dt.appendChild(el('p','sub',o.draw.text));
+  const RT=o.ratings||{},cnt={};const pred=g=>{const d=(RT[g[0]]??0)-(RT[g[1]]??0),m=Math.abs(d)/100,b=band(m);cnt[b]=(cnt[b]||0)+1;return {win:d>=0?g[0]:g[1],m,b};};
+  const all=o.draw.rounds.map(rd=>rd.games.map(pred));Object.keys(cnt).forEach(k=>cnt[k]=0);all.flat().forEach(p=>cnt[p.b]=(cnt[p.b]||0)+1);
+  const lg=el('div','legend');['Close','Clear win','Major blowout','Rout'].forEach(b=>{const s=el('span');s.appendChild(el('span','chip '+bcls(b),b));s.append(' '+(cnt[b]||0)+' game'+((cnt[b]||0)===1?'':'s'));lg.appendChild(s);});
+  dt.appendChild(el('p','s2note','Colour = the likely result, estimated from each team\'s rating (the difference between two ratings is the expected winning margin). An estimate from Rounds 1–6 only, not a prediction of any single game.'));dt.appendChild(lg);
+  const short=n=>n.replace(/^(Bunyip|Devils|Neerim Wolves|Rebels|Yarragon|Chalkies|Gladiators|Warranor Heat) /,'');
+  const box=el('div','drawgrid');o.draw.rounds.forEach((rd,i)=>{const c=el('div','drawrd');c.appendChild(el('div','drh','Round '+rd.r));rd.games.forEach((g,j)=>{const p=all[i][j];const row=el('div','drg '+bcls(p.b));row.appendChild(el('div','drt',g[0]+' v '+g[1]));row.appendChild(el('div','drp',(p.m<0.005?'Even':short(p.win)+' by about '+Math.round(p.m*100)+'%')+' · '+p.b));c.appendChild(row);});c.appendChild(el('div','drb','Bye: '+rd.bye));box.appendChild(c);});
+  dt.appendChild(box);pn.appendChild(dt);}
+ host.appendChild(pn);});}
+
+function renderResults(ag,X){
+ const mx=$('matrix');mx.innerHTML='';
+ [...new Set(X.teams.map(t=>t.stage1))].sort(sortDiv).forEach(d=>{
+  mx.appendChild(el('h3','dh',divName(d)+' (Stage 1)'));const tw=el('div','tw'),tb=el('table');
+  const hr=el('tr');hr.appendChild(el('th',null,'Team'));for(let r=1;r<=X.rounds;r++)hr.appendChild(el('th',null,'Round '+r));hr.appendChild(el('th','num','Average'));
+  const th=el('thead');th.appendChild(hr);tb.appendChild(th);const bd=el('tbody');
+  X.teams.filter(t=>t.stage1===d).sort((a,b)=>(b.avg??-9)-(a.avg??-9)).forEach(t=>{const tr=el('tr');const td=el('td','t');td.appendChild(tcell(t.name+(t.withdrawn?' (withdrawn)':''),t.club));tr.appendChild(td);
+   for(let r=1;r<=X.rounds;r++){const g=t.byRound[r];const c=el('td');
+    c.appendChild(chipFor(g));tr.appendChild(c);}
+   tr.appendChild(el('td','num t',t.avg==null?'—':sgn(t.avg)));bd.appendChild(tr);});
+  tb.appendChild(bd);tw.appendChild(tb);tw.classList.add('wide');mx.appendChild(tw);
+  const ml=el('div','mlist narrow');
+  X.teams.filter(t=>t.stage1===d).sort((a,b)=>(b.avg??-9)-(a.avg??-9)).forEach(t=>{const it=el('div','mitem');const h=el('div','mhead');h.append(tcell(t.name,t.club),el('b',null,t.avg==null?'—':sgn(t.avg)));it.appendChild(h);
+   const cs=el('div','mchips');for(let r=1;r<=X.rounds;r++){const g=t.byRound[r];const lab='R'+r+' ';
+    cs.appendChild(chipFor(g,lab));}
+   it.appendChild(cs);ml.appendChild(it);});
+  mx.appendChild(ml);});
+ const gf=$('gameFilter');gf.innerHTML='';
+ ['All',...[...new Set(X.games.map(g=>g.div))].sort(sortDiv)].forEach(d=>{const b=el('button',null,d==='All'?'All divisions':divName(d));b.setAttribute('aria-pressed',GF===d);b.onclick=()=>{GF=d;render();};gf.appendChild(b);});
+ const allScores=X.scored.length>0&&X.scored.every(g=>g.ws!=null);$('scoreTh').hidden=!allScores;
+ const gb=$('gamesBody');gb.innerHTML='';const gl=$('gamesList');gl.innerHTML='';
+ const club=n=>(X.teams.find(t=>t.name===n)||{}).club;
+ X.games.filter(g=>GF==='All'||g.div===GF).sort((a,b)=>a.r-b.r||sortDiv(a.div,b.div)||(b.margin??-1)-(a.margin??-1)).forEach(g=>{const tr=el('tr');
+  tr.append(el('td',null,String(g.r)),el('td',null,g.div));const w=el('td','t');w.appendChild(tcell(g.w,club(g.w)));const l=el('td');l.appendChild(tcell(g.l,club(g.l)));tr.append(w,l);
+  if(allScores)tr.appendChild(el('td','num',g.ws!=null?g.ws+'–'+g.ls:g.pending?'pending':'forfeit'));tr.append(el('td','num',g.pending?'—':g.margin==null?'—':g.draw?'Draw':fm(g.margin)+'%'));
+  const b=el('td');b.appendChild(el('span','chip '+bcls(g.band),g.band));tr.appendChild(b);gb.appendChild(tr);
+  const it=el('div','gitem');const top=el('div','gtop');top.append(el('span',null,'Round '+g.r+' · '+divName(g.div)),el('span','chip '+bcls(g.band),g.band));it.appendChild(top);
+  const ln=el('div','gline');ln.append(tcell(g.w,club(g.w)),el('b',null,g.pending?'pending':g.margin==null?'forfeit':g.draw?'draw':(allScores&&g.ws!=null?g.ws+'–'+g.ls+' · ':'')+fm(g.margin)+'%'));it.appendChild(ln);
+  const l2=el('div','gline lose');l2.append(tcell(g.l,club(g.l)));it.appendChild(l2);gl.appendChild(it);});
+}
+
+function renderStrengthTable(ag,X){
+ const tb=$('teamBody');tb.innerHTML='';
+ [...X.teams].sort((a,b)=>sortDiv(a.stage1,b.stage1)||(b.avg??-9)-(a.avg??-9)).forEach(t=>{const tr=el('tr');const c=el('td','t');c.appendChild(tcell(t.name,t.club));tr.appendChild(c);
+  tr.append(el('td',null,t.stage1),el('td','num',wl(t)),el('td','num',String(t.scored)),el('td','num t '+(t.avg>0?'pos':t.avg<0?'neg':''),t.avg==null?'—':sgn(t.avg)),el('td','num '+(t.adj>0?'pos':t.adj<0?'neg':''),t.adj==null?'—':sgn(t.adj)),el('td',null,t.signal),
+   el('td',null,t.withdrawn?'Withdrawn':X.decided?(t.move==='Stay'?t.proposed:(t.move==='Up'?'▲ ':'▼ ')+t.proposed):'To be confirmed'));tb.appendChild(tr);});
+}
+
+function renderStrength(ag,X){
+ renderStrengthTable(ag,X);
+ const host=$('chart');host.innerHTML='';const W=Math.max(320,host.clientWidth||900);
+ const tt=X.teams.filter(t=>t.avg!=null);const divs=[...new Set(tt.map(t=>t.stage1))].sort(sortDiv);
+ const rows=[];divs.forEach(d=>{rows.push({head:divName(d)+' (Stage 1)'});tt.filter(t=>t.stage1===d).sort((a,b)=>b.avg-a.avg).forEach(t=>rows.push(t));});
+ const NS='http://www.w3.org/2000/svg',mk=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;};
+ const rh=27,top=30,H=top+rows.length*rh+8;
+ const svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);host.appendChild(svg);
+ const meas=mk('text',{'font-size':13,'font-weight':600,'font-family':'Montserrat,system-ui,sans-serif'});let lw=0;tt.forEach(t=>{meas.textContent=t.name;lw=Math.max(lw,meas.getComputedTextLength());});svg.removeChild(meas);
+ const L=Math.min(lw+18,W*0.42),R=50,ext=Math.max(0.5,Math.max(...tt.map(t=>Math.abs(t.avg)))+0.05);
+ const x=v=>L+(v+ext)/(2*ext)*(W-L-R);
+ const css=getComputedStyle(document.documentElement),c=n=>css.getPropertyValue(n).trim();
+ [-0.5,-0.25,0,0.25,0.5].filter(v=>Math.abs(v)<=ext).forEach(v=>{
+  mk('line',{x1:x(v),x2:x(v),y1:top-6,y2:H-4,stroke:v===0?c('--ink-2'):c('--line'),'stroke-width':v===0?1.5:1,'stroke-dasharray':Math.abs(v)===M.look?'4 3':''});
+  const lab=mk('text',{x:x(v),y:top-12,'text-anchor':'middle','font-size':11,fill:c('--muted'),'font-family':'Montserrat,system-ui,sans-serif'});lab.textContent=v===0?'0':(v>0?'+':'−')+Math.abs(v*100)+'%';});
+ const tip=$('tip');
+ rows.forEach((r,i)=>{const y=top+i*rh,ff='Montserrat,system-ui,sans-serif';
+  if(r.head){const h=mk('text',{x:0,y:y+18,'font-size':12,'font-weight':800,fill:c('--ink'),'font-family':ff});h.textContent=r.head;return;}
+  const n=mk('text',{x:L-10,y:y+18,'text-anchor':'end','font-size':13,'font-weight':600,fill:c('--ink'),'font-family':ff});n.textContent=r.name;
+  const col=r.signal==='Look up'?c('--blue'):r.signal==='Look down'?c('--red'):c('--muted');
+  const bar=mk('rect',{x:x(Math.min(0,r.avg)),y:y+6,width:Math.max(2,Math.abs(x(r.avg)-x(0))),height:16,rx:4,fill:col,opacity:(r.signal==='Look up'||r.signal==='Look down')?1:.55});
+  const v=mk('text',{x:r.avg>=0?x(r.avg)+6:x(r.avg)-6,y:y+18,'text-anchor':r.avg>=0?'start':'end','font-size':12,'font-weight':700,fill:c('--ink'),'font-family':ff});v.textContent=sgn(r.avg);
+  bar.addEventListener('mousemove',e=>{tip.innerHTML='';tip.append(el('b',null,r.name),el('div',null,'Average margin '+sgn(r.avg)+' · '+wl(r)),el('div',null,r.signal+(X.decided?' · Stage 2: '+r.proposed:'')));
+   tip.style.opacity=1;const tw=tip.offsetWidth;tip.style.left=Math.min(e.clientX+14,innerWidth-tw-8)+'px';tip.style.top=(e.clientY+14)+'px';});
+  bar.addEventListener('mouseleave',()=>tip.style.opacity=0);});
+}
+
+const CLUBS=['Bunyip','Chalkies','Devils','Gladiators','Neerim Wolves','Rebels','Warranor Heat','Yarragon Wildcats'];
+const cOn=()=>COMMENTS.formId&&!COMMENTS.formId.startsWith('__');
+let cCache=null,cAge=null,cLoading=null,cRaw=null;
+function cFetch(force){
+ if(cCache&&!force)return Promise.resolve(cCache);
+ if(cLoading&&!force)return cLoading;
+ const h=COMMENTS.readKey&&!COMMENTS.readKey.startsWith('__')?{Authorization:'Basic '+btoa(':'+COMMENTS.readKey)}:{};
+ cLoading=fetch('https://formspree.io/api/0/forms/'+encodeURIComponent(COMMENTS.formId)+'/submissions?limit=500&order=desc&spam=false',{headers:h})
+  .then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+  .then(j=>{cRaw=j;
+   /* find every object that holds a "comment" field, wherever Formspree nests it */
+   const found=[];const walk=(o,parent)=>{if(!o||typeof o!=='object')return;
+    if(!Array.isArray(o)&&typeof o.comment==='string')found.push([o,parent]);
+    Object.values(o).forEach(v=>walk(v,Array.isArray(o)?parent:o));};
+   walk(j,null);
+   const dt=o=>o&&(o._date||o.created_at||o.createdAt||o.submitted_at||o.date||o.timestamp);
+   cCache=found.map(([d,p])=>({name:String(d.name||'').slice(0,60),club:String(d.club||'').slice(0,40),age:String(d.age_group||'').trim(),text:String(d.comment||'').slice(0,600),date:dt(d)||dt(p)||''})).filter(c=>c.text);
+   cCache.sort((a,b)=>String(b.date).localeCompare(String(a.date)));return cCache;})
+  .finally(()=>{cLoading=null;});
+ return cLoading;
+}
+function cDraw(ag){
+ const box=$('cList');box.innerHTML='';
+ if(!cCache){box.appendChild(el('div','cempty','Loading comments…'));return;}
+ const list=cCache.filter(c=>c.age.toLowerCase()===ag.name.toLowerCase());
+ let dbg=false;try{dbg=/debug-comments/.test(location.hash);}catch(e){}
+ if(dbg){const pre=el('pre','cempty');pre.style.cssText='white-space:pre-wrap;font-size:.7rem;max-height:320px;overflow:auto';pre.textContent='Read '+(cCache||[]).length+' comment(s). Raw reply (first 3000 characters):\n'+JSON.stringify(cRaw).slice(0,3000);box.appendChild(pre);}
+ if(!list.length){box.appendChild(el('div','cempty','No comments yet for '+ag.name+'.'));return;}
+ const fmt=new Intl.DateTimeFormat('en-AU',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
+ list.forEach(c=>{const it=el('div','citem');const club=CLUBS.find(k=>c.club.startsWith(k.split(' ')[0]));
+  it.appendChild(badge(club==='Warranor Heat'?'Warranor':club==='Yarragon Wildcats'?'Yarragon':club||c.club));
+  const b=el('div');const h=el('div','chead');h.append(el('b',null,c.name||'Anonymous'),el('span',null,c.club+(c.date&&!isNaN(new Date(c.date))?' · '+fmt.format(new Date(c.date)):'')));
+  b.append(h,el('div','cbody',c.text));it.appendChild(b);box.appendChild(it);});
+}
+function renderComments(ag){
+ const box=$('comments');box.hidden=!cOn()||ag.status==='pending'||TAB==='method';if(box.hidden)return;
+ $('commentsTitle').textContent='Club comments: '+ag.name;
+ const sel=document.querySelector('#cForm select[name=club]');if(sel.options.length<2)CLUBS.concat(['Other']).forEach(c=>{const o=el('option',null,c);o.value=c;sel.appendChild(o);});
+ if(cAge!==ag.name){cAge=ag.name;cDraw(ag);}
+ if(!COMMENTS.readKey||COMMENTS.readKey.startsWith('__')){const l=$('cList');l.innerHTML='';(cCache||[]).filter(c=>c.age===ag.name).length?cDraw(ag):l.appendChild(el('div','cempty','Comments will be shown here shortly.'));return;}
+ cFetch().then(()=>{if(cAge===ag.name)cDraw(ag);}).catch(()=>{const l=$('cList');l.innerHTML='';l.appendChild(el('div','cempty','Comments could not be loaded right now. Please try again later.'));});
+}
+(function(){const f=$('cForm');if(!f)return;const ta=f.comment,cnt=$('cCount'),msg=$('cMsg'),btn=$('cBtn');
+ ta.addEventListener('input',()=>cnt.textContent=ta.value.length+' / 600');
+ f.addEventListener('submit',e=>{e.preventDefault();msg.className='cmsg';
+  const name=f.elements['name'].value.trim(),club=f.club.value,text=ta.value.trim();
+  if(!name||!club||!text){msg.className='cmsg err';msg.textContent='Please add your name, club and a comment.';return;}
+  if(/(https?:\/\/|www\.|\.com\b|\.au\b)/i.test(text)){msg.className='cmsg err';msg.textContent='Links are not allowed in comments.';return;}
+  if(f._gotcha.value)return;
+  btn.disabled=true;msg.textContent='Posting…';
+  const ag=AGE;
+  fetch('https://formspree.io/f/'+encodeURIComponent(COMMENTS.formId),{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},
+   body:JSON.stringify({name,club,comment:text,age_group:ag,_subject:'Grading comment: '+ag+' ('+club+')'})})
+   .then(r=>r.json().then(j=>{if(!r.ok)throw new Error((j.errors&&j.errors[0]&&j.errors[0].message)||'Error');}))
+   .then(()=>{msg.className='cmsg ok';msg.textContent='Thanks, your comment is posted.';ta.value='';cnt.textContent='0 / 600';
+     (cCache=cCache||[]).unshift({name,club,age:ag,text,date:new Date().toISOString()});const a=DATA.ageGroups.find(x=>x.name===ag);if(a)cDraw(a);})
+   .catch(err=>{msg.className='cmsg err';msg.textContent='Sorry, that did not post ('+err.message+'). Please try again.';})
+   .finally(()=>{btn.disabled=false;});});})();
+function renderBench(ag,X){
+ const b=$('bmBody');b.innerHTML='';const bm=BENCHMARKS[ag.name]||{};const has=X.scored&&X.scored.length;
+ [['Close games (under 20%)',has?p0(X.close/X.scored.length):'—',bm.close!=null?p0(bm.close):'—'],
+  ['Average winning margin',has?p0(X.avgWin):'—',bm.avg!=null?p0(bm.avg):'—'],
+  ['Rout rate (against all juniors, settled season)',has?p0(X.rout/X.scored.length):'—',p0(BENCHMARKS._allJuniorRout)],
+  ['Rout rate (against Winter 2026 grading games)',has?p0(X.rout/X.scored.length):'—',p0(BENCHMARKS._gradingRout)]]
+ .forEach(r=>{const tr=el('tr');tr.append(el('td',null,r[0]),el('td','num',r[1]),el('td','num',r[2]));b.appendChild(tr);});
+}
+
+document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{TAB=b.dataset.tab;setHash();render();window.scrollTo({top:0});}));
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(TAB==='strength')render();},150);});
+addEventListener('hashchange',()=>{readHash();render();});
+AGE=(DATA.ageGroups.find(a=>a.status==='recommended')||DATA.ageGroups[0]).name;readHash();render();
+})();
+</script>
+</body>
+</html>
