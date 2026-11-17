@@ -1,10 +1,11 @@
 {
-"asAt": "2026-11-18 10:33",
+"asAt": "2026-11-18 10:36",
 "ages": {
 "U19 Boys": {
 "nights": {
 "D1": "Monday",
-"D2": "Monday"
+"D2": "Monday",
+"D3": "Monday"
 },
 "dates": {
 "4": "Mon 26 Oct",
@@ -21,6 +22,7 @@
 "D1": [
 "Bunyip Rockets",
 "Bunyip Sonics",
+"Bunyip Taipan",
 "Chalkies Bucks",
 "Devils Eagles",
 "Neerim Wolves Black",
@@ -32,6 +34,7 @@
 "Bunyip Sharks",
 "Chalkies Breakers",
 "Chalkies Force",
+"Devils Hawks",
 "Devils Sonics",
 "Gladiators Caesars",
 "Gladiators Raiders",
@@ -90,6 +93,30 @@
 "ls": 51
 },
 {
+"r": 4,
+"div": "D3",
+"w": "Chalkies Breakers",
+"l": "Neerim Wolves White",
+"ws": 71,
+"ls": 55
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Rebels Jets",
+"l": "Devils Hawks",
+"ws": 40,
+"ls": 33
+},
+{
+"r": 4,
+"div": "D3",
+"w": "Chalkies Force",
+"l": "Gladiators Raiders",
+"ws": 41,
+"ls": 37
+},
+{
 "r": 5,
 "div": "D1",
 "w": "Bunyip Rockets",
@@ -138,6 +165,29 @@
 "ls": 42
 },
 {
+"r": 5,
+"div": "D3",
+"w": "Rebels Jets",
+"l": "Bunyip Sharks",
+"ws": 36,
+"ls": 35
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Chalkies Breakers",
+"l": "Gladiators Raiders",
+"ff": true
+},
+{
+"r": 5,
+"div": "D3",
+"w": "Devils Hawks",
+"l": "Chalkies Force",
+"ws": 31,
+"ls": 23
+},
+{
 "r": 6,
 "div": "D1",
 "w": "Bunyip Taipan",
@@ -184,6 +234,30 @@
 "l": "Devils Sonics",
 "ws": 41,
 "ls": 35
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Bunyip Sharks",
+"l": "Neerim Wolves White",
+"ws": 53,
+"ls": 34
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Chalkies Breakers",
+"l": "Chalkies Force",
+"ws": 56,
+"ls": 44
+},
+{
+"r": 6,
+"div": "D3",
+"w": "Devils Hawks",
+"l": "Gladiators Raiders",
+"ws": 42,
+"ls": 30
 },
 {
 "r": 7,
@@ -353,7 +427,16 @@
 "status": "Upcoming"
 }
 ],
-"byes": []
+"byes": [
+{
+"div": "D1",
+"team": "Bunyip Taipan"
+},
+{
+"div": "D2",
+"team": "Devils Hawks"
+}
+]
 }
 },
 "U16/19 Girls": {
@@ -388,6 +471,7 @@
 "Devils Angels",
 "Gladiators Fury",
 "Gladiators Mercury",
+"Gladiators Suns",
 "Rebels Amethysts",
 "Rebels Diamonds",
 "Rebels Sapphires",
@@ -402,6 +486,7 @@
 "Neerim Wolves White",
 "Rebels Garnets",
 "Rebels Opals",
+"Rebels Pearls",
 "Warranor Heat Hotshots",
 "Warranor Heat Spirit"
 ]
@@ -444,8 +529,7 @@
 "div": "D3",
 "w": "Devils Liberty",
 "l": "Warranor Heat Spirit",
-"ws": 20,
-"ls": 0
+"ff": true
 },
 {
 "r": 4,
@@ -706,8 +790,7 @@
 "div": "D1",
 "w": "Gladiators Shadows",
 "l": "Bunyip Dream",
-"ws": 20,
-"ls": 0
+"ff": true
 },
 {
 "r": 6,
@@ -853,7 +936,16 @@
 "status": "Upcoming"
 }
 ],
-"byes": []
+"byes": [
+{
+"div": "D2",
+"team": "Gladiators Suns"
+},
+{
+"div": "D3",
+"team": "Rebels Pearls"
+}
+]
 }
 },
 "U16 Boys": {
@@ -1898,6 +1990,7 @@
 "Devils Belles",
 "Gladiators Shadows",
 "Neerim Wolves Blue",
+"Warranor Heat Phantoms",
 "Warranor Heat Phoenix"
 ],
 "D2": [
@@ -1912,6 +2005,7 @@
 ],
 "D3": [
 "Bunyip Fever",
+"Bunyip Ravens",
 "Devils Opals",
 "Devils Swifts",
 "Gladiators Mercury",
@@ -2266,7 +2360,16 @@
 "status": "Upcoming"
 }
 ],
-"byes": []
+"byes": [
+{
+"div": "D1",
+"team": "Warranor Heat Phantoms"
+},
+{
+"div": "D3",
+"team": "Bunyip Ravens"
+}
+]
 }
 },
 "U12 Boys": {
@@ -2291,6 +2394,7 @@
 "D1": [
 "Devils Braves",
 "Neerim Wolves Blue 1",
+"Neerim Wolves White 1",
 "Rebels Stars",
 "Warranor Heat Fury"
 ],
@@ -2300,9 +2404,11 @@
 "Gladiators Kings",
 "Gladiators Titans",
 "Gladiators Trojans",
-"Rebels Thunder"
+"Rebels Thunder",
+"Warranor Heat Flyers"
 ],
 "D3": [
+"Bunyip Clippers",
 "Chalkies Knights",
 "Chalkies Phoenix",
 "Devils Falcons",
@@ -2322,6 +2428,7 @@
 "Chalkies Vikings",
 "Devils Rockets",
 "Devils Suns",
+"Devils Vipers",
 "Gladiators Felix",
 "Gladiators Raiders",
 "Neerim Wolves Blue"
@@ -2810,7 +2917,24 @@
 "status": "Upcoming"
 }
 ],
-"byes": []
+"byes": [
+{
+"div": "D1",
+"team": "Neerim Wolves White 1"
+},
+{
+"div": "D2",
+"team": "Warranor Heat Flyers"
+},
+{
+"div": "D3",
+"team": "Bunyip Clippers"
+},
+{
+"div": "D5",
+"team": "Devils Vipers"
+}
+]
 }
 },
 "U12 Girls": {
@@ -2999,8 +3123,7 @@
 "div": "D1",
 "w": "Gladiators Suns",
 "l": "Warranor Heat Sparrows",
-"ws": 20,
-"ls": 0
+"ff": true
 },
 {
 "r": 6,
@@ -3163,6 +3286,7 @@
 "Devils Jets",
 "Devils Magic",
 "Gladiators Caesars",
+"Gladiators Felix",
 "Rebels Hurricanes"
 ],
 "D3": [
@@ -3634,7 +3758,12 @@
 "status": "Upcoming"
 }
 ],
-"byes": []
+"byes": [
+{
+"div": "D2",
+"team": "Gladiators Felix"
+}
+]
 }
 }
 }
