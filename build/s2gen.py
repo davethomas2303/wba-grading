@@ -45,7 +45,7 @@ for age in AGES:
   for r in R: nights.setdefault(parse(r['Grade'])[2],parse(r['Grade'])[0])
   byround=collections.defaultdict(list)
   for r in R: byround[rnum(r['Round'])].append(r)
-  dates={n:dfmt(next(x['Game Date'] for x in v if x['Game Date'])) for n,v in byround.items() if any(x['Game Date'] for x in v)}
+  dates={n:dfmt(collections.Counter(x['Game Date'] for x in v if x['Game Date']).most_common(1)[0][0]) for n,v in byround.items() if any(x['Game Date'] for x in v)}
   played=[n for n,v in sorted(byround.items()) if all(x['Game Status']=='Final' for x in v if not x['Bye'])]
   nxt=next((n for n,v in sorted(byround.items()) if any(x['Game Status']!='Final' for x in v if not x['Bye'])),None)
   cur_round=nxt or (played[-1] if played else 4)
@@ -75,6 +75,7 @@ for age in AGES:
       gl.append({'date':dfmt(r['Game Date']) if r['Game Date'] else '','div':d,'h':clean(r['Home Team']),'a':clean(r['Away Team']),'time':tfmt(r['Time']),'t24':r['Time'] or '99:99','venue':r['Venue'],'court':r['Playing Surface'],'status':r['Game Status']})
     gl.sort(key=lambda g:(g['div'],g['t24'].zfill(5)))
     for g in gl: g.pop('t24')
+    byes.sort(key=lambda b:b['div'])
     nextg={'r':nxt,'date':dates.get(nxt),'games':gl,'byes':byes}
   out['ages'][age]={'nights':dict(sorted(nights.items())),'dates':{str(k):v for k,v in dates.items() if k<=6},'played':played,'divisions':{d:sorted(set(v)) for d,v in sorted(divs.items())},'games':games,'next':nextg}
 OVR=json.load(open(sys.argv[3])) if len(sys.argv)>3 else []
