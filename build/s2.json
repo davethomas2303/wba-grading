@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-18 10:59",
+"asAt": "2026-11-18 11:18",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -999,7 +999,8 @@
 "Chalkies Jets",
 "Chalkies Kings",
 "Devils Mavericks",
-"Rebels Meteors"
+"Rebels Meteors",
+"Rebels Typhoons"
 ],
 "D5": [
 "Chalkies Bandits",
@@ -1465,6 +1466,7 @@
 "Bunyip Lakers",
 "Bunyip Spurs",
 "Bunyip Suns",
+"Bunyip Wizards",
 "Chalkies Taipans",
 "Chalkies Vipers",
 "Devils Thunder",
@@ -3274,24 +3276,24 @@
 "divisions": {
 "D1": [
 "Bunyip Hawks",
+"Bunyip Stars",
 "Chalkies Bears",
 "Devils Celtics",
+"Devils Magic",
 "Gladiators Raiders",
 "Neerim Wolves",
 "Warranor Heat Vipers"
 ],
 "D2": [
-"Bunyip Stars",
+"Bunyip Magic",
 "Devils Giants",
 "Devils Jets",
-"Devils Magic",
 "Gladiators Caesars",
 "Gladiators Felix",
 "Rebels Hurricanes"
 ],
 "D3": [
 "Bunyip Hornets",
-"Bunyip Magic",
 "Bunyip Raptors",
 "Chalkies Raptors",
 "Devils Knicks",
@@ -3630,18 +3632,8 @@
 {
 "date": "Fri 20 Nov",
 "div": "D1",
-"h": "Neerim Wolves",
-"a": "Warranor Heat Vipers",
-"time": "5:00pm",
-"venue": "Neerim South Basketball Stadium",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Fri 20 Nov",
-"div": "D1",
-"h": "Bunyip Hawks",
-"a": "Devils Celtics",
+"h": "Devils Celtics",
+"a": "Bunyip Hawks",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 1",
@@ -3653,25 +3645,35 @@
 "h": "Gladiators Raiders",
 "a": "Chalkies Bears",
 "time": "5:50pm",
-"venue": "Neerim South Basketball Stadium",
-"court": "Court 1",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
 "status": "Upcoming"
 },
 {
 "date": "Fri 20 Nov",
-"div": "D2",
-"h": "Devils Giants",
-"a": "Gladiators Caesars",
+"div": "D1",
+"h": "Devils Magic",
+"a": "Neerim Wolves",
 "time": "5:50pm",
-"venue": "Bellbird Park Indoor Centre",
+"venue": "Warragul Leisure Centre",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
 "date": "Fri 20 Nov",
+"div": "D1",
+"h": "Bunyip Stars",
+"a": "Warranor Heat Vipers",
+"time": "",
+"venue": "",
+"court": "",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
 "div": "D2",
-"h": "Rebels Hurricanes",
-"a": "Bunyip Stars",
+"h": "Devils Jets",
+"a": "Gladiators Caesars",
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
@@ -3680,17 +3682,37 @@
 {
 "date": "Fri 20 Nov",
 "div": "D2",
-"h": "Devils Magic",
-"a": "Devils Jets",
+"h": "Rebels Hurricanes",
+"a": "Devils Giants",
 "time": "5:50pm",
-"venue": "Drouin Primary School",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D2",
+"h": "Gladiators Felix",
+"a": "Bunyip Magic",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D3",
+"h": "Devils Knicks",
+"a": "Rebels Jets",
+"time": "5:00pm",
+"venue": "Neerim South Basketball Stadium",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
 "date": "Fri 20 Nov",
 "div": "D3",
-"h": "Devils Pistons",
+"h": "Bunyip Hornets",
 "a": "Bunyip Raptors",
 "time": "5:00pm",
 "venue": "Drouin Primary School",
@@ -3700,29 +3722,9 @@
 {
 "date": "Fri 20 Nov",
 "div": "D3",
-"h": "Bunyip Hornets",
-"a": "Bunyip Magic",
-"time": "5:00pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Fri 20 Nov",
-"div": "D3",
-"h": "Devils Knicks",
-"a": "Rebels Jets",
-"time": "5:00pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 3",
-"status": "Upcoming"
-},
-{
-"date": "Fri 20 Nov",
-"div": "D3",
-"h": "Gladiators Trojans",
+"h": "Devils Pistons",
 "a": "Chalkies Raptors",
-"time": "5:50pm",
+"time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 2",
 "status": "Upcoming"
@@ -3760,8 +3762,8 @@
 ],
 "byes": [
 {
-"div": "D2",
-"team": "Gladiators Felix"
+"div": "D3",
+"team": "Gladiators Trojans"
 }
 ]
 }
