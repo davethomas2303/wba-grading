@@ -1327,7 +1327,7 @@ function setHash(){try{history.replaceState(null,'','#'+slug(AGE)+'/'+TAB);}catc
 
 function render(){
  const ag=DATA.ageGroups.find(a=>a.name===AGE);const X=build(ag);
- $('season').textContent=DATA.season;if($('crumbAge'))$('crumbAge').textContent=AGE;$('updated').textContent=fmtUpdated(DATA.updated);$('mupdated').textContent='Updated '+fmtUpdated(DATA.updated);
+ $('season').textContent=DATA.season;if($('crumbAge'))$('crumbAge').textContent=AGE;const UPD=[DATA.updated,STAGE2.asAt||''].sort().pop();$('updated').textContent=fmtUpdated(UPD);$('mupdated').textContent='Updated '+fmtUpdated(UPD);
  // age buttons
  const ab=$('ages');ab.innerHTML='';
  DATA.ageGroups.forEach(a=>{const b=el('button');const d=el('i',a.status==='recommended'?'recommended':(a.status==='in review'||a.status==='in progress')?'review':'');b.append(d,a.name);b.setAttribute('aria-pressed',a.name===AGE);b.title=a.status;b.onclick=()=>{AGE=a.name;GF='All';setHash();render();};ab.appendChild(b);});
@@ -1581,7 +1581,7 @@ function renderStage2(ag,sp,lead,kp){
   T[n]=r;});
  const played=S.played||[],last=played[played.length-1];
  // status, lead, kpis
- sp.innerHTML='';const RSX=(ag.stage2Options||[]).some(o=>o.decided);const LOCK=played.includes(7)||(RSX&&played.includes(6));const FINAL=!LOCK&&played.includes(6);sp.appendChild(el('span','status recommended',LOCK&&RSX?'Two divisions from Round 7':LOCK?'Divisions locked':FINAL?'Final review after Round 6':played.length?'Stage 2 · Round '+last+' of 6 played':'Stage 2 · Round 4 under way'));
+ sp.innerHTML='';const RSX=(ag.stage2Options||[]).some(o=>o.decided);const LOCK=played.includes(7)||(RSX&&played.includes(6));const FINAL=!LOCK&&played.includes(6);sp.appendChild(el('span','status recommended',LOCK&&RSX?'Two divisions from Round 7':LOCK?'Divisions locked':FINAL&&(ag.stage2Options||[]).some(o=>o.adopted)?'Divisions set from Round 7':FINAL?'Final review after Round 6':played.length?'Stage 2 · Round '+last+' of 6 played':'Stage 2 · Round 4 under way'));
  const nx=S.next;
  const nd=nx&&nx.games.length?[...new Set(nx.games.map(g=>g.date).filter(Boolean))].join(' and '):(nx&&nx.date)||'';
  const RS0=(ag.stage2Options||[]).find(o=>o.decided);
