@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-18 11:18",
+"asAt": "2026-11-18 11:29",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -1466,7 +1466,6 @@
 "Bunyip Lakers",
 "Bunyip Spurs",
 "Bunyip Suns",
-"Bunyip Wizards",
 "Chalkies Taipans",
 "Chalkies Vipers",
 "Devils Thunder",
@@ -3642,6 +3641,16 @@
 {
 "date": "Fri 20 Nov",
 "div": "D1",
+"h": "Bunyip Stars",
+"a": "Warranor Heat Vipers",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Fri 20 Nov",
+"div": "D1",
 "h": "Gladiators Raiders",
 "a": "Chalkies Bears",
 "time": "5:50pm",
@@ -3657,16 +3666,6 @@
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Fri 20 Nov",
-"div": "D1",
-"h": "Bunyip Stars",
-"a": "Warranor Heat Vipers",
-"time": "",
-"venue": "",
-"court": "",
 "status": "Upcoming"
 },
 {
