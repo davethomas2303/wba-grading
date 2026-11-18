@@ -116,7 +116,8 @@ def main(out):
       for tn in teams:
         if (rd,tn) in played: continue
         near=min(where.get(tn,[(0,gname)]),key=lambda x:(abs(x[0]-rn(rd)),-x[0]))
-        if near[1]!=gname or not any(g==gname and n>rn(rd) for n,g in where.get(tn,[])): continue  # only teams fixtured in this grade later on
+        later=[(n,g) for n,g in where.get(tn,[]) if n>rn(rd)]
+        if near[1]!=gname or (later and not any(g==gname for n,g in later)): continue  # team must still be in this grade
         b=dict.fromkeys(COLS,'');b.update({'Grade':gname,'Round':rd,'Bye':tn,'Last Updated At':now,'Result Source':'PlayHQ API (bye)'});rows.append(b);played.add((rd,tn))
   junior=[r for r in rows if r['Game Status']=='Final']
   if len(rows)<100 or len(junior)<50: raise SystemExit(f'Only {len(rows)} rows ({len(junior)} final) came back; not overwriting. Check grade names and season.')
