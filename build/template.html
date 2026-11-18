@@ -1593,13 +1593,14 @@ function renderStage2(ag,sp,lead,kp){
  else lead.append(ag.name+': ',el('b',null,'Round '+(nx?nx.r:4)+' under way'),nd?' (results due '+nd+').':'.');
  const k=(n,l,c)=>{const d=el('div','kpi');d.append(el('div','n',n),el('div','l',l),el('div','c',c||''));kp.appendChild(d);};
  const sc=counted.filter(g=>g.margin!=null),bm=BENCHMARKS[ag.name];
- k(String(Object.keys(cur).length),'Teams',divs.length+' divisions · '+divs.map(d=>S.divisions[d].length).join(' / '));
+ const AD=[...(ag.stage2Options||[])].reverse().find(o=>o.adopted);const ADv=AD?Object.assign({},S.divisions,AD.divisions):null;const ADd=AD?Object.keys(ADv).sort(sortDiv):null;
+ if(AD)k(String(ADd.reduce((s,d)=>s+ADv[d].length,0)),'Teams from Round 7',ADd.length+' divisions · '+ADd.map(d=>ADv[d].length).join(' / '));else k(String(Object.keys(cur).length),'Teams',divs.length+' divisions · '+divs.map(d=>S.divisions[d].length).join(' / '));
  k(String(sc.length),'Stage 2 games',sc.length?'counted for the standings':'none yet');
  k(sc.length?p0(sc.filter(g=>g.band==='Close').length/sc.length):'—','Close games',bm?'Winter 2026: '+p0(bm.close):'');
  k(String(sc.filter(g=>g.band==='Rout').length),'Routs (50%+)',sc.length?p0(sc.filter(g=>g.band==='Rout').length/sc.length)+' of games':'');
  renderS2Options(ag,S);const RS=(ag.stage2Options||[]).find(o=>o.decided);
  const nf=Object.values(T).filter(r=>r.flags.length&&!r.edge&&!r.locked).length;
- if(LOCK&&RS)k(Object.values(RS.divisions).map(x=>x.length).join(' / '),'From Round '+RS.fromRound,Object.keys(RS.divisions).length+' divisions, ladders from Round 4');else if(LOCK)k('Locked','Divisions','No regrading after Round 6');else k(String(nf),'Teams flagged','For the next review');
+ if(LOCK&&RS)k(Object.values(RS.divisions).map(x=>x.length).join(' / '),'From Round '+RS.fromRound,Object.keys(RS.divisions).length+' divisions, ladders from Round 4');else if(LOCK)k('Locked','Divisions','No regrading after Round 6');else if(AD)k('Set','Divisions from Round 7','Decided '+AD.adopted+'; locked for the season');else k(String(nf),'Teams flagged','For the next review');
  // divisions
  const host=$('s2cols');host.innerHTML='';
  divs.forEach(d=>{const s1c={};S.divisions[d].forEach(n=>{const s=s1Of(n);if(s&&s!==d)s1c[s]=(s1c[s]||0)+1;});const half=S.divisions[d].length/2;
