@@ -1004,7 +1004,7 @@ footer{border-top:1px solid var(--line);margin-top:24px;padding:16px 0 32px;font
 .rtrack{position:relative;display:inline-block;vertical-align:middle;width:min(260px,50vw);height:8px;border-radius:4px;background:var(--line)}
 .rtrack i{display:block;height:8px;border-radius:4px;background:var(--red)}.rtrack b{position:absolute;top:-4px;width:2px;height:16px;background:var(--ink);margin-left:-1px}
 .rtl{font-family:"Geist Mono",monospace;font-size:12px;margin-left:10px}
-tr.me td{background:var(--hover)}tr.tot td{font-weight:600;border-top:1px solid var(--line2)}
+tr.me td{background:var(--hover)}td.hl{background:var(--hover);font-weight:600}td.muted{color:var(--muted);font-size:12px}tr.tot td{font-weight:600;border-top:1px solid var(--line2)}
 .lad table{min-width:0}.lad td.num{white-space:nowrap}.ladgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px}
 @media(max-width:640px){.ladgrid{grid-template-columns:1fr}.lad th:nth-child(5),.lad td:nth-child(5){display:none}.lad th:nth-child(4),.lad td:nth-child(4){width:44px}}
 .lad table{table-layout:fixed;width:100%}.lad th:nth-child(1),.lad td:nth-child(1){width:22px}.lad th:nth-child(3),.lad td:nth-child(3){width:26px}.lad th:nth-child(4),.lad td:nth-child(4){width:52px}.lad th:nth-child(5),.lad td:nth-child(5){width:40px}.lad th:nth-child(6),.lad td:nth-child(6){width:44px}.lad td:nth-child(2){overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.lad td:nth-child(2) *{white-space:nowrap}.lad tr.cut td{border-top:1px dashed var(--red)}
@@ -1019,6 +1019,7 @@ tr.me td{background:var(--hover)}tr.tot td{font-weight:600;border-top:1px solid 
  <button role="tab" data-tab="season" aria-selected="false" aria-label="Season (Round 7 on)"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V3M4 3h10l-2 3 2 3H4"/></svg><span class="tl">Season (Round 7 on)</span><span class="ts">Season</span></button>
  <button role="tab" data-tab="stage2" aria-selected="true" aria-label="Stage 2 divisions"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V9M10 16V4M16 16v-5"/></svg><span class="tl">Stage 2 divisions</span><span class="ts">Stage 2</span></button>
  <button role="tab" data-tab="s2results" aria-selected="false" aria-label="Stage 2 results"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h12M4 15h7"/></svg><span class="tl">Stage 2 results</span><span class="ts">S2 games</span></button>
+ <button role="tab" data-tab="rep" aria-selected="false" aria-label="Rep players"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.4 5.2 16.9l.9-5.4L2.2 7.7l5.4-.8z"/></svg><span class="tl">Rep players</span><span class="ts">Rep</span></button>
  <button role="tab" data-tab="divisions" aria-selected="false" aria-label="Stage 1 placements"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h4v12H3zM8 4h4v12H8zM13 4h4v12h-4z"/></svg><span class="tl">Stage 1 placements</span><span class="ts">S1 divs</span></button>
  <button role="tab" data-tab="results" aria-selected="false" aria-label="Stage 1 results"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h12M4 15h12"/></svg><span class="tl">Stage 1 results</span><span class="ts">S1 games</span></button>
  <button role="tab" data-tab="strength" aria-selected="false" aria-label="Stage 1 strength"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14M4 6h12M4 6l-2 6h4zM16 6l-2 6h4z"/></svg><span class="tl">Stage 1 strength</span><span class="ts">Strength</span></button>
@@ -1053,6 +1054,10 @@ tr.me td{background:var(--hover)}tr.tot td{font-weight:600;border-top:1px solid 
   <div id="seasonBody"></div>
   <div id="s2next"></div>
   <div id="seasonAll"></div>
+ </section>
+
+ <section data-panel="rep" hidden>
+  <div id="repBody"></div>
  </section>
 
  <section data-panel="divisions" hidden>
@@ -1322,7 +1327,7 @@ function build(ag){
 }
 
 let AGE=null,TAB='stage2',GF='All';
-function readHash(){let h='';try{h=location.hash;}catch(e){}const [a,t]=h.slice(1).split('/');const ag=DATA.ageGroups.find(x=>slug(x.name)===a);if(ag)AGE=ag.name;if(['season','stage2','s2results','divisions','results','strength','method'].includes(t))TAB=t;}
+function readHash(){let h='';try{h=location.hash;}catch(e){}const [a,t]=h.slice(1).split('/');const ag=DATA.ageGroups.find(x=>slug(x.name)===a);if(ag)AGE=ag.name;if(['season','stage2','s2results','rep','divisions','results','strength','method'].includes(t))TAB=t;}
 function setHash(){try{history.replaceState(null,'','#'+slug(AGE)+'/'+TAB);}catch(e){}}
 
 function render(){
@@ -1349,6 +1354,7 @@ function render(){
  sp.appendChild(el('span','status '+st[0],st[1]));
  const lead=$('lead');lead.innerHTML='';
  const kp=$('kpis');kp.innerHTML='';kp.style.display='';
+ if(TAB==='rep'){renderRep(ag,sp,lead,kp);$('comments').hidden=true;$('notices').hidden=true;return;}
  if(['stage2','s2results','season'].includes(TAB)&&STAGE2.ages&&STAGE2.ages[ag.name]){renderStage2(ag,sp,lead,kp);if(TAB==='season'){renderSeason(ag,sp,lead,kp);$('comments').hidden=true;if(!$('s2next').childNodes.length){const pn=el('div','panel gap');const last=Math.max(0,...STAGE2.ages[ag.name].games.map(g=>g.r));pn.append(el('h2',null,'Round '+Math.max(7,last+1)+' draw'),el('p','empty','Not in PlayHQ yet. It will appear here once the grades are entered.'));$('s2next').appendChild(pn);}return;}else if(TAB==='s2results'){lead.innerHTML='';lead.append(ag.name+': ',el('b',null,'Stage 2 results'),', Rounds 4–6, game by game.');}renderComments(ag);return;}
  const pending=ag.status==='pending'||!ag.teams.length;
  document.querySelectorAll('[data-panel]').forEach(p=>{if(pending&&p.dataset.panel!=='method')p.hidden=true;});
@@ -1470,6 +1476,48 @@ function seasonStats(games){const sc=games.filter(g=>!g.ff&&(g.ws+g.ls)>0);const
 const wPct=(W,k)=>W&&W.games?(W.bands[k]||0)/W.games:null;
 const pc=v=>v==null?'–':Math.round(v*100)+'%';
 function splitBar(b,n){const s=el('div','split');[['Close','var(--b-close)'],['Clear win','var(--b-clear)'],['Major blowout','var(--b-major)'],['Rout','var(--b-rout)']].forEach(([k,c])=>{const v=n?(b[k]||0)/n:0;if(v<=0)return;const i=el('i');i.style.width=(v*100)+'%';i.style.background=c;i.title=k+' '+Math.round(v*100)+'%';s.appendChild(i);});return s;}
+
+const REP=__REP__;
+function repDivisions(ag){const AD=[...(ag.stage2Options||[])].reverse().find(o=>o.adopted);const S=STAGE2.ages&&STAGE2.ages[ag.name];const m={};
+ if(S)Object.entries(S.divisions).forEach(([d,v])=>v.forEach(n=>m[n]=d));if(AD)Object.entries(AD.divisions).forEach(([d,v])=>v.forEach(n=>m[n]=d));return m;}
+function sqLabel(s,age){const q=REP.squads[s];if(!q)return s;return q.age===age?(q.name==='Squad'?'Squad':(/^\d$/.test(q.name)?'Team '+q.name:q.name)):(q.age.replace(' Boys',' B').replace(' Girls',' G')+' '+q.name);}
+function renderRep(ag,sp,lead,kp){
+ sp.innerHTML='';sp.appendChild(el('span','status recommended','Warriors CRP 2026/27'));
+ const DV=repDivisions(ag);
+ const T=REP.teams.filter(t=>t.age===ag.name).map(t=>({...t,div:DV[t.team]||t.div})).sort((a,b)=>sortDiv(a.div,b.div)||b.n-a.n||a.team.localeCompare(b.team));
+ const tot=T.reduce((s,t)=>s+t.n,0),d1=T.filter(t=>t.div==='D1').reduce((s,t)=>s+t.n,0),d2=T.filter(t=>t.div==='D2').reduce((s,t)=>s+t.n,0);
+ lead.innerHTML='';lead.append(ag.name+': ',el('b',null,tot+' Warriors rep player'+(tot===1?'':'s')),' play in this domestic competition'+(tot?', '+d1+' of them in Division 1.':'.'));
+ kp.innerHTML='';const K=(n,l,c)=>{const d=el('div','kpi');d.append(el('div','n',n),el('div','l',l),el('div','c',c||''));kp.appendChild(d);};
+ K(String(tot),'Rep players','in '+T.length+' team'+(T.length===1?'':'s'));K(String(d1),'In Division 1',tot?Math.round(d1/tot*100)+'% of the age group':'');K(String(d2),'In Division 2','');K(String(tot-d1-d2),'Lower divisions','');
+ const allRep=REP.teams.reduce((s,t)=>s+t.n,0);K(String(allRep),'All age groups',Object.values(REP.squads).reduce((s,q)=>s+q.players,0)+' squad players in total');
+ const host=$('repBody');host.innerHTML='';
+ // team table
+ const sqs=[...new Set(T.flatMap(t=>Object.keys(t.squads)))].sort((a,b)=>{const A=REP.squads[a],B=REP.squads[b];return (A.age===ag.name?0:1)-(B.age===ag.name?0:1)||A.age.localeCompare(B.age)||A.rank-B.rank;});
+ const p1=el('div','panel');p1.appendChild(el('h2',null,'By team'));
+ p1.appendChild(el('p','sub','Players selected in this season’s Warriors Country Representative Program squads, by the domestic team they play in. Divisions are from Round 7. Counts only: no player is named. These squads are this season’s selections; Division floor obligations under Section 6 use last season’s classifications.'));
+ if(!T.length)p1.appendChild(el('p','empty','No Warriors squad players are matched to a team in this age group.'));
+ else{const tb=el('table');const hd=el('thead');const hr=el('tr');hr.append(el('th',null,'Team'),el('th',null,'Div'));sqs.forEach(s=>hr.appendChild(el('th','num',sqLabel(s,ag.name))));hr.appendChild(el('th','num','Total'));hd.appendChild(hr);tb.appendChild(hd);
+  const bd=el('tbody');let last=null;T.forEach(t=>{const tr=el('tr');if(last&&last!==t.div)tr.className='cut';last=t.div;const tn=el('td');tn.appendChild(tcell(t.team,t.club));tr.append(tn,el('td',null,t.div));sqs.forEach(s=>tr.appendChild(el('td','num',t.squads[s]?String(t.squads[s]):'–')));tr.appendChild(el('td','num',String(t.n)));bd.appendChild(tr);});
+  tb.appendChild(bd);const tw=el('div','tw');tw.appendChild(tb);p1.appendChild(tw);}
+ host.appendChild(p1);
+ // club table for this age group
+ if(T.length){const p2=el('div','panel gap');p2.appendChild(el('h2',null,'By club'));const by={};T.forEach(t=>{const c=by[t.club]||(by[t.club]={n:0,d1:0,teams:[]});c.n+=t.n;if(t.div==='D1')c.d1+=t.n;c.teams.push(t);});
+  const tb=el('table');tb.innerHTML='<thead><tr><th>Club</th><th class="num">Rep players</th><th class="num">In Division 1</th><th>Teams</th></tr></thead>';const bd=el('tbody');
+  Object.entries(by).sort((a,b)=>b[1].n-a[1].n||a[0].localeCompare(b[0])).forEach(([c,v])=>{const tr=el('tr');tr.append(el('td','t',c),el('td','num',String(v.n)),el('td','num',String(v.d1)),el('td','muted',v.teams.map(t=>t.team.replace(c+' ','').replace('Heat ','')+' '+t.n+' ('+t.div+')').join(' · ')));bd.appendChild(tr);});
+  tb.appendChild(bd);const tw=el('div','tw');tw.appendChild(tb);p2.appendChild(tw);host.appendChild(p2);}
+ // all age groups: club x age
+ const ages=[...new Set(REP.teams.map(t=>t.age))].sort((a,b)=>{const o=DATA.ageGroups.map(x=>x.name);const ia=o.indexOf(a),ib=o.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
+ const clubs=[...new Set(REP.teams.map(t=>t.club))].sort();
+ const p3=el('div','panel gap');p3.appendChild(el('h2',null,'All age groups by club'));p3.appendChild(el('p','sub','Rep players in each club’s domestic teams, by the age group they play in domestically (some play up). Division 1 share in brackets.'));
+ const tb=el('table');const hr=el('tr');hr.appendChild(el('th',null,'Club'));ages.forEach(a=>hr.appendChild(el('th','num',a)));hr.appendChild(el('th','num','Total'));const hd=el('thead');hd.appendChild(hr);tb.appendChild(hd);const bd=el('tbody');
+ const cell=(ts)=>{const n=ts.reduce((s,t)=>s+t.n,0);return n?String(n):'–';};
+ clubs.forEach(c=>{const tr=el('tr');tr.appendChild(el('td','t',c));ages.forEach(a=>{const td=el('td','num',cell(REP.teams.filter(t=>t.club===c&&t.age===a)));if(a===ag.name)td.classList.add('hl');tr.appendChild(td);});const all=REP.teams.filter(t=>t.club===c),n=all.reduce((s,t)=>s+t.n,0),dd=all.filter(t=>t.div==='D1').reduce((s,t)=>s+t.n,0);tr.appendChild(el('td','num',n+' ('+dd+')'));bd.appendChild(tr);});
+ const tr=el('tr','tot');tr.appendChild(el('td','t','All clubs'));ages.forEach(a=>tr.appendChild(el('td','num',cell(REP.teams.filter(t=>t.age===a)))));const dd=REP.teams.filter(t=>t.div==='D1').reduce((s,t)=>s+t.n,0);tr.appendChild(el('td','num',allRep+' ('+dd+')'));bd.appendChild(tr);
+ tb.appendChild(bd);const tw=el('div','tw');tw.appendChild(tb);p3.appendChild(tw);
+ const un=Object.values(REP.unmatched).reduce((s,x)=>s+x,0)+Object.values(REP.noteam).reduce((s,x)=>s+x,0);
+ if(un)p3.appendChild(el('p','note',un+' squad players are not in a WBA domestic team this summer (for example, playing elsewhere or not registered), so they are not counted above.'));
+ host.appendChild(p3);
+}
 function renderSeason(ag,sp,lead,kp){
  const S=STAGE2.ages[ag.name];const W=W26[ag.name]||null;
  const games=S.games.filter(g=>g.r>=SEASON_FROM).map(g=>({...g,margin:g.ff?null:g.draw?0:(g.ws-g.ls)/(g.ws+g.ls)}));games.forEach(g=>g.band=g.ff?'Forfeit':band(g.margin));
