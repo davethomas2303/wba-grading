@@ -28,6 +28,12 @@ jobs:
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
           PLAYHQ_SEASON_ID: ${{ secrets.PLAYHQ_SEASON_ID }}
         run: python3 playhq_pull.py fx.csv
+      - name: Keep the pulled fixture (for checking draws)
+        uses: actions/upload-artifact@v4
+        with:
+          name: fx
+          path: build/fx.csv
+          retention-days: 14
       - name: Build the site
         working-directory: build
         run: |
