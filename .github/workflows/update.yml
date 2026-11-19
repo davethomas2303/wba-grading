@@ -34,6 +34,15 @@ jobs:
           name: fx
           path: build/fx.csv
           retention-days: 14
+      - name: Print upcoming junior fixtures (for checking draws)
+        working-directory: build
+        run: |
+          python3 -c "
+          import csv
+          for r in csv.DictReader(open('fx.csv')):
+            if r['Game Status']!='Final' and r['Home Team'] and r['Round'].startswith('Round '):
+              print('FX', r['Grade'], '|', r['Round'], '|', r['Game Date'], r['Time'], '|', r['Home Team'], 'v', r['Away Team'])
+          "
       - name: Build the site
         working-directory: build
         run: |
