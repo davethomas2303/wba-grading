@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-19 13:03",
+"asAt": "2026-11-19 17:04",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -799,6 +799,13 @@
 "l": "Bunyip Flyers",
 "ws": 52,
 "ls": 24
+},
+{
+"r": 7,
+"div": "D2",
+"w": "Devils Angels",
+"l": "Rebels Diamonds",
+"ff": true
 }
 ],
 "next": {
@@ -873,16 +880,6 @@
 "time": "8:20pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 4",
-"status": "Upcoming"
-},
-{
-"date": "Thu 19 Nov",
-"div": "D2",
-"h": "Devils Angels",
-"a": "Rebels Diamonds",
-"time": "8:20pm",
-"venue": "Bunyip Recreation Reserve",
-"court": "Court 1",
 "status": "Upcoming"
 },
 {
