@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-21 07:54",
+"asAt": "2026-11-22 05:08",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -1084,7 +1084,7 @@
 "Bunyip Hornets",
 "Bunyip Nets",
 "Devils Chiefs",
-"Gladiators Maximus",
+"Neerim Wolves White",
 "Rebels Storm"
 ],
 "D3": [
@@ -1093,25 +1093,25 @@
 "Chalkies Tigers",
 "Devils Grizzlies",
 "Devils Knights",
-"Neerim Wolves White",
+"Gladiators Maximus",
 "Rebels Hurricanes",
 "Yarragon Wildcats"
 ],
 "D4": [
-"Bunyip Heat",
 "Bunyip Pelicans",
 "Chalkies Jets",
 "Chalkies Kings",
 "Devils Mavericks",
-"Rebels Meteors",
+"Rebels Comets",
 "Rebels Typhoons"
 ],
 "D5": [
+"Bunyip Heat",
 "Chalkies Bandits",
 "Chalkies Thunder",
 "Devils Vikings",
 "Neerim Wolves Blue",
-"Rebels Comets",
+"Rebels Meteors",
 "Rebels Rockets"
 ]
 },
@@ -1503,7 +1503,178 @@
 "ls": 45
 }
 ],
-"next": null
+"next": {
+"r": 7,
+"date": "Tue 24 Nov",
+"games": [
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Rebels Stars",
+"a": "Neerim Wolves Black",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Rebels Suns",
+"a": "Devils Bucks",
+"time": "8:20pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Warranor Heat Kings",
+"a": "Bunyip Thunder",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Devils Chiefs",
+"a": "Neerim Wolves White",
+"time": "7:30pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Bunyip Nets",
+"a": "Bunyip Hornets",
+"time": "8:20pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Rebels Storm",
+"a": "Bunyip Hawks",
+"time": "8:20pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Rebels Hurricanes",
+"a": "Devils Grizzlies",
+"time": "7:30pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Bunyip Knicks",
+"a": "Devils Knights",
+"time": "7:30pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Yarragon Wildcats",
+"a": "Chalkies Tigers",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Gladiators Maximus",
+"a": "Bunyip Rockets",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Devils Mavericks",
+"a": "Rebels Typhoons",
+"time": "7:30pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Rebels Comets",
+"a": "Chalkies Kings",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Bunyip Pelicans",
+"a": "Chalkies Jets",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Rebels Meteors",
+"a": "Neerim Wolves Blue",
+"time": "6:40pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Chalkies Thunder",
+"a": "Bunyip Heat",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Rebels Rockets",
+"a": "Chalkies Bandits",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D5",
+"team": "Devils Vikings"
+}
+]
+}
 },
 "U14 Boys": {
 "nights": {
@@ -1525,56 +1696,56 @@
 ],
 "divisions": {
 "D1": [
+"Bunyip Bucks",
 "Chalkies Hoopers",
 "Devils Clippers",
+"Devils Jets",
 "Neerim Wolves Blue 1",
 "Neerim Wolves White 1",
 "Rebels Suns",
 "Warranor Heat Hornets"
 ],
 "D2": [
-"Bunyip Bucks",
 "Bunyip Cavaliers",
 "Chalkies Redbacks",
 "Chalkies United",
 "Devils Hornets",
-"Devils Jets",
 "Devils Knicks",
-"Rebels Lightning"
+"Gladiators Raiders",
+"Neerim Wolves Blue",
+"Rebels Lightning",
+"Warranor Heat Breakers"
 ],
 "D3": [
 "Bunyip Bulldogs",
 "Bunyip Sonics",
-"Devils Lions",
+"Chalkies Mavericks",
 "Devils Nets",
-"Gladiators Raiders",
-"Neerim Wolves Blue",
+"Devils Spurs",
+"Devils Wizards",
 "Rebels Meteors",
-"Rebels Thunder",
-"Rebels Typhoons",
-"Warranor Heat Breakers"
+"Rebels Typhoons"
 ],
 "D4": [
 "Bunyip Grizzlies",
 "Chalkies Hornets",
-"Chalkies Mavericks",
-"Devils Magic",
+"Chalkies Taipans",
+"Devils Lions",
 "Devils Pacers",
 "Devils Raiders",
-"Devils Spurs",
-"Devils Wizards",
-"Rebels Jets",
+"Neerim Wolves White",
+"Rebels Thunder",
 "Yarragon Wildcats"
 ],
 "D5": [
 "Bunyip Lakers",
 "Bunyip Spurs",
 "Bunyip Suns",
-"Chalkies Taipans",
 "Chalkies Vipers",
+"Devils Magic",
 "Devils Thunder",
 "Gladiators Trojans",
-"Neerim Wolves White"
+"Rebels Jets"
 ]
 },
 "games": [
@@ -2070,7 +2241,222 @@
 "ls": 26
 }
 ],
-"next": null
+"next": {
+"r": 7,
+"date": "Tue 24 Nov",
+"games": [
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Warranor Heat Hornets",
+"a": "Neerim Wolves Blue 1",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Chalkies Hoopers",
+"a": "Devils Jets",
+"time": "6:40pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Devils Clippers",
+"a": "Neerim Wolves White 1",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D1",
+"h": "Bunyip Bucks",
+"a": "Rebels Suns",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Devils Knicks",
+"a": "Neerim Wolves Blue",
+"time": "5:50pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Chalkies United",
+"a": "Warranor Heat Breakers",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Bunyip Cavaliers",
+"a": "Rebels Lightning",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D2",
+"h": "Gladiators Raiders",
+"a": "Devils Hornets",
+"time": "6:40pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Rebels Typhoons",
+"a": "Devils Nets",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Devils Wizards",
+"a": "Bunyip Bulldogs",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Rebels Meteors",
+"a": "Devils Spurs",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D3",
+"h": "Chalkies Mavericks",
+"a": "Bunyip Sonics",
+"time": "6:40pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Yarragon Wildcats",
+"a": "Devils Raiders",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Bunyip Grizzlies",
+"a": "Chalkies Hornets",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Neerim Wolves White",
+"a": "Rebels Thunder",
+"time": "5:00pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D4",
+"h": "Devils Lions",
+"a": "Chalkies Taipans",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Devils Magic",
+"a": "Devils Thunder",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Rebels Jets",
+"a": "Chalkies Vipers",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Bunyip Spurs",
+"a": "Gladiators Trojans",
+"time": "5:50pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Tue 24 Nov",
+"div": "D5",
+"h": "Bunyip Lakers",
+"a": "Bunyip Suns",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+}
+],
+"byes": [
+{
+"div": "D2",
+"team": "Chalkies Redbacks"
+},
+{
+"div": "D4",
+"team": "Devils Pacers"
+}
+]
+}
 },
 "U14 Girls": {
 "nights": {
