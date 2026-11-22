@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-22 11:00",
+"asAt": "2026-11-23 05:37",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -419,7 +419,7 @@
 {
 "date": "Mon 23 Nov",
 "div": "D2",
-"h": "Rebels Lightning",
+"h": "Devils Hawks",
 "a": "Bunyip Sharks",
 "time": "5:50pm",
 "venue": "Bellbird Park Indoor Centre",
@@ -431,10 +431,6 @@
 {
 "div": "D1",
 "team": "Bunyip Taipan"
-},
-{
-"div": "D2",
-"team": "Devils Hawks"
 }
 ]
 }
@@ -1102,6 +1098,7 @@
 "Chalkies Jets",
 "Chalkies Kings",
 "Devils Mavericks",
+"Devils Vikings",
 "Rebels Comets",
 "Rebels Typhoons"
 ],
@@ -1109,7 +1106,6 @@
 "Bunyip Heat",
 "Chalkies Bandits",
 "Chalkies Thunder",
-"Devils Vikings",
 "Neerim Wolves Blue",
 "Rebels Meteors",
 "Rebels Rockets"
@@ -1670,7 +1666,7 @@
 ],
 "byes": [
 {
-"div": "D5",
+"div": "D4",
 "team": "Devils Vikings"
 }
 ]
