@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-23 11:34",
+"asAt": "2026-11-24 09:51",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -16,7 +16,8 @@
 4,
 5,
 6,
-7
+7,
+8
 ],
 "divisions": {
 "D1": [
@@ -330,26 +331,88 @@
 "l": "Neerim Wolves White",
 "ws": 47,
 "ls": 33
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Bunyip Sonics",
+"l": "Bunyip Rockets",
+"ws": 54,
+"ls": 50
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Neerim Wolves Blue",
+"l": "Chalkies Bucks",
+"ws": 82,
+"ls": 39
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Rebels Meteors",
+"l": "Neerim Wolves Black",
+"ws": 53,
+"ls": 41
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Devils Eagles",
+"l": "Yarragon Wildcats",
+"ws": 60,
+"ls": 20
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Bunyip Sharks",
+"l": "Devils Hawks",
+"ws": 41,
+"ls": 37
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Caesars",
+"l": "Chalkies Force",
+"ws": 56,
+"ls": 12
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Rebels Lightning",
+"l": "Gladiators Raiders",
+"ws": 99,
+"ls": 35
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Devils Sonics",
+"l": "Neerim Wolves White",
+"ws": 70,
+"ls": 42
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Rebels Jets",
+"l": "Chalkies Breakers",
+"ws": 40,
+"ls": 37
 }
 ],
 "next": {
-"r": 8,
-"date": "Mon 23 Nov",
+"r": 9,
+"date": "Mon 30 Nov",
 "games": [
 {
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D1",
 "h": "Rebels Meteors",
-"a": "Neerim Wolves Black",
-"time": "5:00pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Mon 23 Nov",
-"div": "D1",
-"h": "Yarragon Wildcats",
 "a": "Devils Eagles",
 "time": "5:00pm",
 "venue": "Bellbird Park Indoor Centre",
@@ -357,49 +420,59 @@
 "status": "Upcoming"
 },
 {
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D1",
-"h": "Neerim Wolves Blue",
+"h": "Yarragon Wildcats",
 "a": "Chalkies Bucks",
+"time": "5:00pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Mon 30 Nov",
+"div": "D1",
+"h": "Neerim Wolves Black",
+"a": "Bunyip Sonics",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Mon 30 Nov",
+"div": "D1",
+"h": "Bunyip Rockets",
+"a": "Bunyip Taipan",
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
 "status": "Upcoming"
 },
 {
-"date": "Mon 23 Nov",
-"div": "D1",
-"h": "Bunyip Sonics",
-"a": "Bunyip Rockets",
-"time": "6:40pm",
-"venue": "Bunyip Recreation Reserve",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D2",
-"h": "Chalkies Force",
-"a": "Gladiators Caesars",
+"h": "Gladiators Caesars",
+"a": "Gladiators Raiders",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 4",
 "status": "Upcoming"
 },
 {
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D2",
-"h": "Gladiators Raiders",
-"a": "Rebels Lightning",
+"h": "Chalkies Breakers",
+"a": "Bunyip Sharks",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
 "status": "Upcoming"
 },
 {
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D2",
-"h": "Devils Sonics",
+"h": "Devils Hawks",
 "a": "Neerim Wolves White",
 "time": "5:00pm",
 "venue": "Bellbird Park Indoor Centre",
@@ -407,20 +480,20 @@
 "status": "Upcoming"
 },
 {
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D2",
-"h": "Rebels Jets",
-"a": "Chalkies Breakers",
+"h": "Chalkies Force",
+"a": "Rebels Lightning",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 2",
 "status": "Upcoming"
 },
 {
-"date": "Mon 23 Nov",
+"date": "Mon 30 Nov",
 "div": "D2",
-"h": "Devils Hawks",
-"a": "Bunyip Sharks",
+"h": "Devils Sonics",
+"a": "Rebels Jets",
 "time": "5:50pm",
 "venue": "Bellbird Park Indoor Centre",
 "court": "Court 1",
@@ -430,7 +503,7 @@
 "byes": [
 {
 "div": "D1",
-"team": "Bunyip Taipan"
+"team": "Neerim Wolves Blue"
 }
 ]
 }
@@ -2285,7 +2358,7 @@
 "date": "Tue 24 Nov",
 "div": "D2",
 "h": "Devils Knicks",
-"a": "Neerim Wolves Blue",
+"a": "Chalkies Redbacks",
 "time": "5:50pm",
 "venue": "Neerim South Basketball Stadium",
 "court": "Court 1",
@@ -2445,7 +2518,7 @@
 "byes": [
 {
 "div": "D2",
-"team": "Chalkies Redbacks"
+"team": "Neerim Wolves Blue"
 },
 {
 "div": "D4",
