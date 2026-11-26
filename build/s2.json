@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-26 13:35",
+"asAt": "2026-11-27 07:26",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -523,7 +523,8 @@
 4,
 5,
 6,
-7
+7,
+8
 ],
 "divisions": {
 "D1": [
@@ -972,151 +973,255 @@
 "l": "Warranor Heat Fire",
 "ws": 51,
 "ls": 48
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Suns",
+"l": "Warranor Heat All-Stars",
+"ws": 21,
+"ls": 20
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Fury",
+"l": "Devils Angels",
+"ws": 27,
+"ls": 21
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Mercury",
+"l": "Bunyip Vipers",
+"ws": 37,
+"ls": 24
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Rebels Sapphires",
+"l": "Rebels Diamonds",
+"ws": 50,
+"ls": 33
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Rebels Pearls",
+"l": "Warranor Heat Spirit",
+"ws": 26,
+"ls": 16
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Gladiators Blaze",
+"l": "Chalkies Storm",
+"ws": 36,
+"ls": 22
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Devils Vixens",
+"l": "Gladiators Nova",
+"ws": 33,
+"ls": 20
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Neerim Wolves White",
+"l": "Warranor Heat Hotshots",
+"ws": 41,
+"ls": 17
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Devils Liberty",
+"l": "Rebels Opals",
+"ws": 29,
+"ls": 18
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Chalkies Lightning",
+"ws": 35,
+"ls": 33
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Warranor Heat Fire",
+"l": "Warranor Heat Fever",
+"ws": 64,
+"ls": 50
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Bunyip Fire",
+"l": "Bunyip Flyers",
+"ws": 47,
+"ls": 32
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Bunyip Dream",
+"l": "Neerim Wolves Blue",
+"ws": 49,
+"ls": 21
 }
 ],
 "next": {
-"r": 8,
-"date": "Thu 26 Nov",
+"r": 9,
+"date": "Thu 3 Dec",
 "games": [
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D1",
-"h": "Chalkies Lightning",
-"a": "Gladiators Shadows",
-"time": "8:20pm",
+"h": "Bunyip Flyers",
+"a": "Chalkies Lightning",
+"time": "9:10pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 4",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D1",
-"h": "Warranor Heat Fire",
-"a": "Warranor Heat Fever",
-"time": "8:20pm",
+"h": "Neerim Wolves Blue",
+"a": "Bunyip Fire",
+"time": "9:10pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D1",
-"h": "Bunyip Fire",
-"a": "Bunyip Flyers",
+"h": "Warranor Heat Fever",
+"a": "Bunyip Dream",
+"time": "9:10pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D1",
+"h": "Gladiators Shadows",
+"a": "Warranor Heat Fire",
+"time": "9:10pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Devils Angels",
+"a": "Gladiators Mercury",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Gladiators Fury",
+"a": "Gladiators Suns",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Rebels Diamonds",
+"a": "Rebels Amethysts",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Rebels Sapphires",
+"a": "Warranor Heat All-Stars",
 "time": "8:20pm",
 "venue": "Bunyip Recreation Reserve",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
-"div": "D1",
-"h": "Bunyip Dream",
-"a": "Neerim Wolves Blue",
-"time": "8:20pm",
-"venue": "Neerim South Basketball Stadium",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Gladiators Suns",
-"a": "Warranor Heat All-Stars",
-"time": "7:30pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 3",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Gladiators Mercury",
-"a": "Bunyip Vipers",
-"time": "7:30pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Gladiators Fury",
-"a": "Devils Angels",
-"time": "8:20pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Rebels Diamonds",
-"a": "Rebels Sapphires",
-"time": "8:20pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D3",
-"h": "Devils Vixens",
-"a": "Gladiators Nova",
-"time": "7:30pm",
-"venue": "St Paul's Anglican Grammar School (Warragul)",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D3",
-"h": "Neerim Wolves White",
-"a": "Warranor Heat Hotshots",
-"time": "7:30pm",
-"venue": "St Paul's Anglican Grammar School (Warragul)",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D3",
-"h": "Devils Liberty",
-"a": "Rebels Opals",
-"time": "7:30pm",
+"h": "Rebels Pearls",
+"a": "Rebels Garnets",
+"time": "8:20pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 4",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D3",
-"h": "Rebels Pearls",
-"a": "Warranor Heat Spirit",
+"h": "Gladiators Nova",
+"a": "Gladiators Blaze",
 "time": "8:20pm",
-"venue": "St Paul's Anglican Grammar School (Warragul)",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D3",
+"h": "Warranor Heat Spirit",
+"a": "Rebels Opals",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D3",
+"h": "Chalkies Storm",
+"a": "Devils Vixens",
+"time": "8:20pm",
+"venue": "Warragul Leisure Centre",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D3",
-"h": "Chalkies Storm",
-"a": "Gladiators Blaze",
+"h": "Devils Liberty",
+"a": "Neerim Wolves White",
 "time": "8:20pm",
-"venue": "St Paul's Anglican Grammar School (Warragul)",
-"court": "Court 2",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
 "status": "Upcoming"
 }
 ],
 "byes": [
 {
 "div": "D2",
-"team": "Rebels Amethysts"
+"team": "Bunyip Vipers"
 },
 {
 "div": "D3",
-"team": "Rebels Garnets"
+"team": "Warranor Heat Hotshots"
 }
 ]
 }
@@ -2834,7 +2939,8 @@
 4,
 5,
 6,
-7
+7,
+8
 ],
 "divisions": {
 "D1": [
@@ -3187,107 +3293,187 @@
 "l": "Rebels Gems",
 "ws": 48,
 "ls": 18
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Bunyip Fever",
+"l": "Gladiators Mercury",
+"ws": 12,
+"ls": 10
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Devils Opals",
+"l": "Rebels Rhinestones",
+"ws": 26,
+"ls": 14
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Bunyip Ravens",
+"l": "Devils Swifts",
+"ws": 9,
+"ls": 4
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Bunyip Mystics",
+"l": "Warranor Heat Phantoms",
+"ws": 27,
+"ls": 26
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Bunyip Aces",
+"l": "Gladiators Shadows",
+"ws": 45,
+"ls": 15
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Warranor Heat Phoenix",
+"l": "Neerim Wolves Blue",
+"ws": 54,
+"ls": 22
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Warranor Heat Falcons",
+"l": "Rebels Rubies",
+"ws": 27,
+"ls": 20
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Rebels Gems",
+"l": "Gladiators Suns",
+"ws": 20,
+"ls": 17
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Yarragon Wildcats",
+"l": "Gladiators Blaze",
+"ws": 41,
+"ls": 11
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Devils Diamonds",
+"l": "Warranor Heat Flames",
+"ws": 22,
+"ls": 14
 }
 ],
 "next": {
-"r": 8,
-"date": "Thu 26 Nov",
+"r": 9,
+"date": "Thu 3 Dec",
 "games": [
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D1",
-"h": "Gladiators Shadows",
-"a": "Bunyip Aces",
-"time": "6:40pm",
-"venue": "Bunyip Recreation Reserve",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D1",
-"h": "Warranor Heat Phantoms",
-"a": "Bunyip Mystics",
+"h": "Bunyip Mystics",
+"a": "Devils Belles",
 "time": "7:30pm",
 "venue": "Bunyip Recreation Reserve",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
+"div": "D1",
+"h": "Warranor Heat Phoenix",
+"a": "Warranor Heat Phantoms",
+"time": "7:30pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
 "div": "D1",
 "h": "Neerim Wolves Blue",
-"a": "Warranor Heat Phoenix",
+"a": "Gladiators Shadows",
 "time": "7:30pm",
 "venue": "Neerim South Basketball Stadium",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D2",
-"h": "Warranor Heat Falcons",
-"a": "Rebels Rubies",
-"time": "6:40pm",
-"venue": "Neerim South Basketball Stadium",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Rebels Gems",
-"a": "Gladiators Suns",
-"time": "6:40pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Warranor Heat Flames",
-"a": "Devils Diamonds",
-"time": "6:40pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Gladiators Blaze",
-"a": "Yarragon Wildcats",
-"time": "7:30pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D3",
-"h": "Bunyip Ravens",
-"a": "Devils Swifts",
+"h": "Devils Diamonds",
+"a": "Gladiators Blaze",
 "time": "5:50pm",
-"venue": "Bunyip Recreation Reserve",
-"court": "Court 1",
+"venue": "Warragul Leisure Centre",
+"court": "Court 4",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
-"div": "D3",
-"h": "Gladiators Mercury",
-"a": "Bunyip Fever",
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Yarragon Wildcats",
+"a": "Warranor Heat Falcons",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Gladiators Suns",
+"a": "Warranor Heat Flames",
 "time": "6:40pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 4",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Rebels Rubies",
+"a": "Rebels Gems",
+"time": "6:40pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D3",
+"h": "Neerim Wolves White",
+"a": "Bunyip Ravens",
+"time": "5:50pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D3",
+"h": "Devils Swifts",
+"a": "Bunyip Fever",
+"time": "6:40pm",
+"venue": "Bunyip Recreation Reserve",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
 "div": "D3",
 "h": "Rebels Rhinestones",
-"a": "Devils Opals",
+"a": "Gladiators Mercury",
 "time": "6:40pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
@@ -3297,11 +3483,11 @@
 "byes": [
 {
 "div": "D1",
-"team": "Devils Belles"
+"team": "Bunyip Aces"
 },
 {
 "div": "D3",
-"team": "Neerim Wolves White"
+"team": "Devils Opals"
 }
 ]
 }
@@ -3802,6 +3988,22 @@
 "l": "Warranor Heat Fury",
 "ws": 39,
 "ls": 19
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Neerim Wolves White 1",
+"l": "Rebels Stars",
+"ws": 43,
+"ls": 31
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Devils Braves",
+"l": "Warranor Heat Fury",
+"ws": 39,
+"ls": 31
 }
 ],
 "next": {
@@ -3863,7 +4065,8 @@
 4,
 5,
 6,
-7
+7,
+8
 ],
 "divisions": {
 "D1": [
@@ -4140,90 +4343,154 @@
 "l": "Warranor Heat Jets",
 "ws": 29,
 "ls": 14
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Gladiators Shadows",
+"l": "Warranor Heat Sparrows",
+"ws": 31,
+"ls": 6
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Devils Liberty",
+"l": "Devils Blazers",
+"ws": 26,
+"ls": 22
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Chalkies Stars",
+"l": "Bunyip Opals",
+"ws": 18,
+"ls": 12
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Warranor Heat Ballers",
+"l": "Gladiators Suns",
+"ws": 22,
+"ls": 13
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Chalkies Diamonds",
+"l": "Warranor Heat Jets",
+"ws": 32,
+"ls": 16
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Neerim Wolves Blue",
+"l": "Bunyip Sparks",
+"ws": 25,
+"ls": 5
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Devils Sparks",
+"l": "Gladiators Mercury",
+"ws": 22,
+"ls": 5
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Neerim Wolves White",
+"l": "Rebels Crystals",
+"ws": 26,
+"ls": 18
 }
 ],
 "next": {
-"r": 8,
-"date": "Thu 26 Nov",
+"r": 9,
+"date": "Thu 3 Dec",
 "games": [
 {
-"date": "Thu 26 Nov",
-"div": "D1",
-"h": "Chalkies Stars",
-"a": "Bunyip Opals",
-"time": "5:00pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
 "div": "D1",
 "h": "Gladiators Shadows",
-"a": "Warranor Heat Sparrows",
-"time": "5:50pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D1",
-"h": "Devils Blazers",
-"a": "Devils Liberty",
-"time": "5:50pm",
-"venue": "Bellbird Park Indoor Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D1",
-"h": "Warranor Heat Ballers",
 "a": "Gladiators Suns",
-"time": "5:50pm",
-"venue": "Warragul Leisure Centre",
-"court": "Court 4",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Warranor Heat Jets",
-"a": "Chalkies Diamonds",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 2",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Gladiators Mercury",
-"a": "Devils Sparks",
+"date": "Thu 3 Dec",
+"div": "D1",
+"h": "Warranor Heat Sparrows",
+"a": "Bunyip Opals",
 "time": "5:00pm",
-"venue": "Bellbird Park Indoor Centre",
-"court": "Court 2",
-"status": "Upcoming"
-},
-{
-"date": "Thu 26 Nov",
-"div": "D2",
-"h": "Bunyip Sparks",
-"a": "Neerim Wolves Blue",
-"time": "5:50pm",
-"venue": "Neerim South Basketball Stadium",
+"venue": "Bunyip Recreation Reserve",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Thu 26 Nov",
+"date": "Thu 3 Dec",
+"div": "D1",
+"h": "Devils Liberty",
+"a": "Chalkies Stars",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D1",
+"h": "Devils Blazers",
+"a": "Warranor Heat Ballers",
+"time": "5:50pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
 "div": "D2",
-"h": "Rebels Crystals",
-"a": "Neerim Wolves White",
+"h": "Devils Sparks",
+"a": "Rebels Crystals",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Neerim Wolves Blue",
+"a": "Warranor Heat Jets",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Chalkies Diamonds",
+"a": "Bunyip Sparks",
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
+"status": "Upcoming"
+},
+{
+"date": "Thu 3 Dec",
+"div": "D2",
+"h": "Neerim Wolves White",
+"a": "Gladiators Mercury",
+"time": "6:40pm",
+"venue": "Neerim South Basketball Stadium",
+"court": "Court 1",
 "status": "Upcoming"
 }
 ],
