@@ -1,5 +1,5 @@
 {
-"asAt": "2026-11-27 13:35",
+"asAt": "2026-11-28 07:10",
 "ages": {
 "U19 Boys": {
 "nights": {
@@ -3508,7 +3508,8 @@
 "played": [
 4,
 5,
-6
+6,
+8
 ],
 "divisions": {
 "D1": [
@@ -3988,6 +3989,102 @@
 "l": "Warranor Heat Fury",
 "ws": 39,
 "ls": 19
+},
+{
+"r": 8,
+"div": "D5",
+"w": "Chalkies Vikings",
+"l": "Devils Vipers",
+"ws": 33,
+"ls": 14
+},
+{
+"r": 8,
+"div": "D5",
+"w": "Neerim Wolves Blue",
+"l": "Devils Rockets",
+"ws": 15,
+"ls": 4
+},
+{
+"r": 8,
+"div": "D5",
+"w": "Gladiators Felix",
+"l": "Gladiators Raiders",
+"ws": 37,
+"ls": 10
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Bunyip Spurs",
+"l": "Warranor Heat Flyers",
+"ws": 22,
+"ls": 21
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Trojans",
+"l": "Gladiators Titans",
+"ws": 29,
+"ls": 24
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Kings",
+"l": "Rebels Thunder",
+"ws": 30,
+"ls": 28
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Bunyip Clippers",
+"l": "Chalkies Phoenix",
+"ws": 32,
+"ls": 29
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Neerim Wolves White",
+"l": "Gladiators Maximus",
+"ws": 23,
+"ls": 8
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Chalkies Knights",
+"l": "Rebels Meteors",
+"ws": 23,
+"ls": 15
+},
+{
+"r": 8,
+"div": "D4",
+"w": "Bunyip Mavericks",
+"l": "Devils Nuggets",
+"ws": 30,
+"ls": 8
+},
+{
+"r": 8,
+"div": "D4",
+"w": "Bunyip Lakers",
+"l": "Bunyip Kings",
+"ws": 18,
+"ls": 12
+},
+{
+"r": 8,
+"div": "D4",
+"w": "Devils Kings",
+"l": "Devils Pistons",
+"ws": 9,
+"ls": 8
 },
 {
 "r": 8,
@@ -4513,7 +4610,8 @@
 4,
 5,
 6,
-7
+7,
+8
 ],
 "divisions": {
 "D1": [
@@ -4969,36 +5067,151 @@
 "l": "Bunyip Raptors",
 "ws": 10,
 "ls": 7
+},
+{
+"r": 8,
+"div": "D4",
+"w": "Bunyip Jazz",
+"l": "Rebels Rockets",
+"ws": 18,
+"ls": 13
+},
+{
+"r": 8,
+"div": "D4",
+"w": "Devils Thunder",
+"l": "Gladiators Maximus",
+"ws": 13,
+"ls": 7
+},
+{
+"r": 8,
+"div": "D4",
+"w": "Devils Raptors",
+"l": "Warranor Heat Taipans",
+"ws": 7,
+"ls": 4
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Devils Giants",
+"l": "Bunyip Magic",
+"ws": 20,
+"ls": 5
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Bunyip Stars",
+"l": "Gladiators Caesars",
+"ws": 18,
+"ls": 14
+},
+{
+"r": 8,
+"div": "D2",
+"w": "Gladiators Felix",
+"l": "Devils Jets",
+"ws": 22,
+"ls": 11
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Devils Celtics",
+"l": "Rebels Hurricanes",
+"ws": 22,
+"ls": 17
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Gladiators Raiders",
+"l": "Devils Magic",
+"ws": 27,
+"ls": 17
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Bunyip Hawks",
+"l": "Neerim Wolves",
+"ws": 30,
+"ls": 6
+},
+{
+"r": 8,
+"div": "D1",
+"w": "Chalkies Bears",
+"l": "Warranor Heat Vipers",
+"ws": 32,
+"ls": 8
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Bunyip Hornets",
+"l": "Gladiators Trojans",
+"ws": 32,
+"ls": 4
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Devils Pistons",
+"l": "Rebels Jets",
+"ws": 12,
+"ls": 6
+},
+{
+"r": 8,
+"div": "D3",
+"w": "Bunyip Raptors",
+"l": "Chalkies Raptors",
+"ws": 13,
+"ls": 13,
+"draw": true
 }
 ],
 "next": {
-"r": 8,
-"date": "Fri 27 Nov",
+"r": 9,
+"date": "Fri 4 Dec",
 "games": [
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D1",
-"h": "Devils Magic",
-"a": "Gladiators Raiders",
+"h": "Chalkies Bears",
+"a": "Devils Magic",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D1",
-"h": "Warranor Heat Vipers",
-"a": "Chalkies Bears",
+"h": "Neerim Wolves",
+"a": "Warranor Heat Vipers",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D1",
-"h": "Devils Celtics",
+"h": "Bunyip Hawks",
+"a": "Devils Celtics",
+"time": "5:50pm",
+"venue": "Warragul Leisure Centre",
+"court": "Court 2",
+"status": "Upcoming"
+},
+{
+"date": "Fri 4 Dec",
+"div": "D1",
+"h": "Gladiators Raiders",
 "a": "Rebels Hurricanes",
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
@@ -5006,79 +5219,79 @@
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
-"div": "D1",
-"h": "Neerim Wolves",
-"a": "Bunyip Hawks",
-"time": "5:50pm",
-"venue": "Neerim South Basketball Stadium",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D2",
-"h": "Devils Giants",
-"a": "Bunyip Magic",
+"h": "Devils Jets",
+"a": "Gladiators Caesars",
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 3",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D2",
-"h": "Gladiators Caesars",
-"a": "Bunyip Stars",
+"h": "Gladiators Felix",
+"a": "Bunyip Magic",
 "time": "5:50pm",
 "venue": "Bellbird Park Indoor Centre",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D2",
-"h": "Devils Jets",
-"a": "Gladiators Felix",
+"h": "Bunyip Stars",
+"a": "Devils Giants",
 "time": "5:50pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 4",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D3",
-"h": "Gladiators Trojans",
-"a": "Bunyip Hornets",
+"h": "Devils Pistons",
+"a": "Devils Knicks",
 "time": "5:00pm",
 "venue": "Neerim South Basketball Stadium",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D3",
-"h": "Rebels Jets",
-"a": "Devils Pistons",
+"h": "Chalkies Raptors",
+"a": "Gladiators Trojans",
 "time": "5:00pm",
 "venue": "Drouin Primary School",
 "court": "Court 1",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D3",
 "h": "Bunyip Raptors",
-"a": "Chalkies Raptors",
+"a": "Rebels Jets",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
 "court": "Court 2",
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D4",
-"h": "Bunyip Jazz",
+"h": "Warranor Heat Taipans",
+"a": "Devils Thunder",
+"time": "5:00pm",
+"venue": "Bellbird Park Indoor Centre",
+"court": "Court 1",
+"status": "Upcoming"
+},
+{
+"date": "Fri 4 Dec",
+"div": "D4",
+"h": "Gladiators Maximus",
 "a": "Rebels Rockets",
 "time": "5:00pm",
 "venue": "Warragul Leisure Centre",
@@ -5086,20 +5299,10 @@
 "status": "Upcoming"
 },
 {
-"date": "Fri 27 Nov",
+"date": "Fri 4 Dec",
 "div": "D4",
-"h": "Warranor Heat Taipans",
-"a": "Devils Raptors",
-"time": "5:00pm",
-"venue": "Bellbird Park Indoor Centre",
-"court": "Court 1",
-"status": "Upcoming"
-},
-{
-"date": "Fri 27 Nov",
-"div": "D4",
-"h": "Gladiators Maximus",
-"a": "Devils Thunder",
+"h": "Devils Raptors",
+"a": "Bunyip Jazz",
 "time": "5:50pm",
 "venue": "Drouin Primary School",
 "court": "Court 1",
@@ -5109,7 +5312,7 @@
 "byes": [
 {
 "div": "D3",
-"team": "Devils Knicks"
+"team": "Bunyip Hornets"
 }
 ]
 }
